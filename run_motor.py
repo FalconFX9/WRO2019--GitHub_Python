@@ -1,5 +1,5 @@
 from ev3dev.auto import *
-import time
+from time import sleep
 
 mA = Motor(OUTPUT_A)
 cl = ColorSensor('in2')
