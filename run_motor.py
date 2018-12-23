@@ -4,7 +4,6 @@ import time
 mA = Motor(OUTPUT_A)
 cl = ColorSensor('in2')
 
-if cl.reflected_light_intensity < 40:
-    mA.run_forever()
-else:
-    mA.stop()
+while True:
+    Print(cl.reflected_light_intensity)
+    Sleep(1)
