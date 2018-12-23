@@ -3,5 +3,5 @@ from time import sleep
 
 mA = Motor(OUTPUT_A)
 cl = Sensor('in2:i2c1')
-for x in range > 100:
+while True:
     print(cl.rgb[3])
