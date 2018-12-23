@@ -2,7 +2,7 @@ from ev3dev.auto import *
 import time
 
 mA = Motor(OUTPUT_A)
-cl = Sensor(address='in2:i2c1', driver_name='ht-nxt-color-v2')
+cl = ColorSensor('in2')
 cl.mode = 'WHITE'
 
 if cl.value < 40:
