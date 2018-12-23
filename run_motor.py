@@ -1,9 +1,9 @@
-from ev3dev.auto import *
+from ev3dev2.auto import *
 from time import sleep
 
 mA = Motor(OUTPUT_A)
-cl = Sensor('in2')
+cl = Sensor('in2:i2c1')
 
 while True:
-    print(cl.reflected_light_intensity)
+    print(cl.value())
     sleep(1)
