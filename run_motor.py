@@ -5,5 +5,5 @@ mA = Motor(OUTPUT_A)
 cl = ColorSensor('in2')
 
 while True:
-    Print(cl.reflected_light_intensity)
-    Sleep(1)
+    print(cl.reflected_light_intensity)
+    sleep(1)
