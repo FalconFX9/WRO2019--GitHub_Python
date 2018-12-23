@@ -3,5 +3,6 @@ from time import sleep
 
 mA = Motor(OUTPUT_A)
 cl = Sensor('in2:i2c1')
-
-cl.modes()
+cl.mode = 'RGB', 'value3'
+for x in range > 100:
+    print(cl.value())
