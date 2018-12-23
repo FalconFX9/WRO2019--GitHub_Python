@@ -4,4 +4,4 @@ from time import sleep
 mA = Motor(OUTPUT_A)
 cl = Sensor('in2:i2c1')
 
-print(cl.modes())
+cl.modes()
