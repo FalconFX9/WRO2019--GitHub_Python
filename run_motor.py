@@ -1,5 +1,13 @@
 from ev3dev.auto import *
 import time
 
-m = Motor(OUTPUT_A)
-m.run_timed(time_sp=3000, speed_sp=500)
+mA = Motor(OUTPUT_A)
+cl = Sensor(address='in2')
+cl.mode = 'white'
+
+if cl.value < 40:
+    mA.run_forever()
+else:
+    mA.stop()
+
+mA.stop(stop_action='brake')
