@@ -30,7 +30,7 @@ Kp = 0.43
 Ki = 0
 Kd = 0.002
 
-Kp2 = 0.25
+Kp2 = 0.2
 Ki2 = 0
 Kd2 = 0
 
@@ -62,7 +62,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
 
 def doublepidlinefollower():
     global Error2, Last_Error2, Integral2, Derivative2, Kp2, Ki2, Kd2, steer_pair
-    Error2 = (Hitechnic1.value(3)/2) - (Hitechnic2.value(3) / 2)
+    Error2 = (Hitechnic1.value(3) / 2) - (Hitechnic2.value(3) / 2)
     print(Hitechnic1.value(3), Hitechnic2.value(3))
     Integral2 = Error + Integral2
     Derivative2 = Error2 - Last_Error2
