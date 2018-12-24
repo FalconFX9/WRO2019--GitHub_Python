@@ -35,11 +35,12 @@ steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 
 
 def pidlinefollower(sensor=Hitechnic1, side=1):
-    global Target, Error, Last_Error, Integral, Derivative, Kp, Ki, Kd
+    global Target, Error, Last_Error, Integral, Derivative, Kp, Ki, Kd, steer_pair
     Error = Target - sensor.value(3)
     Integral = Error + Integral
     Derivative = Error - Last_Error
-    steer_pair.run_forever(steering=((Error * Kp) + (Integral * Ki) + Derivative * Kd)*side, speed=25)
+    motor_steering = ((Error * Kp) + (Integral * Ki) + (Derivative * Kd)) * side
+    steer_pair.run_forever(motor_steering, 25)
     Last_Error = Error
     return
 
