@@ -3,6 +3,6 @@ from time import sleep
 
 mA = Motor(OUTPUT_A)
 cl = Sensor('in2:i2c1')
-cl.mode = 'RGB', 'value3'
+cl.mode = 'RGB'
 while True:
-    print(cl.value())
+    print(cl.value(3))
