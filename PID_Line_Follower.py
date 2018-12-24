@@ -30,9 +30,9 @@ Kp = 0.43
 Ki = 0
 Kd = 0.002
 
-Kp2 = 0.3
+Kp2 = 0.25
 Ki2 = 0
-Kd2 = 0.002
+Kd2 = 0
 
 # Sensor declaration
 
