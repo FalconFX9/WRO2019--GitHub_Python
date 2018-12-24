@@ -45,10 +45,8 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     return
 
 
-for x in range(2):
-    pidlinefollower(Hitechnic1, 1)
-    sleep(5)
-
+pidlinefollower(Hitechnic1, 1)
+sleep(10)
 steer_pair.off(brake=True)
 
 
