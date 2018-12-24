@@ -40,7 +40,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     Integral = Error + Integral
     Derivative = Error - Last_Error
     motor_steering = ((Error * Kp) + (Integral * Ki) + (Derivative * Kd)) * side
-    steer_pair.run_forever(motor_steering, 25)
+    steer_pair.on(motor_steering, 25)
     Last_Error = Error
     return
 
@@ -48,6 +48,8 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
 for x in range(2):
     pidlinefollower(Hitechnic1, 1)
     sleep(5)
+
+steer_pair.off(brake=True)
 
 
 
