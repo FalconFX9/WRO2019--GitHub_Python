@@ -4,7 +4,7 @@ import time
 
 # Time for while loops
 
-close_time = time.time()+30
+close_time = time.time()+15
 
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
@@ -21,7 +21,7 @@ Derivative = 0
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
 
-Kp = 0.5
+Kp = 0.1
 Ki = 0
 Kd = 0
 
@@ -51,7 +51,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     return
 
 
-while time.time()<close_time:
+while time.time() < close_time:
         pidlinefollower(Hitechnic1, 1)
 
 steer_pair.off(brake=True)
