@@ -22,7 +22,7 @@ Derivative = 0
 # This process can take a VERY long time to fine-tune
 
 Kp = 0.43
-Ki = 0
+Ki = 0.1
 Kd = 0
 
 # Sensor declaration
