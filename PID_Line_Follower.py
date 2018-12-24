@@ -4,7 +4,7 @@ from time import sleep
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
 
-Target = 50
+Target = 91
 Error = 0
 Last_Error = 0
 Integral = 0
@@ -39,7 +39,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     Error = Target - sensor.value(3)
     Integral = Error + Integral
     Derivative = Error - Last_Error
-    steer_pair.run_forever(steering=((Error * Kp) + (Integral * Ki) + Derivative * Kd)*side, speed=100)
+    steer_pair.run_forever(steering=((Error * Kp) + (Integral * Ki) + Derivative * Kd)*side, speed=25)
     Last_Error = Error
     return
 
