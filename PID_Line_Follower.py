@@ -16,7 +16,7 @@ Derivative = 0
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
 
-Kp = 1
+Kp = 10
 Ki = 0
 Kd = 0
 
