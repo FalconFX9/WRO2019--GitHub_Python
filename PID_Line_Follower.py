@@ -31,5 +31,3 @@ def pidlinefollower(sensor=Hitechnic1):
 pidlinefollower(sensor=Hitechnic1)
 sleep(5)
 pidlinefollower(sensor=Hitechnic2)
-
-
