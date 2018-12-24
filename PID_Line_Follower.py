@@ -1,5 +1,10 @@
 from ev3dev2.auto import *
 from time import sleep
+import time
+
+# Time for while loops
+
+close_time = time.time()+30
 
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
@@ -46,8 +51,9 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     return
 
 
-pidlinefollower(Hitechnic1, 1)
-sleep(10)
+while time.time()<close_time:
+        pidlinefollower(Hitechnic1, 1)
+
 steer_pair.off(brake=True)
 
 
