@@ -21,7 +21,7 @@ Derivative = 0
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
 
-Kp = 0.5
+Kp = 0.2
 Ki = 0
 Kd = 0
 
@@ -46,7 +46,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     Integral = Error + Integral
     Derivative = Error - Last_Error
     motor_steering = ((Error * Kp) + (Integral * Ki) + (Derivative * Kd)) * side
-    steer_pair.on(motor_steering, -75)
+    steer_pair.on(motor_steering, -100)
     Last_Error = Error
     return
 
