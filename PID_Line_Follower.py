@@ -9,7 +9,7 @@ close_time = time.time()+5
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
 
-Target = 25
+Target = 28
 Error = 0
 Last_Error = 0
 Integral = 0
