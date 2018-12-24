@@ -17,13 +17,13 @@ Derivative = 0
 
 # PID Values --These are subjective and need to be tuned to the robot and mat
 # Kp must be augmented or decreased until the robot follows the line smoothly --Higher Kp = Stronger corrections
-# Same with Ki, after Kp is done
+# Same with Ki, after Kp is done --- note, Ki is not used in this case (error accumulation)
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
 
 Kp = 0.43
-Ki = 0.1
-Kd = 0
+Ki = 0
+Kd = 0.002
 
 # Sensor declaration
 
