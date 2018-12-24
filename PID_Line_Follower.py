@@ -23,6 +23,7 @@ steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 def pidlinefollower(sensor=Hitechnic1):
 
     print(sensor)
+    print(sensor.value(3))
 #    target2 = Target - sensor.value(3)
 #   steer_pair.run_forever(steering=target2*Kp, speed=100)
     return
