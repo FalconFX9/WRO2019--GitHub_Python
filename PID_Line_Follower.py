@@ -4,7 +4,7 @@ import time
 
 # Time for while loops
 
-close_time = time.time()+15
+close_time = time.time()+5
 
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
@@ -46,7 +46,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     Integral = Error + Integral
     Derivative = Error - Last_Error
     motor_steering = ((Error * Kp) + (Integral * Ki) + (Derivative * Kd)) * side
-    steer_pair.on(motor_steering, -25)
+    steer_pair.on(motor_steering, -75)
     Last_Error = Error
     return
 
