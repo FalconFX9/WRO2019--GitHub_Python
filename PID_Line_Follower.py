@@ -9,7 +9,7 @@ close_time = time.time()+5
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
 
-Target = 30
+Target = 35
 Error = 0
 Last_Error = 0
 Integral = 0
@@ -21,7 +21,7 @@ Derivative = 0
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
 
-Kp = 0.5
+Kp = 0.3
 Ki = 0
 Kd = 0
 
