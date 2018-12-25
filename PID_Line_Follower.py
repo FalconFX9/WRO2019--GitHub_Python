@@ -67,7 +67,7 @@ def doublepidlinefollower():
     Integral2 = Error + Integral2
     Derivative2 = Error2 - Last_Error2
     motor_steering = ((Error2 * Kp2) + (Integral2 * Ki2) + (Derivative2 * Kd2))
-    steer_pair.on(motor_steering, -65)
+    steer_pair.on(motor_steering, -40)
     Last_Error2 = Error2
     return
 
