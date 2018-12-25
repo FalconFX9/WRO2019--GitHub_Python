@@ -74,7 +74,7 @@ def doublepidlinefollower():
     if Hitechnic1.value(3) > 100 and Hitechnic2.value(3) > 100:
         global motor_steering
         motor_steering = -50
-        return
+
     steer_pair.on(motor_steering, -40)
     Last_Error2 = Error2
     return
