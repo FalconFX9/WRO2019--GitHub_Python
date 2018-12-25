@@ -71,7 +71,7 @@ def doublepidlinefollower():
     Integral2 = Error + Integral2
     Derivative2 = Error2 - Last_Error2
     motor_steering = ((Error2 * Kp2) + (Integral2 * Ki2) + (Derivative2 * Kd2))
-    if Hitechnic1.value(3) > 170 and Hitechnic2.value(3) > 170:
+    if Hitechnic1.value(3) > 160 and Hitechnic2.value(3) > 160:
         global motor_steering
         motor_steering = -50
 
