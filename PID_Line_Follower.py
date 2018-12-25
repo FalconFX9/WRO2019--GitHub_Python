@@ -32,7 +32,7 @@ Kd = 0.002
 
 Kp2 = 0.1
 Ki2 = 0
-Kd2 = 0
+Kd2 = 0.005
 
 # Sensor declaration
 
