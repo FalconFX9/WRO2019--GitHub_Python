@@ -44,7 +44,7 @@ Hitechnic1 = Sensor('in2:i2c1')
 Hitechnic1.mode = 'RGB'
 Hitechnic2 = Sensor('in3:i2c1')
 Hitechnic2.mode = 'RGB'
-Hitechnic3 = Sensor('in1:i2cl')
+Hitechnic3 = Sensor('in1:i2c1')
 Hitechnic3.mode = 'RGB'
 ColorRear = ColorSensor('in4')
 
