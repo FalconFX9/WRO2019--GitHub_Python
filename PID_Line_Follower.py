@@ -60,7 +60,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     Integral = Error + Integral
     Derivative = Error - Last_Error
     motor_steering = ((Error * Kp) + (Integral * Ki) + (Derivative * Kd)) * side
-    if ColorRear.reflected_light_intensity() < 15:
+    if ColorRear.reflected_light_intensity < 15:
         Kp = 0.43
     else:
         Kp = 0.63
