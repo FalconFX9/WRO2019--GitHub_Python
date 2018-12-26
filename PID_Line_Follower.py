@@ -4,7 +4,7 @@ import time
 
 # Time for while loops
 
-close_time = time.time()+30
+close_time = time.time()+60
 
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
