@@ -4,7 +4,7 @@ import time
 
 # Time for while loops
 
-close_time = time.time()+60
+close_time = time.time()+10
 
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
@@ -67,7 +67,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
         Kp = 0.83
 
     if Hitechnic3.value(3) < 30 and motor_steering < 0:
-        steer_pair.on_for_seconds(40, -50, 2)
+        steer_pair.on_for_seconds(40, -50, 1)
 
     print(ColorRear.reflected_light_intensity)
     steer_pair.on(motor_steering, -50)
@@ -82,12 +82,12 @@ def doublepidlinefollower():
     Integral2 = Error + Integral2
     Derivative2 = Error2 - Last_Error2
     motor_steering = ((Error2 * Kp2) + (Integral2 * Ki2) + (Derivative2 * Kd2))
-    steer_pair.on(motor_steering, -40)
+    steer_pair.on(motor_steering, -60)
     Last_Error2 = Error2
     return
 
 
 while time.time() < close_time:
-        pidlinefollower()
+        doublepidlinefollower()
 
 steer_pair.off(brake=True)
