@@ -9,7 +9,7 @@ close_time = time.time()+30
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
 
-Target = 40
+Target = 70
 Error = 0
 Last_Error = 0
 Integral = 0
@@ -28,7 +28,7 @@ motor_steering = 0
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
 
-Kp = 0.43
+Kp = 0.63
 Ki = 0
 Kd = 0.002
 
@@ -59,7 +59,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     Integral = Error + Integral
     Derivative = Error - Last_Error
     motor_steering = ((Error * Kp) + (Integral * Ki) + (Derivative * Kd)) * side
-    steer_pair.on(motor_steering, -45)
+    steer_pair.on(motor_steering, -25)
     Last_Error = Error
     return
 
