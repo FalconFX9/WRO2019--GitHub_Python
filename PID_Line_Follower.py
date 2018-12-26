@@ -44,6 +44,7 @@ Hitechnic1 = Sensor('in2:i2c1')
 Hitechnic1.mode = 'RGB'
 Hitechnic2 = Sensor('in3:i2c1')
 Hitechnic2.mode = 'RGB'
+ColorRear = ColorSensor('in4')
 
 # Motor Declaration
 
@@ -59,6 +60,11 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     Integral = Error + Integral
     Derivative = Error - Last_Error
     motor_steering = ((Error * Kp) + (Integral * Ki) + (Derivative * Kd)) * side
+    if ColorRear.reflected_light_intensity() < 15:
+        Kp = 0.43
+    else:
+        Kp = 0.63
+
     steer_pair.on(motor_steering, -25)
     Last_Error = Error
     return
