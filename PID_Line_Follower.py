@@ -34,7 +34,7 @@ Kd = 0.002
 
 # To follow in a straight line -- Kp 0.085, Ki 0, Kd 0.005
 
-Kp2 = 0.085
+Kp2 = 0.095
 Ki2 = 0
 Kd2 = 0.005
 
@@ -74,6 +74,8 @@ def doublepidlinefollower():
     if Hitechnic1.value(3) > 160 and Hitechnic2.value(3) > 160:
         global motor_steering
         motor_steering = -50
+    elif Hitechnic1.value(3) < 30:
+        motor_steering = 30
 
     steer_pair.on(motor_steering, -40)
     Last_Error2 = Error2
