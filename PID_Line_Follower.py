@@ -28,7 +28,7 @@ motor_steering = 0
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
 
-Kp = 0.63
+Kp = 0.83
 Ki = 0
 Kd = 0.002
 
@@ -63,7 +63,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     if ColorRear.reflected_light_intensity < 15:
         Kp = 0.43
     else:
-        Kp = 0.63
+        Kp = 0.83
 
     steer_pair.on(motor_steering, -25)
     Last_Error = Error
