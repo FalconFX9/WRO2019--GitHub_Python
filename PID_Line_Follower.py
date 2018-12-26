@@ -34,7 +34,7 @@ Kd = 0.002
 
 # To follow in a straight line -- Kp 0.085, Ki 0, Kd 0.005
 
-Kp2 = 0.095
+Kp2 = 0.085
 Ki2 = 0
 Kd2 = 0.005
 
@@ -59,7 +59,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     Integral = Error + Integral
     Derivative = Error - Last_Error
     motor_steering = ((Error * Kp) + (Integral * Ki) + (Derivative * Kd)) * side
-    steer_pair.on(motor_steering, -85)
+    steer_pair.on(motor_steering, -45)
     Last_Error = Error
     return
 
@@ -71,18 +71,12 @@ def doublepidlinefollower():
     Integral2 = Error + Integral2
     Derivative2 = Error2 - Last_Error2
     motor_steering = ((Error2 * Kp2) + (Integral2 * Ki2) + (Derivative2 * Kd2))
-    if Hitechnic1.value(3) > 160 and Hitechnic2.value(3) > 160:
-        global motor_steering
-        motor_steering = -50
-    elif Hitechnic1.value(3) < 30:
-        motor_steering = 30
-
     steer_pair.on(motor_steering, -40)
     Last_Error2 = Error2
     return
 
 
 while time.time() < close_time:
-        doublepidlinefollower()
+        pidlinefollower()
 
 steer_pair.off(brake=True)
