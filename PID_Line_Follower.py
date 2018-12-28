@@ -4,7 +4,7 @@ import time
 
 # Time for while loops
 
-close_time = time.time()+10
+close_time = time.time()+5
 
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
@@ -88,6 +88,14 @@ def doublepidlinefollower():
 
 
 while time.time() < close_time:
-        doublepidlinefollower()
+    leds = Leds()
+
+    leds.all_off()  # Turn all LEDs off
+    sleep(1)
+
+    # Set both pairs of LEDs to amber
+    leds.set_color('LEFT', 'AMBER')
+    leds.set_color('RIGHT', 'AMBER')
+    sleep(4)
 
 steer_pair.off(brake=True)
