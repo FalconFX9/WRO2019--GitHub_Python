@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from ev3dev2.auto import *
 from time import sleep
 import time
