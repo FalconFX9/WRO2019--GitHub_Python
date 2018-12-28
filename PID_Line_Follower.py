@@ -66,7 +66,7 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     else:
         Kp = 0.83
 
-    if Hitechnic3.value(3) < 30 and motor_steering < 0:
+    if Hitechnic3.value(3) < 20 and motor_steering < 0:
         steer_pair.on_for_seconds(40, -50, 1)
 
     print(ColorRear.reflected_light_intensity)
