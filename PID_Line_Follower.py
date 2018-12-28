@@ -96,6 +96,6 @@ while time.time() < close_time:
     # Set both pairs of LEDs to amber
     leds.set_color('LEFT', 'AMBER')
     leds.set_color('RIGHT', 'AMBER')
-    sleep(4)
+    sleep(5)
 
 steer_pair.off(brake=True)
