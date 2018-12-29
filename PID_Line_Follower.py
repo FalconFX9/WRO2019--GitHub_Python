@@ -5,7 +5,7 @@ import time
 
 # Time for while loops
 
-close_time = time.time()+5
+close_time = time.time() + 5
 
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
@@ -52,13 +52,18 @@ ColorRear = ColorSensor('in4')
 # Motor Declaration
 
 steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
+grabber_servo = MediumMotor(OUTPUT_A)
 
-# PID Line Follower (1 sensor)
+
+# Function declaration --use these as much as possible
+
+
+# PID Line Follower (1 sensor) --default : Hitechnic sensor in port 2, follows the line on the right side
 
 
 def pidlinefollower(sensor=Hitechnic1, side=1):
     global Target, Error, Last_Error, Integral, Derivative, Kp, Ki, Kd, steer_pair, motor_steering
-    Error = Target - (sensor.value(3)/2)
+    Error = Target - (sensor.value(3) / 2)
     Integral = Error + Integral
     Derivative = Error - Last_Error
     motor_steering = ((Error * Kp) + (Integral * Ki) + (Derivative * Kd)) * side
@@ -76,6 +81,9 @@ def pidlinefollower(sensor=Hitechnic1, side=1):
     return
 
 
+# PID Line Follower (2 sensors)
+
+
 def doublepidlinefollower():
     global Error2, Last_Error2, Integral2, Derivative2, Kp2, Ki2, Kd2, steer_pair, motor_steering
     Error2 = (Hitechnic1.value(3) / 2) - (Hitechnic2.value(3) / 2)
@@ -88,15 +96,51 @@ def doublepidlinefollower():
     return
 
 
-while time.time() < close_time:
-    leds = Leds()
+# Turn until line --default : Power set to -50, the amplitude and direction of the steering is set to 0
 
-    leds.all_off()  # Turn all LEDs off
-    sleep(1)
 
-    # Set both pairs of LEDs to amber
-    leds.set_color('LEFT', 'AMBER')
-    leds.set_color('RIGHT', 'AMBER')
-    sleep(5)
+def steertoline(ampdir=0, power=-50):
+    while not Hitechnic2.value(3) < 20:
+        steer_pair.on(ampdir, power)
+    steer_pair.off(brake=True)
 
-steer_pair.off(brake=True)
+
+# Lower the servo arm, go forward and raise the servo arm --default : Power set to 30
+# Number of rotations of forward movement are 2
+
+
+def lowerandpickup(power=30, rotations=2):
+    if not grabber_servo.is_stalled():
+        grabber_servo.on(-power)
+    else:
+        grabber_servo.off(brake=True)
+
+    steer_pair.on_for_rotations(0, -30, rotations)
+
+    if not grabber_servo.is_stalled():
+        grabber_servo.on(power)
+    else:
+        grabber_servo.off(brake=True)
+
+
+# Lower the servo arm, go backwards and raise the servo arm --default : Power is set to 30, Rotations is 2
+
+
+def putdownobject(power=30, rotations=2):
+    if not grabber_servo.is_stalled():
+        grabber_servo.on(-power)
+    else:
+        grabber_servo.off(brake=True)
+
+    steer_pair.on_for_rotations(0, 30, rotations)
+
+    if not grabber_servo.is_stalled():
+        grabber_servo.on(power)
+    else:
+        grabber_servo.off(brake=True)
+
+
+# Start of the actual code
+
+
+
