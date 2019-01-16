@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 from ev3dev2.auto import *
+from sensor_classes import SensorDeclaration
+from line_follower import _single_line_follower_test
 
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)

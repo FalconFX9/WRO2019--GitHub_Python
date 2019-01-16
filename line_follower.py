@@ -1,5 +1,6 @@
 from enum import Enum
 from ev3dev2.auto import *
+from sensor_classes import SensorDeclaration
 
 DEFAULT_SPEED = 60
 
@@ -13,7 +14,7 @@ K_INTEGRAL = 0
 K_DERIVATIVE = 0.002
 
 
-class SingleLineFollower:
+class SingleLineFollower(SensorDeclaration):
     """
     Line follow that uses one sensor at a time to follow a line.
     """
@@ -24,14 +25,15 @@ class SingleLineFollower:
     __last_error = 0
     __derivative = 0
 
-    def __init__(self, color_sensor_gauche, color_sensor_droite, move_steerer):
-        self.__color_sensor_left = color_sensor_gauche
-        self.__color_sensor_right = color_sensor_droite
+    def __init__(self, move_steerer):
+        self.__color_sensor_left = self.sensor1
+        self.__color_sensor_right = self.sensor2
         self.__move_steerer = move_steerer
 
-    def follow(self, side=None, speed=DEFAULT_SPEED):
+    def follow(self, side=None, side_of_line=None, speed=DEFAULT_SPEED):
         if None:
             side = self.FollowSide.left
+            side_of_line = self.FollowSide.left
 
         if side == self.FollowSide.left:
             self.__error = self.__target - (self.__color_sensor_left.value(3) / 2)
@@ -41,7 +43,7 @@ class SingleLineFollower:
         self.__integral = self.__error + self.__integral
         self.__derivative = self.__error - self.__last_error
         motor_steering = ((self.__error * KP) + (self.__integral * K_INTEGRAL) + (
-                self.__derivative * K_DERIVATIVE)) * side.value
+                self.__derivative * K_DERIVATIVE)) * side_of_line
 
         self.__move_steerer.on(motor_steering, -speed)
         self.__last_error = self.__error
@@ -53,7 +55,7 @@ class SingleLineFollower:
 
 
 def _single_line_follower_test():
-    line_follower = SingleLineFollower(Sensor('in2:i2c1'), Sensor('in3:i2c1'), MoveSteering(OUTPUT_A, OUTPUT_B))
+    line_follower = SingleLineFollower(MoveSteering(OUTPUT_A, OUTPUT_B))
 
     while True:
         line_follower.follow()
@@ -62,3 +64,17 @@ def _single_line_follower_test():
 if __name__ == "__main__":
     # Single line follower test
     _single_line_follower_test()
+
+
+def _line_follower_to_next_line(side, side_of_line, speed=DEFAULT_SPEED):
+    line_follower = SingleLineFollower(MoveSteering(OUTPUT_B, OUTPUT_C))
+    while not SensorDeclaration.sensor3.value(3) > 30:
+        line_follower.follow(side=side, side_of_line=side_of_line, speed=speed)
+
+
+def _line_follower_to_color(side, side_of_line, speed=DEFAULT_SPEED):
+    line_follower = SingleLineFollower(MoveSteering(OUTPUT_B,OUTPUT_C))
+    SensorDeclaration.sensor3.mode = 'Color'
+    while not SensorDeclaration.sensor3.value == 2 or SensorDeclaration.sensor3.value == 4 or \
+            SensorDeclaration.sensor3.value == 6 or SensorDeclaration.sensor3.value == 8:
+        line_follower.follow(side=side, side_of_line=side_of_line, speed=speed)

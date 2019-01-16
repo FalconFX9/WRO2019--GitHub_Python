@@ -4,6 +4,7 @@ from time import sleep
 
 time_duration = time.time() + 5
 
+
 # Defining Sensors
 
 Sensor1 = Sensor('in1')
