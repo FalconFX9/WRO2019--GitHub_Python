@@ -2,7 +2,7 @@ from ev3dev2.auto import Sensor, ColorSensor, LargeMotor, MediumMotor, OUTPUT_A,
 from abc import ABC, abstractmethod
 
 
-class SensorDeclaration(ABC):
+class SensorDeclaration:
 
     def __init__(self, sensor1, sensor2, sensor3, sensor4):
         self.sensor1 = sensor1
@@ -11,7 +11,6 @@ class SensorDeclaration(ABC):
         self.sensor4 = sensor4
         super().__init__()
 
-    @abstractmethod
     def use_sensors(self):
         self.sensor1 = Sensor('in1:i2cl')
         self.sensor2 = Sensor('in2:i2cl')
@@ -22,7 +21,7 @@ class SensorDeclaration(ABC):
         self.sensor3.mode = 'RGB'
 
 
-class MotorDeclaration(ABC):
+class MotorDeclaration:
 
     def __init__(self, lm1, lm2, s1, s2, steering):
         self.lm1 = lm1
@@ -31,7 +30,6 @@ class MotorDeclaration(ABC):
         self.s2 = s2
         self.steering = steering
 
-    @abstractmethod
     def use_motors(self):
         self.lm1 = LargeMotor(OUTPUT_B)
         self.lm2 = LargeMotor(OUTPUT_C)
