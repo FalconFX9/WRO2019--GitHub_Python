@@ -72,9 +72,9 @@ def _line_follower_to_next_line(side, side_of_line, speed=DEFAULT_SPEED):
         line_follower.follow(side=side, side_of_line=side_of_line, speed=speed)
 
 
-def _line_follower_to_color(side, side_of_line, speed=DEFAULT_SPEED):
+def _line_follower_to_color(side=1, side_of_line=1, speed=DEFAULT_SPEED):
     line_follower = SingleLineFollower(MoveSteering(OUTPUT_B, OUTPUT_C))
-    SensorDeclaration.sensor3.mode = 'Color'
-    while not SensorDeclaration.sensor3.value == 2 or SensorDeclaration.sensor3.value == 4 or \
+    SensorDeclaration.sensor3.mode = 'RGB'
+    while not SensorDeclaration.sensor3.value < 40 or SensorDeclaration.sensor3.value == 4 or \
             SensorDeclaration.sensor3.value == 6 or SensorDeclaration.sensor3.value == 8:
         line_follower.follow(side=side, side_of_line=side_of_line, speed=speed)
