@@ -1,6 +1,6 @@
 from enum import Enum
 from ev3dev2.auto import *
-from sensor_classes import SensorDeclaration
+from sensor_classes import SensorDeclaration, MotorDeclaration
 
 DEFAULT_SPEED = 60
 
@@ -73,7 +73,7 @@ def _line_follower_to_next_line(side, side_of_line, speed=DEFAULT_SPEED):
 
 
 def _line_follower_to_color(side, side_of_line, speed=DEFAULT_SPEED):
-    line_follower = SingleLineFollower(MoveSteering(OUTPUT_B,OUTPUT_C))
+    line_follower = SingleLineFollower(MoveSteering(OUTPUT_B, OUTPUT_C))
     SensorDeclaration.sensor3.mode = 'Color'
     while not SensorDeclaration.sensor3.value == 2 or SensorDeclaration.sensor3.value == 4 or \
             SensorDeclaration.sensor3.value == 6 or SensorDeclaration.sensor3.value == 8:
