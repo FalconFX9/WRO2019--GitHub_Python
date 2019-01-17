@@ -59,7 +59,7 @@ class SingleLineFollower:
 
 
 def _single_line_follower_test():
-    line_follower = SingleLineFollower(MoveSteering(OUTPUT_A, OUTPUT_B))
+    line_follower = SingleLineFollower(MoveSteering(OUTPUT_B, OUTPUT_C))
 
     while sensor3.value(3) > 30:
         line_follower.follow()
