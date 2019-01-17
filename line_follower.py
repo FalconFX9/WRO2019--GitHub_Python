@@ -12,7 +12,7 @@ DEFAULT_SPEED = 60
 KP = 0.83
 K_INTEGRAL = 0
 K_DERIVATIVE = 0.002
-sensor3 = Sensor('in3:i2cl')
+sensor3 = Sensor('in3:i2c1')
 sensor3.mode = 'RGB'
 
 
@@ -28,10 +28,10 @@ class SingleLineFollower:
     __derivative = 0
 
     def __init__(self, __color_sensor_gauche, __color_sensor_droit, move_steerer):
-        self.__color_sensor_left = __color_sensor_gauche
+        self.__color_sensor_left = __color_sensor_gaucheputt
         self.__color_sensor_right = __color_sensor_droit
-        __color_sensor_droit = Sensor('in2:i2cl')
-        __color_sensor_gauche = Sensor('in1:i2cl')
+        __color_sensor_droit = Sensor('in2:i2c1')
+        __color_sensor_gauche = Sensor('in1:i2c1')
         self.__move_steerer = move_steerer
 
     def follow(self, side=None, side_of_line=None, speed=DEFAULT_SPEED):
