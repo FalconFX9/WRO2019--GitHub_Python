@@ -1,6 +1,6 @@
 from enum import Enum
 from ev3dev2.auto import *
-from sensor_classes import SensorDeclaration, MotorDeclaration
+from sensor_classes import SensorDeclaration
 
 DEFAULT_SPEED = 60
 
