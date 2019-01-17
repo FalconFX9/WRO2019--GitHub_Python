@@ -26,8 +26,8 @@ class SingleLineFollower(SensorDeclaration):
     __derivative = 0
 
     def __init__(self, move_steerer):
-        self.__color_sensor_left = self.sensor1
-        self.__color_sensor_right = self.sensor2
+        self.__color_sensor_left = SensorDeclaration.sensor1
+        self.__color_sensor_right = SensorDeclaration.sensor2
         self.__move_steerer = move_steerer
 
     def follow(self, side=None, side_of_line=None, speed=DEFAULT_SPEED):
