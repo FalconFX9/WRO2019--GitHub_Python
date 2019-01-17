@@ -59,7 +59,8 @@ class SingleLineFollower:
 
 
 def _single_line_follower_test():
-    line_follower = SingleLineFollower(MoveSteering(OUTPUT_B, OUTPUT_C))
+    line_follower = SingleLineFollower(__color_sensor_droit=Sensor('in1:i2c1'), __color_sensor_gauche=Sensor('in2:i2c1')
+                                       , move_steerer=MoveSteering(OUTPUT_B, OUTPUT_C))
 
     while sensor3.value(3) > 30:
         line_follower.follow()
