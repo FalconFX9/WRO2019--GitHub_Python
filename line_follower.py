@@ -12,9 +12,11 @@ DEFAULT_SPEED = 60
 KP = 0.83
 K_INTEGRAL = 0
 K_DERIVATIVE = 0.002
+sensor3 = Sensor('in3:i2cl')
+sensor3.mode = 'RGB'
 
 
-class SingleLineFollower(SensorDeclaration):
+class SingleLineFollower:
     """
     Line follow that uses one sensor at a time to follow a line.
     """
@@ -25,9 +27,11 @@ class SingleLineFollower(SensorDeclaration):
     __last_error = 0
     __derivative = 0
 
-    def __init__(self, move_steerer):
-        self.__color_sensor_left = SensorDeclaration.sensor1
-        self.__color_sensor_right = SensorDeclaration.sensor2
+    def __init__(self, __color_sensor_gauche, __color_sensor_droit, move_steerer):
+        self.__color_sensor_left = __color_sensor_gauche
+        self.__color_sensor_right = __color_sensor_droit
+        __color_sensor_droit = Sensor('in2:i2cl')
+        __color_sensor_gauche = Sensor('in1:i2cl')
         self.__move_steerer = move_steerer
 
     def follow(self, side=None, side_of_line=None, speed=DEFAULT_SPEED):
@@ -57,7 +61,7 @@ class SingleLineFollower(SensorDeclaration):
 def _single_line_follower_test():
     line_follower = SingleLineFollower(MoveSteering(OUTPUT_A, OUTPUT_B))
 
-    while True:
+    while sensor3.value(3) > 30:
         line_follower.follow()
 
 
@@ -75,6 +79,6 @@ def _line_follower_to_next_line(side, side_of_line, speed=DEFAULT_SPEED):
 def _line_follower_to_color(side=1, side_of_line=1, speed=DEFAULT_SPEED):
     line_follower = SingleLineFollower(MoveSteering(OUTPUT_B, OUTPUT_C))
     SensorDeclaration.sensor3.mode = 'RGB'
-    while not SensorDeclaration.sensor3.value < 40 or SensorDeclaration.sensor3.value == 4 or \
+    while not SensorDeclaration.sensor3.value > 40 or SensorDeclaration.sensor3.value == 4 or \
             SensorDeclaration.sensor3.value == 6 or SensorDeclaration.sensor3.value == 8:
         line_follower.follow(side=side, side_of_line=side_of_line, speed=speed)
