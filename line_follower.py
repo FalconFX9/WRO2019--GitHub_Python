@@ -28,7 +28,7 @@ class SingleLineFollower:
     __derivative = 0
 
     def __init__(self, __color_sensor_gauche, __color_sensor_droit, move_steerer):
-        self.__color_sensor_left = __color_sensor_gaucheputt
+        self.__color_sensor_left = __color_sensor_gauche
         self.__color_sensor_right = __color_sensor_droit
         __color_sensor_droit = Sensor('in2:i2c1')
         __color_sensor_gauche = Sensor('in1:i2c1')
