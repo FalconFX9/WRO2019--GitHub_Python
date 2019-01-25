@@ -55,18 +55,9 @@ def pid_line_follower(sensor=hitechnic_1, side=1):
     integral = error + integral
     derivative = error - last_error
     motor_steering = ((error * Kp) + (integral * Ki) + (derivative * Kd)) * side
-    if colorRear.reflected_light_intensity < 20:
-        Kp = 0.43
-    else:
-        Kp = 0.83
-
-    if hitechnic_3.value(3) < 20 and motor_steering < 0:
-        steer_pair.on_for_seconds(40, -50, 1)
-
     print(colorRear.reflected_light_intensity)
     steer_pair.on(motor_steering, -50)
     last_error = error
-    return
 
 
 # PID Line Follower (2 sensors)
@@ -79,7 +70,6 @@ def double_pid_line_follower():
     motor_steering = ((error2 * Kp2) + (integral2 * Ki2) + (derivative2 * Kd2))
     steer_pair.on(motor_steering, -60)
     last_error2 = error2
-    return
 
 
 # Turn until line --default : Power set to -50, the amplitude and direction of the steering is set to 0
@@ -122,5 +112,5 @@ def put_down_object(power=30, rotations=2):
 
 """
 # Start of the actual code
-while time.time() > timelimit:
+while time.time() < timelimit:
     pid_line_follower(hitechnic_1, 1)
