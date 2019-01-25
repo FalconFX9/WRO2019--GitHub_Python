@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 from ev3dev2.auto import *
+import time
 from sensor_classes import SensorDeclaration
 from line_follower import _single_line_follower_test
 
+timelimit = time.time() + 10
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
 target = 50
@@ -33,11 +35,11 @@ Ki2 = 0
 Kd2 = 0.005
 
 # Sensor declaration
-hitechnic_1 = Sensor('in2:i2c1')
+hitechnic_1 = Sensor('in1:i2c1')
 hitechnic_1.mode = 'RGB'
-hitechnic_2 = Sensor('in3:i2c1')
+hitechnic_2 = Sensor('in2:i2c1')
 hitechnic_2.mode = 'RGB'
-hitechnic_3 = Sensor('in1:i2c1')
+hitechnic_3 = Sensor('in3:i2c1')
 hitechnic_3.mode = 'RGB'
 colorRear = ColorSensor('in4')
 
@@ -120,4 +122,7 @@ def put_down_object(power=30, rotations=2):
     else:
         grabber_servo.off(brake=True)
 
+
 # Start of the actual code
+while time.time() > timelimit:
+    pid_line_follower(hitechnic_1, 1)
