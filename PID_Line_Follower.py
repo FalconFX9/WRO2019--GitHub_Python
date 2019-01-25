@@ -45,7 +45,6 @@ colorRear = ColorSensor('in4')
 
 # Motor Declaration
 steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
-grabber_servo = MediumMotor()
 
 
 # Function declaration --use these as much as possible
