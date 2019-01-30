@@ -28,7 +28,7 @@ Ki = 0
 Kd = 0.002
 
 # To follow in a straight line -- Kp 0.085, Ki 0, Kd 0.005
-Kp2 = 0.085
+Kp2 = 0.045
 Ki2 = 0
 Kd2 = 0.005
 
