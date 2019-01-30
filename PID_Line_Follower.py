@@ -43,7 +43,7 @@ colorRear = ColorSensor('in4')
 
 # Motor Declaration
 steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
-# grabber_servo = MediumMotor(OUTPUT_A)
+grabber_servo = MediumMotor(OUTPUT_A)
 
 # Function declaration --use these as much as possible
 
@@ -81,7 +81,6 @@ def steer_to_line(turn_tightness=0, power=-50):
 
 # Lower the servo arm, go forward and raise the servo arm --default : Power set to 30
 # Number of rotations of forward movement are 2
-"""
 def lower_and_pickup(power=30, rotations=2):
     if not grabber_servo.is_stalled():
         grabber_servo.on(-power)
@@ -110,7 +109,7 @@ def put_down_object(power=30, rotations=2):
     else:
         grabber_servo.off(brake=True)
 
-"""
+
 # Start of the actual code
 while time.time() < timelimit:
     pid_line_follower(hitechnic_1, 1)
