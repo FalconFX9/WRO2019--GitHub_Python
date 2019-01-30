@@ -23,7 +23,7 @@ motor_steering = 0
 # Same with Ki, after Kp is done --- note, Ki is not used in this case (error accumulation)
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
-Kp = 0.23
+Kp = 0.13
 Ki = 0
 Kd = 0.002
 
@@ -35,11 +35,13 @@ Kd2 = 0.005
 # Sensor declaration
 hitechnic_1 = Sensor('in1:i2c1')
 hitechnic_1.mode = 'RGB'
+"""
 hitechnic_2 = Sensor('in2:i2c1')
 hitechnic_2.mode = 'RGB'
 hitechnic_3 = Sensor('in3:i2c1')
 hitechnic_3.mode = 'RGB'
 colorRear = ColorSensor('in4')
+"""
 
 # Motor Declaration
 steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
@@ -55,11 +57,11 @@ def pid_line_follower(sensor=hitechnic_1, side=1):
     integral = error + integral
     derivative = error - last_error
     motor_steering = ((error * Kp) + (integral * Ki) + (derivative * Kd)) * side
-    print(colorRear.reflected_light_intensity)
+    print(hitechnic_1.value(3))
     steer_pair.on(motor_steering, -50)
     last_error = error
 
-
+"""
 # PID Line Follower (2 sensors)
 def double_pid_line_follower():
     global error2, last_error2, integral2, derivative2, Kp2, Ki2, Kd2, steer_pair, motor_steering
@@ -109,7 +111,7 @@ def put_down_object(power=30, rotations=2):
     else:
         grabber_servo.off(brake=True)
 
-
+"""
 # Start of the actual code
 while time.time() < timelimit:
     pid_line_follower(hitechnic_1, 1)
