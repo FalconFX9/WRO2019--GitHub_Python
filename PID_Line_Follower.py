@@ -62,7 +62,7 @@ def pid_line_follower(sensor=hitechnic_1, side=1):
     last_error = error
 
 """
-# PID Line Follower (2 sensors)
+# PID Line Follower (2 sensors)iwEBFLIw
 def double_pid_line_follower():
     global error2, last_error2, integral2, derivative2, Kp2, Ki2, Kd2, steer_pair, motor_steering
     error2 = (hitechnic_1.value(3) / 2) - (hitechnic_2.value(3) / 2)
