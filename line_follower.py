@@ -1,9 +1,8 @@
 from enum import Enum
 from ev3dev2.auto import *
-from sensor_classes import SensorDeclaration
 
-DEFAULT_SPEED = 60
-
+#DEFAULT_SPEED = 60
+"""
 # PID Values --These are subjective and need to be tuned to the robot and mat
 # Kp must be augmented or decreased until the robot follows the line smoothly --Higher Kp = Stronger corrections
 # Same with Ki, after Kp is done --- note, Ki is not used in this case (error accumulation)
@@ -17,9 +16,9 @@ sensor3.mode = 'RGB'
 
 
 class SingleLineFollower:
-    """
+    
     Line follow that uses one sensor at a time to follow a line.
-    """
+    
 
     __error = 0
     __target = 0
@@ -53,7 +52,7 @@ class SingleLineFollower:
         self.__last_error = self.__error
 
     class FollowSide(Enum):
-        """Enum for which side of the line to follow."""
+        Enum for which side of the line to follow.
         left = 0
         right = 1
 
@@ -82,3 +81,4 @@ def _line_follower_to_color(side=1, side_of_line=1, speed=DEFAULT_SPEED):
     while not SensorDeclaration.sensor3.value > 40 or SensorDeclaration.sensor3.value == 4 or \
             SensorDeclaration.sensor3.value == 6 or SensorDeclaration.sensor3.value == 8:
         line_follower.follow(side=side, side_of_line=side_of_line, speed=speed)
+"""
