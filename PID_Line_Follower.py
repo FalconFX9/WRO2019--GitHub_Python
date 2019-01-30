@@ -5,7 +5,7 @@ import time
 timelimit = time.time() + 10
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
-target = 24
+target = 15
 error = 0
 last_error = 0
 integral = 0
