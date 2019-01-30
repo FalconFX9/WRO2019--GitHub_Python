@@ -25,7 +25,7 @@ motor_steering = 0
 # This process can take a VERY long time to fine-tune
 Kp = 0.23
 Ki = 0
-Kd = 0.002
+Kd = 0
 
 # To follow in a straight line -- Kp 0.085, Ki 0, Kd 0.005
 Kp2 = 0.085
@@ -58,7 +58,7 @@ def pid_line_follower(sensor=hitechnic_1, side=1):
     derivative = error - last_error
     motor_steering = ((error * Kp) + (integral * Ki) + (derivative * Kd)) * side
     print(hitechnic_1.value(3))
-    steer_pair.on(motor_steering, -50)
+    steer_pair.on(motor_steering, -20)
     last_error = error
 
 """
