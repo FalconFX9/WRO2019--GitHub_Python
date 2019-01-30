@@ -23,7 +23,7 @@ motor_steering = 0
 # Same with Ki, after Kp is done --- note, Ki is not used in this case (error accumulation)
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
-Kp = 0.13
+Kp = 0.23
 Ki = 0
 Kd = 0.002
 
