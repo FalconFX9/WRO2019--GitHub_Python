@@ -5,7 +5,7 @@ import time
 timelimit = time.time() + 10
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
-target = 15
+target = 10
 error = 0
 last_error = 0
 integral = 0
@@ -23,7 +23,7 @@ motor_steering = 0
 # Same with Ki, after Kp is done --- note, Ki is not used in this case (error accumulation)
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
-Kp = 0.23
+Kp = 0.33
 Ki = 0
 Kd = 0
 
