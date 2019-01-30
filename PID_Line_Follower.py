@@ -115,3 +115,5 @@ def put_down_object(power=30, rotations=2):
 # Start of the actual code
 while time.time() < timelimit:
     pid_line_follower(hitechnic_1, 1)
+
+steer_pair.off()
