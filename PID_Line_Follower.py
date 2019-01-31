@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 from ev3dev2.auto import *
 import time
+from time import sleep
 
-timelimit = time.time() + 10
+timelimit = time.time() + 0.5
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
 # works well at target 35
@@ -150,8 +151,30 @@ def put_down_object(power=30, rotations=2):
 
 
 # Start of the actual code
+grabber_servo.on_for_rotations(-100, 10)
+if grabber_servo.is_stalled:
+    grabber_servo.off(brake=True)
+
 while not side_color_sensor.value() == 7 or side_color_sensor.value() == 5 or side_color_sensor.value() == 4:
     pid_line_follower(hitechnic_1, 1, 20)
     print(side_color_sensor.value())
 
 steer_pair.off()
+
+grabber_servo.on_for_rotations(100, 10)
+if grabber_servo.is_stalled:
+    grabber_servo.off(brake=True)
+
+while not timelimit < time.time():
+    pid_line_follower(hitechnic_1, 1, 20)
+    print(side_color_sensor.value())
+
+grabber_servo.on_for_rotations(-100, 10)
+if grabber_servo.is_stalled:
+    grabber_servo.off(brake=True)
+
+while not side_color_sensor.value() == 7 or side_color_sensor.value() == 5 or side_color_sensor.value() == 4:
+    pid_line_follower(hitechnic_1, 1, 20)
+    print(side_color_sensor.value())
+steer_pair.off()
+grabber_servo.off()
