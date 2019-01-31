@@ -175,6 +175,10 @@ while not grabber_servo.is_stalled:
 
 grabber_servo.off(brake=True)
 
+
+while not side_color_sensor.value() == 0:
+    pid_line_follower(hitechnic_1, 1, 20)
+
 while not side_color_sensor.value() == 4:
     pid_line_follower(hitechnic_1, 1, 20)
     print(side_color_sensor.value())
