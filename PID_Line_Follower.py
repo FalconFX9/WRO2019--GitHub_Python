@@ -63,7 +63,7 @@ try:
 except DeviceNotFound:
     print('Sensor 4 not found')
 
-side_color_sensor.mode = 'Color'
+side_color_sensor.mode = 'COLOR'
 
 # Motor Declaration
 steer_pair = 'null'
