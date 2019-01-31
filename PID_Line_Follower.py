@@ -82,15 +82,16 @@ except DeviceNotFound:
 
 
 # PID Line Follower (1 sensor) --default : Hitechnic sensor in port 1, follows the line on the right side
-def pid_line_follower(sensor=hitechnic_1, side=1):
+def pid_line_follower(sensor=hitechnic_1, side=1, speed=40):
     global target, error, last_error, integral, derivative, Kp, Ki, Kd, steer_pair, motor_steering
     error = target - (sensor.value(3) / 2)
     integral = error + integral
     derivative = error - last_error
     motor_steering = ((error * Kp) + (integral * Ki) + (derivative * Kd)) * side
     print(hitechnic_1.value(3))
-    steer_pair.on(motor_steering, -40)
+    steer_pair.on(motor_steering, -speed)
     last_error = error
+
 
 # PID Line Follower (2 sensors)
 def double_pid_line_follower():
@@ -144,6 +145,6 @@ def put_down_object(power=30, rotations=2):
 
 # Start of the actual code
 while not side_color_sensor.value() == 7 or side_color_sensor.value() == 6:
-    pid_line_follower(hitechnic_1, 1)
+    pid_line_follower(hitechnic_1, 1, 20)
 
 steer_pair.off()
