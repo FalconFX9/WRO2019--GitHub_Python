@@ -167,7 +167,7 @@ grabber_servo.on_for_rotations(speed=100, rotations=5)
 grabber_servo.off(brake=True)
 
 pid_line_follower(hitechnic_1, 1, 20)
-sleep(1)
+sleep(0.5)
 steer_pair.off()
 
 while not grabber_servo.is_stalled:
