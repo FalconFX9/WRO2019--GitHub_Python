@@ -34,15 +34,37 @@ Ki2 = 0
 Kd2 = 0.005
 
 # Sensor declaration
-hitechnic_1 = Sensor('in1:i2c1')
-hitechnic_1.mode = 'RGB'
-"""
-hitechnic_2 = Sensor('in2:i2c1')
-hitechnic_2.mode = 'RGB'
-hitechnic_3 = Sensor('in3:i2c1')
-hitechnic_3.mode = 'RGB'
-colorRear = ColorSensor('in4')
-"""
+hitechnic_1 = 'null'
+hitechnic_2 = 'null'
+hitechnic_3 = 'null'
+colorRear = 'null'
+
+try:
+    hitechnic_1 = Sensor('in1:i2c1')
+except DeviceNotFound:
+    print('Sensor 1 not found')
+else:
+    hitechnic_1.mode = 'RGB'
+
+try:
+    hitechnic_2 = Sensor('in2:i2c1')
+except DeviceNotFound:
+    print('Sensor 2 not found')
+else:
+    hitechnic_2.mode = 'RGB'
+
+try:
+    hitechnic_3 = Sensor('in3:i2c1')
+except DeviceNotFound:
+    print('Sensor 3 not found')
+else:
+    hitechnic_3.mode = 'RGB'
+
+try:
+    colorRear = ColorSensor('in4')
+except DeviceNotFound:
+    print('Sensor 4 not found')
+
 
 # Motor Declaration
 steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
