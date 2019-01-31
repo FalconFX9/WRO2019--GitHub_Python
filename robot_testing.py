@@ -1,12 +1,8 @@
 from ev3dev2.auto import *
 import time
 from time import sleep
-from PID_Line_Follower import sensor_declaration, pid_line_follower
-
 
 timelimit = time.time() + 5
-sensor_declaration()
-
 steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 try:
     steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
