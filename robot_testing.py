@@ -7,13 +7,13 @@ from PID_Line_Follower import sensor_declaration, pid_line_follower
 timelimit = time.time() + 5
 sensor_declaration()
 
-steer_pair = 'null'
+steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 try:
     steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 except DeviceNotFound:
     print('Main motors not found')
 
-grabber_servo = 'null'
+grabber_servo = MediumMotor(OUTPUT_A)
 try:
     grabber_servo = MediumMotor(OUTPUT_A)
 except DeviceNotFound:
