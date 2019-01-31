@@ -173,7 +173,7 @@ grabber_servo.on_for_rotations(-100, 10)
 if grabber_servo.is_stalled:
     grabber_servo.off(brake=True)
 
-while not side_color_sensor.value() == 7 or side_color_sensor.value() == 5 or side_color_sensor.value() == 4:
+while not side_color_sensor.value() == 4:
     pid_line_follower(hitechnic_1, 1, 20)
     print(side_color_sensor.value())
 steer_pair.off()
