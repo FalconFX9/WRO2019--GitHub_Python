@@ -175,13 +175,14 @@ while not grabber_servo.is_stalled:
 
 grabber_servo.off(brake=True)
 
-
 while not side_color_sensor.value() == 0:
     pid_line_follower(hitechnic_1, 1, 20)
 
 while not side_color_sensor.value() == 4:
     pid_line_follower(hitechnic_1, 1, 20)
     print(side_color_sensor.value())
+
+grabber_servo.on_for_rotations(speed=100, rotations=5)
 
 steer_pair.off(brake=False)
 grabber_servo.off(brake=False)
