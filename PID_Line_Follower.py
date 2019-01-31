@@ -162,8 +162,7 @@ while not side_color_sensor.value() == 7 or side_color_sensor.value() == 5 or si
 
 steer_pair.off()
 
-while not grabber_servo.is_stalled:
-    grabber_servo.on(100)
+grabber_servo.on_for_rotations(speed=100, rotations=5)
 
 grabber_servo.off(brake=True)
 
