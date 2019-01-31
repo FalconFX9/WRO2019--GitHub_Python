@@ -84,6 +84,8 @@ except DeviceNotFound:
 
 # Function declaration --use these as much as possible
 
+sensor_declaration()
+
 
 # PID Line Follower (1 sensor) --default : Hitechnic sensor in port 1, follows the line on the right side
 def pid_line_follower(sensor=hitechnic_1, side=1, speed=40):
