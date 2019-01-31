@@ -70,13 +70,13 @@ def sensor_declaration():
 
 
 # Motor Declaration
-steer_pair = 'null'
+steer_pair = MoveSteering
 try:
     steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 except DeviceNotFound:
     print('Main motors not found')
 
-grabber_servo = 'null'
+grabber_servo = MediumMotor
 try:
     grabber_servo = MediumMotor(OUTPUT_A)
 except DeviceNotFound:
