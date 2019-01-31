@@ -36,7 +36,7 @@ Kd2 = 0.005
 # Sensor declaration
 hitechnic_1 = 'null'
 hitechnic_2 = 'null'
-hitechnic_3 = 'null'
+side_color_sensor = 'null'
 colorRear = 'null'
 
 try:
@@ -54,17 +54,16 @@ else:
     hitechnic_2.mode = 'RGB'
 
 try:
-    hitechnic_3 = Sensor('in3:i2c1')
+    side_color_sensor = Sensor('in3:i2c1')
 except DeviceNotFound:
     print('Sensor 3 not found')
-else:
-    hitechnic_3.mode = 'RGB'
 
 try:
     colorRear = ColorSensor('in4')
 except DeviceNotFound:
     print('Sensor 4 not found')
 
+side_color_sensor.mode = 'Color'
 
 # Motor Declaration
 steer_pair = 'null'
@@ -144,7 +143,7 @@ def put_down_object(power=30, rotations=2):
 
 
 # Start of the actual code
-while time.time() < timelimit:
+while not side_color_sensor.value() == 7 or side_color_sensor.value() == 6:
     pid_line_follower(hitechnic_1, 1)
 
 steer_pair.off()
