@@ -162,7 +162,7 @@ while not side_color_sensor.value() == 7 or side_color_sensor.value() == 5 or si
 
 steer_pair.off()
 
-grabber_servo.on_for_rotations(speed=100, rotations=5)
+grabber_servo.on_for_rotations(speed=100, rotations=6)
 
 grabber_servo.off(brake=True)
 
@@ -182,7 +182,10 @@ while not side_color_sensor.value() == 4:
     pid_line_follower(hitechnic_1, 1, 20)
     print(side_color_sensor.value())
 
-grabber_servo.on_for_rotations(speed=100, rotations=5)
+steer_pair.off()
+
+grabber_servo.on_for_rotations(speed=100, rotations=6)
+steer_pair.on_for_rotations(0, 20, 2)
 
 steer_pair.off(brake=False)
 grabber_servo.off(brake=False)
