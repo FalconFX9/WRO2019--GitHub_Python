@@ -22,8 +22,8 @@ servo = MediumMotor(OUTPUT_AUTO)
 
 # SSH and on Brick Debugging
 
-servo.on_for_rotations(-100, 7)
-servo.on_for_rotations(100, 9)
+servo.on_for_rotations(-100, 10)
+servo.on_for_rotations(100, 11)
 """
 print('First Sensor Value')
 for x in range(1, 50):
