@@ -34,10 +34,10 @@ Ki2 = 0
 Kd2 = 0.005
 
 # Sensor declaration
-hitechnic_1 = 'null'
-hitechnic_2 = 'null'
-side_color_sensor = 'null'
-colorRear = 'null'
+hitechnic_1 = Sensor
+hitechnic_2 = Sensor
+side_color_sensor = Sensor
+colorRear = ColorSensor
 
 
 def sensor_declaration():
