@@ -35,9 +35,9 @@ Kd2 = 0.005
 
 # Sensor declaration
 hitechnic_1 = Sensor('in1:i2c1')
-hitechnic_2 = Sensor('in2:i2c1')
+# hitechnic_2 = Sensor('in2:i2c1')
 side_color_sensor = Sensor('in3:i2c1')
-colorRear = ColorSensor('in4')
+# colorRear = ColorSensor('in4')
 
 
 def sensor_declaration():
@@ -48,25 +48,26 @@ def sensor_declaration():
         print('Sensor 1 not found')
     else:
         hitechnic_1.mode = 'RGB'
-
+    '''
     try:
         hitechnic_2 = Sensor('in2:i2c1')
     except DeviceNotFound:
         print('Sensor 2 not found')
     else:
        hitechnic_2.mode = 'RGB'
-
+    '''
     try:
         side_color_sensor = Sensor('in3:i2c1')
     except DeviceNotFound:
         print('Sensor 3 not found')
     else:
         side_color_sensor.mode = 'COLOR'
-
+    '''
     try:
         colorRear = ColorSensor('in4')
     except DeviceNotFound:
         print('Sensor 4 not found')
+    '''
 
 
 # Motor Declaration
