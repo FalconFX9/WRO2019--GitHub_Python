@@ -23,7 +23,13 @@ servo = MediumMotor(OUTPUT_AUTO)
 # SSH and on Brick Debugging
 
 servo.on_for_rotations(-100, 10)
+if servo.is_stalled:
+    servo.off(brake=True)
+    sleep(5)
 servo.on_for_rotations(100, 11)
+if servo.is_stalled:
+    servo.off(brake=True)
+
 """
 print('First Sensor Value')
 for x in range(1, 50):
