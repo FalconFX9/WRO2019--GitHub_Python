@@ -15,7 +15,7 @@ try:
 except DeviceNotFound:
     print('Main servo not found')
 
-steer_pair.on_for_seconds(-40, 3)
+steer_pair.on_for_seconds(0, -40, 3)
 grabber_servo.on_for_rotations(-100, 10)
 if grabber_servo.is_stalled:
     grabber_servo.off(brake=True)
