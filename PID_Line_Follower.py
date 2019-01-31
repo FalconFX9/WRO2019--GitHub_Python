@@ -34,10 +34,10 @@ Ki2 = 0
 Kd2 = 0.005
 
 # Sensor declaration
-hitechnic_1 = Sensor
-hitechnic_2 = Sensor
-side_color_sensor = Sensor
-colorRear = ColorSensor
+hitechnic_1 = Sensor('in1:i2c1')
+hitechnic_2 = Sensor('in2:i2c1')
+side_color_sensor = Sensor('in3:i2c1')
+colorRear = ColorSensor('in4')
 
 
 def sensor_declaration():
@@ -70,13 +70,13 @@ def sensor_declaration():
 
 
 # Motor Declaration
-steer_pair = MoveSteering
+steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 try:
     steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 except DeviceNotFound:
     print('Main motors not found')
 
-grabber_servo = MediumMotor
+grabber_servo = MediumMotor(OUTPUT_A)
 try:
     grabber_servo = MediumMotor(OUTPUT_A)
 except DeviceNotFound:
