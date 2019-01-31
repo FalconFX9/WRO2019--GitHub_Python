@@ -88,7 +88,6 @@ def pid_line_follower(sensor=hitechnic_1, side=1, speed=40):
     integral = error + integral
     derivative = error - last_error
     motor_steering = ((error * Kp) + (integral * Ki) + (derivative * Kd)) * side
-    print(hitechnic_1.value(3))
     steer_pair.on(motor_steering, -speed)
     last_error = error
 
@@ -146,5 +145,6 @@ def put_down_object(power=30, rotations=2):
 # Start of the actual code
 while not side_color_sensor.value() == 7 or side_color_sensor.value() == 6:
     pid_line_follower(hitechnic_1, 1, 20)
+    print(side_color_sensor.value())
 
 steer_pair.off()
