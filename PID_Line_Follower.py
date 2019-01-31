@@ -67,8 +67,17 @@ except DeviceNotFound:
 
 
 # Motor Declaration
-steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
-# grabber_servo = MediumMotor(OUTPUT_A)
+steer_pair = 'null'
+try:
+    steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
+except DeviceNotFound:
+    print('Main motors not found')
+
+grabber_servo = 'null'
+try:
+    grabber_servo = MediumMotor(OUTPUT_A)
+except DeviceNotFound:
+    print('Main servo not found')
 
 # Function declaration --use these as much as possible
 
@@ -84,8 +93,7 @@ def pid_line_follower(sensor=hitechnic_1, side=1):
     steer_pair.on(motor_steering, -40)
     last_error = error
 
-"""
-# PID Line Follower (2 sensors)iwEBFLIw
+# PID Line Follower (2 sensors)
 def double_pid_line_follower():
     global error2, last_error2, integral2, derivative2, Kp2, Ki2, Kd2, steer_pair, motor_steering
     error2 = (hitechnic_1.value(3) / 2) - (hitechnic_2.value(3) / 2)
@@ -134,7 +142,7 @@ def put_down_object(power=30, rotations=2):
     else:
         grabber_servo.off(brake=True)
 
-"""
+
 # Start of the actual code
 while time.time() < timelimit:
     pid_line_follower(hitechnic_1, 1)
