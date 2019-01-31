@@ -82,7 +82,7 @@ except DeviceNotFound:
 # Function declaration --use these as much as possible
 
 
-# PID Line Follower (1 sensor) --default : Hitechnic sensor in port 2, follows the line on the right side
+# PID Line Follower (1 sensor) --default : Hitechnic sensor in port 1, follows the line on the right side
 def pid_line_follower(sensor=hitechnic_1, side=1):
     global target, error, last_error, integral, derivative, Kp, Ki, Kd, steer_pair, motor_steering
     error = target - (sensor.value(3) / 2)
