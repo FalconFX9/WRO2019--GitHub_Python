@@ -151,9 +151,10 @@ def put_down_object(power=30, rotations=2):
 
 
 # Start of the actual code
-grabber_servo.on_for_rotations(-100, 10)
-if grabber_servo.is_stalled:
-    grabber_servo.off(brake=True)
+while not grabber_servo.is_stalled:
+    grabber_servo.on(-100)
+
+grabber_servo.off(brake=True)
 
 while not side_color_sensor.value() == 7 or side_color_sensor.value() == 5 or side_color_sensor.value() == 4:
     pid_line_follower(hitechnic_1, 1, 20)
@@ -161,20 +162,23 @@ while not side_color_sensor.value() == 7 or side_color_sensor.value() == 5 or si
 
 steer_pair.off()
 
-grabber_servo.on_for_rotations(100, 10)
-if grabber_servo.is_stalled:
-    grabber_servo.off(brake=True)
+while not grabber_servo.is_stalled:
+    grabber_servo.on(100)
 
-while not timelimit < time.time():
-    pid_line_follower(hitechnic_1, 1, 20)
-    print(side_color_sensor.value())
+grabber_servo.off(brake=True)
 
-grabber_servo.on_for_rotations(-100, 10)
-if grabber_servo.is_stalled:
-    grabber_servo.off(brake=True)
+pid_line_follower(hitechnic_1, 1, 20)
+sleep(1)
+steer_pair.off()
+
+while not grabber_servo.is_stalled:
+    grabber_servo.on(-100)
+
+grabber_servo.off(brake=True)
 
 while not side_color_sensor.value() == 4:
     pid_line_follower(hitechnic_1, 1, 20)
     print(side_color_sensor.value())
-steer_pair.off()
-grabber_servo.off()
+
+steer_pair.off(brake=False)
+grabber_servo.off(brake=False)
