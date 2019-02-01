@@ -151,10 +151,7 @@ def put_down_object(power=30, rotations=2):
 
 
 # Start of the actual code
-while not grabber_servo.is_stalled:
-    grabber_servo.on(-100)
-
-grabber_servo.off(brake=True)
+grabber_servo.on_for_rotations(-100, 7)
 
 while not side_color_sensor.value() == 7 or side_color_sensor.value() == 5 or side_color_sensor.value() == 4:
     pid_line_follower(hitechnic_1, 1, 20)
@@ -164,16 +161,11 @@ steer_pair.off()
 
 grabber_servo.on_for_rotations(speed=100, rotations=6)
 
-grabber_servo.off(brake=True)
-
 pid_line_follower(hitechnic_1, 1, 20)
 sleep(0.5)
 steer_pair.off()
 
-while not grabber_servo.is_stalled:
-    grabber_servo.on(-100)
-
-grabber_servo.off(brake=True)
+grabber_servo.on_for_rotations(-100, 7)
 
 while not side_color_sensor.value() == 0:
     pid_line_follower(hitechnic_1, 1, 20)
