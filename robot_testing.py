@@ -19,6 +19,9 @@ grabber_servo.on_for_rotations(-100, 10)
 if grabber_servo.is_stalled:
     grabber_servo.off(brake=True)
     sleep(5)
+
+steer_pair.on_for_rotations(100, 40, 2)
+steer_pair.on_for_rotations(-100, 40, 2)
 grabber_servo.on_for_rotations(100, 7)
 if grabber_servo.is_stalled:
     grabber_servo.off(brake=True)
