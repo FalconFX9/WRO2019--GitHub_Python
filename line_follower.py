@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from enum import Enum
 from ev3dev2.auto import *
 
