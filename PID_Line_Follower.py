@@ -35,59 +35,61 @@ Ki2 = 0
 Kd2 = 0.005
 
 # Sensor declaration
-hitechnic_1 = Sensor('in1:i2c1')
-# hitechnic_2 = Sensor('in2:i2c1')
-side_color_sensor = Sensor('in3:i2c1')
-# colorRear = ColorSensor('in4')
+hitechnic_1 = None
+hitechnic_2 = None
+side_color_sensor = None
+color_rear = None
 
 
 def sensor_declaration():
-    global hitechnic_1, hitechnic_2, side_color_sensor, colorRear
+    global hitechnic_1, hitechnic_2, side_color_sensor, color_rear
     try:
         hitechnic_1 = Sensor('in1:i2c1')
     except DeviceNotFound:
         print('Sensor 1 not found')
     else:
         hitechnic_1.mode = 'RGB'
-    '''
     try:
         hitechnic_2 = Sensor('in2:i2c1')
     except DeviceNotFound:
         print('Sensor 2 not found')
     else:
        hitechnic_2.mode = 'RGB'
-    '''
     try:
         side_color_sensor = Sensor('in3:i2c1')
     except DeviceNotFound:
         print('Sensor 3 not found')
     else:
         side_color_sensor.mode = 'COLOR'
-    '''
+
     try:
-        colorRear = ColorSensor('in4')
+        color_rear = ColorSensor('in4')
     except DeviceNotFound:
         print('Sensor 4 not found')
-    '''
 
 
 # Motor Declaration
-steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
-try:
-    steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
-except DeviceNotFound:
-    print('Main motors not found')
+steer_pair = None
+grabber_servo = None
 
-grabber_servo = MediumMotor(OUTPUT_A)
-try:
-    grabber_servo = MediumMotor(OUTPUT_A)
-except DeviceNotFound:
-    print('Main servo not found')
+
+def motor_initialization():
+    global steer_pair, grabber_servo
+    try:
+        steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
+    except DeviceNotFound:
+        print('Main motors not found')
+
+    try:
+        grabber_servo = MediumMotor(OUTPUT_A)
+    except DeviceNotFound:
+        print('Main servo not found')
+
 
 # Function declaration --use these as much as possible
 
 sensor_declaration()
-
+motor_initialization()
 
 # PID Line Follower (1 sensor) --default : Hitechnic sensor in port 1, follows the line on the right side
 def pid_line_follower(sensor=hitechnic_1, side=1, speed=40):
