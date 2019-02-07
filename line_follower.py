@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 from enum import Enum
 from ev3dev2.auto import *
+from PID_Line_Follower import *
 
-#DEFAULT_SPEED = 60
-"""
+DEFAULT_SPEED = 60
+
 # PID Values --These are subjective and need to be tuned to the robot and mat
 # Kp must be augmented or decreased until the robot follows the line smoothly --Higher Kp = Stronger corrections
 # Same with Ki, after Kp is done --- note, Ki is not used in this case (error accumulation)
@@ -12,14 +13,12 @@ from ev3dev2.auto import *
 KP = 0.83
 K_INTEGRAL = 0
 K_DERIVATIVE = 0.002
-sensor3 = Sensor('in3:i2c1')
-sensor3.mode = 'RGB'
 
 
 class SingleLineFollower:
-    
+    """
     Line follow that uses one sensor at a time to follow a line.
-    
+    """
 
     __error = 0
     __target = 0
@@ -53,7 +52,7 @@ class SingleLineFollower:
         self.__last_error = self.__error
 
     class FollowSide(Enum):
-        Enum for which side of the line to follow.
+        # Enum for which side of the line to follow.
         left = 0
         right = 1
 
@@ -61,7 +60,7 @@ class SingleLineFollower:
 def _single_line_follower_test():
     line_follower = SingleLineFollower(Sensor('in1:i2c1'), Sensor('in2:i2c1'), MoveSteering(OUTPUT_B, OUTPUT_C))
 
-    while sensor3.value(3) > 30:
+    while hitechnic_1.value(3) > 30:
         line_follower.follow()
 
 
@@ -72,14 +71,12 @@ if __name__ == "__main__":
 
 def _line_follower_to_next_line(side, side_of_line, speed=DEFAULT_SPEED):
     line_follower = SingleLineFollower(MoveSteering(OUTPUT_B, OUTPUT_C))
-    while not SensorDeclaration.sensor3.value(3) > 30:
+    while not hitechnic_1.value(3) > 30:
         line_follower.follow(side=side, side_of_line=side_of_line, speed=speed)
 
 
 def _line_follower_to_color(side=1, side_of_line=1, speed=DEFAULT_SPEED):
     line_follower = SingleLineFollower(MoveSteering(OUTPUT_B, OUTPUT_C))
-    SensorDeclaration.sensor3.mode = 'RGB'
-    while not SensorDeclaration.sensor3.value > 40 or SensorDeclaration.sensor3.value == 4 or \
-            SensorDeclaration.sensor3.value == 6 or SensorDeclaration.sensor3.value == 8:
+    while not hitechnic_2.value(3) > 40 or hitechnic_2.value(3) == 4 or \
+            hitechnic_2.value == 6 or hitechnic_2.value == 8:
         line_follower.follow(side=side, side_of_line=side_of_line, speed=speed)
-"""

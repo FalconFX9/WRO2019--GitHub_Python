@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-from ev3dev2.auto import *
-from time import sleep
 from PID_Line_Follower import *
 
 time_duration = time.time() + 5
@@ -10,16 +8,6 @@ time_duration = time.time() + 5
 
 sensor_declaration()
 motor_initialization()
-# Sensor1 = Sensor('in1')
-# Sensor2 = Sensor('in1')
-# Sensor3 = Sensor('in3')
-# Sensor4 = ColorSensor('in4')
-
-# Setting Sensor mode
-
-# Sensor1.mode = 'RGB'
-# Sensor2.mode = 'RGB'
-# Sensor3.mode = 'RGB'
 
 # SSH and on Brick Debugging
 

@@ -2,6 +2,7 @@
 from ev3dev2.auto import *
 import time
 from time import sleep
+from threading import *
 
 timelimit = time.time() + 1
 # Defining the variables necessary to PID
@@ -39,26 +40,30 @@ hitechnic_1 = None
 hitechnic_2 = None
 side_color_sensor = None
 color_rear = None
+not_connected = False
 
 
 def sensor_declaration():
-    global hitechnic_1, hitechnic_2, side_color_sensor, color_rear
+    global hitechnic_1, hitechnic_2, side_color_sensor, color_rear, not_connected
     try:
         hitechnic_1 = Sensor('in1:i2c1')
     except DeviceNotFound:
         print('Sensor 1 not found')
+        not_connected = True
     else:
         hitechnic_1.mode = 'RGB'
     try:
         hitechnic_2 = Sensor('in2:i2c1')
     except DeviceNotFound:
         print('Sensor 2 not found')
+        not_connected = True
     else:
        hitechnic_2.mode = 'RGB'
     try:
         side_color_sensor = Sensor('in3:i2c1')
     except DeviceNotFound:
         print('Sensor 3 not found')
+        not_connected = True
     else:
         side_color_sensor.mode = 'COLOR'
 
@@ -66,6 +71,7 @@ def sensor_declaration():
         color_rear = ColorSensor('in4')
     except DeviceNotFound:
         print('Sensor 4 not found')
+        not_connected = True
 
 
 # Motor Declaration
@@ -74,22 +80,25 @@ grabber_servo = None
 
 
 def motor_initialization():
-    global steer_pair, grabber_servo
+    global steer_pair, grabber_servo, not_connected
     try:
         steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
     except DeviceNotFound:
         print('Main motors not found')
+        not_connected = True
 
     try:
         grabber_servo = MediumMotor(OUTPUT_A)
     except DeviceNotFound:
         print('Main servo not found')
+        not_connected = True
 
 
 # Function declaration --use these as much as possible
 
 sensor_declaration()
 motor_initialization()
+
 
 # PID Line Follower (1 sensor) --default : Hitechnic sensor in port 1, follows the line on the right side
 def pid_line_follower(sensor=hitechnic_1, side=1, speed=40):
@@ -153,33 +162,40 @@ def put_down_object(power=30, rotations=2):
 
 
 # Start of the actual code
-grabber_servo.on_for_rotations(-100, 7)
+def wro2019():
+    if not_connected:
+        for x in range(1, 5):
+            sound = Sound()
+            sound.beep()
+            sleep(0.2)
+    else:
+        grabber_servo.on_for_rotations(-100, 7)
 
-while side_color_sensor.value() == 0:
-    pid_line_follower(hitechnic_1, 1, 20)
-    print(side_color_sensor.value())
+        while side_color_sensor.value() == 0:
+            pid_line_follower(hitechnic_1, 1, 20)
+            print(side_color_sensor.value())
 
-steer_pair.off()
+        steer_pair.off()
 
-grabber_servo.on_for_rotations(speed=100, rotations=6)
+        grabber_servo.on_for_rotations(speed=100, rotations=6)
 
-pid_line_follower(hitechnic_1, 1, 20)
-sleep(0.5)
-steer_pair.off()
+        pid_line_follower(hitechnic_1, 1, 20)
+        sleep(0.5)
+        steer_pair.off()
 
-grabber_servo.on_for_rotations(-100, 7)
+        grabber_servo.on_for_rotations(-100, 7)
 
-while not side_color_sensor.value() == 0:
-    pid_line_follower(hitechnic_1, 1, 20)
+        while not side_color_sensor.value() == 0:
+            pid_line_follower(hitechnic_1, 1, 20)
 
-while not side_color_sensor.value() == 4:
-    pid_line_follower(hitechnic_1, 1, 20)
-    print(side_color_sensor.value())
+        while not side_color_sensor.value() == 4:
+            pid_line_follower(hitechnic_1, 1, 20)
+            print(side_color_sensor.value())
 
-steer_pair.off()
+        steer_pair.off()
 
-grabber_servo.on_for_rotations(speed=100, rotations=6)
-steer_pair.on_for_rotations(0, 20, 2)
+        grabber_servo.on_for_rotations(speed=100, rotations=6)
+        steer_pair.on_for_rotations(0, 20, 2)
 
-steer_pair.off(brake=False)
-grabber_servo.off(brake=False)
+        steer_pair.off(brake=False)
+        grabber_servo.off(brake=False)
