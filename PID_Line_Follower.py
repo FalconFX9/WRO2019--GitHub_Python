@@ -168,6 +168,7 @@ def wro2019():
             sound = Sound()
             sound.beep()
             sleep(0.2)
+            quit()
     else:
         grabber_servo.on_for_rotations(-100, 7)
 

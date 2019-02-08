@@ -10,3 +10,5 @@ t.start()
 
 while not btn.any():
     pass
+
+quit()
