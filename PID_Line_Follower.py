@@ -56,7 +56,7 @@ def sensor_declaration():
         hitechnic_2 = Sensor('in2:i2c1')
     except DeviceNotFound:
         print('Sensor 2 not found')
-        not_connected = True
+        not_connected = False
     else:
        hitechnic_2.mode = 'RGB'
     try:
@@ -71,7 +71,7 @@ def sensor_declaration():
         color_rear = ColorSensor('in4')
     except DeviceNotFound:
         print('Sensor 4 not found')
-        not_connected = True
+        not_connected = False
 
 
 # Motor Declaration
