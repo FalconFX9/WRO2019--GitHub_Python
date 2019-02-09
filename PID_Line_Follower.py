@@ -19,7 +19,7 @@ last_error2 = 0
 integral2 = 0
 derivative2 = 0
 
-motor_steering = 0
+motor_steering2 = 0
 
 # PID Values --These are subjective and need to be tuned to the robot and mat
 # Kp must be augmented or decreased until the robot follows the line smoothly --Higher Kp = Stronger corrections
@@ -58,7 +58,7 @@ def sensor_declaration():
         print('Sensor 2 not found')
         not_connected = False
     else:
-       hitechnic_2.mode = 'RGB'
+        hitechnic_2.mode = 'RGB'
     try:
         side_color_sensor = Sensor('in3:i2c1')
     except DeviceNotFound:
@@ -102,12 +102,12 @@ motor_initialization()
 
 # PID Line Follower (1 sensor) --default : Hitechnic sensor in port 1, follows the line on the right side
 def pid_line_follower(sensor=hitechnic_1, side=1, speed=40):
-    global target, error, last_error, integral, derivative, Kp, Ki, Kd, steer_pair, motor_steering
+    global target, error, last_error, integral, derivative, Kp, Ki, Kd, steer_pair, motor_steering2
     error = target - (sensor.value(3) / 2)
     integral = error + integral
     derivative = error - last_error
-    motor_steering = ((error * Kp) + (integral * Ki) + (derivative * Kd)) * side
-    steer_pair.on(motor_steering, -speed)
+    motor_steering2 = ((error * Kp) + (integral * Ki) + (derivative * Kd)) * side
+    steer_pair.on(motor_steering2, -speed)
     last_error = error
 
 
