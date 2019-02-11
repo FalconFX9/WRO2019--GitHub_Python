@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 from ev3dev2.auto import *
-import time
-from time import sleep
-from threading import *
+from time import *
 
-timelimit = time.time() + 1
 # Defining the variables necessary to PID
 # Target is the target value for the sensor (the one it gets when half of it is on the line and half of it is off)
 # works well at target 35

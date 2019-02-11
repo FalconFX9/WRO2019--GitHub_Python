@@ -40,4 +40,3 @@ class OneSensorLineFollower:
         right = 1
 
 
-OneSensorLineFollower(hitechnic_1, steer_pair)
