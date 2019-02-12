@@ -38,5 +38,3 @@ class OneSensorLineFollower:
     class SideOfLine(Enum):
         left = 0
         right = 1
-
-

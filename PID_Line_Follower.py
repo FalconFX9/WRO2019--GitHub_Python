@@ -121,8 +121,8 @@ def double_pid_line_follower():
 
 
 # Turn until line --default : Power set to -50, the amplitude and direction of the steering is set to 0
-def steer_to_line(turn_tightness=0, power=-50):
-    while not hitechnic_2.value(3) < 20:
+def steer_to_line(turn_tightness=0, power=-50, sensor=hitechnic_1):
+    while sensor.value(3) > 20:
         steer_pair.on(turn_tightness, power)
     steer_pair.off(brake=True)
 
