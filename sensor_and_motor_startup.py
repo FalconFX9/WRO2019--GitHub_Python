@@ -159,7 +159,7 @@ def put_down_object(power=30, rotations=2):
 
 
 # Start of the actual code
-def wro2019():
+def wro2018():
     if not_connected:
         for x in range(1, 5):
             sound = Sound()

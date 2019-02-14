@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from testing_stuff import *
+from line_follower_class import *
 
 sensor_declaration()
 motor_initialization()

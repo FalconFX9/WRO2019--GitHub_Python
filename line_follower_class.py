@@ -1,5 +1,5 @@
 from enum import Enum
-from PID_Line_Follower import *
+from sensor_and_motor_startup import *
 
 DEFAULT_SPEED = 60
 
@@ -14,7 +14,7 @@ K_DERIVATIVE = 0
 
 
 class OneSensorLineFollower:
-    target = 0
+    target = 35
     error = 0
     last_error = 0
     derivative = 0

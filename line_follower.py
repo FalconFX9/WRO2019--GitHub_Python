@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from enum import Enum
 from ev3dev2.auto import *
-from PID_Line_Follower import *
+from sensor_and_motor_startup import *
 
 DEFAULT_SPEED = 60
 

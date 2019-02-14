@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-from PID_Line_Follower import *
+from ev3dev2.auto import Button
+from regrouped_functions import wro2019
 from threading import *
 
 btn = Button()
