@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from sensor_and_motor_startup import *
 from line_follower_class import *
 
 sensor_declaration()
@@ -19,5 +20,9 @@ def start_sequence():
                     if not side_color_sensor.value() == 0 or side_color_sensor.value() == firstblock or \
                             side_color_sensor.value() == secondblock or side_color_sensor.value() == thirdblock:
                         fourthblock = side_color_sensor.value()
+                        print(firstblock)
+                        print(secondblock)
+                        print(thirdblock)
+                        print(fourthblock)
 
     steer_to_line(100, -60, hitechnic_1)

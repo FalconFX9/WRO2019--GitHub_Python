@@ -1,5 +1,4 @@
 from enum import Enum
-from sensor_and_motor_startup import *
 
 DEFAULT_SPEED = 60
 
