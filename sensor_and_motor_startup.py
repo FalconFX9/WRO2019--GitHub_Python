@@ -98,7 +98,7 @@ motor_initialization()
 
 
 # PID Line Follower (1 sensor) --default : Hitechnic sensor in port 1, follows the line on the right side
-def pid_line_follower(sensor=hitechnic_1, side=1, speed=40):
+def pid_line_follower(sensor=hitechnic_1, side=1, speed=60):
     global target, error, last_error, integral, derivative, Kp, Ki, Kd, steer_pair, motor_steering2
     error = target - (sensor.value(3) / 2)
     integral = error + integral

@@ -9,7 +9,7 @@ motor_initialization()
 
 
 def start_sequence():
-    follower = OneSensorLineFollower(side_color_sensor, steer_pair)
+    follower = pid_line_follower()
     while time() < time() + 10:
         follower.follower()
         if not side_color_sensor.value() == 0:
