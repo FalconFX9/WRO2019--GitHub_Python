@@ -3,13 +3,14 @@ from sensor_and_motor_startup import *
 from line_follower_class import *
 from time import *
 
+timelimit = time() + 10
 sensor_declaration()
 motor_initialization()
 
 
 def start_sequence():
     follower = OneSensorLineFollower(side_color_sensor, steer_pair)
-    while time.time() > time.time() + 10:
+    while time() < time() + 10:
         follower.follower()
         if not side_color_sensor.value() == 0:
             firstblock = side_color_sensor.value()
