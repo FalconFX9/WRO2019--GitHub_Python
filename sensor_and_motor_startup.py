@@ -72,8 +72,8 @@ def sensor_declaration():
 
 
 # Motor Declaration
-steer_pair = None
-grabber_servo = None
+steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
+grabber_servo = MediumMotor(OUTPUT_A)
 
 
 def motor_initialization():
