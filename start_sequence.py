@@ -10,7 +10,7 @@ motor_initialization()
 
 def start_sequence():
     while time() < time() + 10:
-        pid_line_follower(speed=30)
+        pid_line_follower(side=0, speed=30)
         if not side_color_sensor.value() == 0:
             steer_pair.off()
             firstblock = side_color_sensor.value()
