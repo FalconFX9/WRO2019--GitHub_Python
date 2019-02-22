@@ -11,6 +11,7 @@ last_error = 0
 integral = 0
 derivative = 0
 
+starget = 10
 error2 = 0
 last_error2 = 0
 integral2 = 0
@@ -27,6 +28,9 @@ Kp = 0.3
 Ki = 0
 Kd = 0
 
+Skp = 0.3
+Ski = 0
+Skd = 0
 # To follow in a straight line -- Kp 0.085, Ki 0, Kd 0.005
 Kp2 = 0.085
 Ki2 = 0
@@ -34,46 +38,26 @@ Kd2 = 0.005
 
 # Sensor declaration
 hitechnic_1 = None
-hitechnic_2 = None
+line_1 = None
 side_color_sensor = None
-color_rear = None
+line_2 = None
 not_connected = False
 
 
 def sensor_declaration():
-    global hitechnic_1, hitechnic_2, side_color_sensor, color_rear, not_connected
-    try:
-        hitechnic_1 = Sensor('in1:i2c1')
-    except DeviceNotFound:
-        print('Sensor 1 not found')
-        not_connected = True
-    else:
-        hitechnic_1.mode = 'RGB'
-    try:
-        hitechnic_2 = Sensor('in2:i2c1')
-    except DeviceNotFound:
-        print('Sensor 2 not found')
-        not_connected = False
-    else:
-        hitechnic_2.mode = 'RGB'
-    try:
-        side_color_sensor = Sensor('in3:i2c1')
-    except DeviceNotFound:
-        print('Sensor 3 not found')
-        not_connected = True
-    else:
-        side_color_sensor.mode = 'COLOR'
-
-    try:
-        color_rear = ColorSensor('in4')
-    except DeviceNotFound:
-        print('Sensor 4 not found')
-        not_connected = False
+    global hitechnic_1, line_1, side_color_sensor, line_2, not_connected
+    hitechnic_1 = Sensor('in1:i2c1')
+    hitechnic_1.mode = 'RGB'
+    line_1 = ColorSensor('in2')
+    side_color_sensor = Sensor('in3')
+    side_color_sensor.mode = 'COLOR'
+    line_2 = ColorSensor('in4')
 
 
 # Motor Declaration
 steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 grabber_servo = MediumMotor(OUTPUT_A)
+lower_motor = LargeMotor(OUTPUT_D)
 
 
 def motor_initialization():
@@ -98,7 +82,7 @@ motor_initialization()
 
 
 # PID Line Follower (1 sensor) --default : Hitechnic sensor in port 1, follows the line on the right side
-def pid_line_follower(sensor=hitechnic_1, side=1, speed=60):
+def hitechnic_pid_line_follower(sensor=hitechnic_1, side=1, speed=60):
     global target, error, last_error, integral, derivative, Kp, Ki, Kd, steer_pair, motor_steering2
     error = target - (sensor.value(3) / 2)
     integral = error + integral
@@ -108,54 +92,45 @@ def pid_line_follower(sensor=hitechnic_1, side=1, speed=60):
     last_error = error
 
 
+def stock_pid_follower(sensor=line_1, side=1, speed=60):
+    global starget, error2, last_error2, integral2, derivative2, Skp, Ski, Skd, steer_pair, motor_steering2
+    error2 = starget - sensor.reflected_light_intensity
+    integral2 = error2 + integral2
+    derivative2 = error2 - last_error2
+    motor_steering2 = ((error2 * Skp) + (integral2 * Ski) + (derivative2 * Skd)) * side
+    steer_pair.on(motor_steering2, -speed)
+    last_error2 = error2
+
+
 # PID Line Follower (2 sensors)
-def double_pid_line_follower():
+def double_pid_line_follower(speed=60):
     global error2, last_error2, integral2, derivative2, Kp2, Ki2, Kd2, steer_pair, motor_steering
-    error2 = (hitechnic_1.value(3) / 2) - (hitechnic_2.value(3) / 2)
-    print(hitechnic_1.value(3), hitechnic_2.value(3))
+    error2 = line_1.reflected_light_intensity - line_2.reflected_light_intensity
     integral2 = error + integral2
     derivative2 = error2 - last_error2
     motor_steering = ((error2 * Kp2) + (integral2 * Ki2) + (derivative2 * Kd2))
-    steer_pair.on(motor_steering, -60)
+    steer_pair.on(motor_steering, -speed)
     last_error2 = error2
 
 
 # Turn until line --default : Power set to -50, the amplitude and direction of the steering is set to 0
-def steer_to_line(turn_tightness=0, power=-50, sensor=hitechnic_1):
-    while sensor.value(3) > 20:
+def steer_to_line(turn_tightness=0, power=-50, sensor=line_1):
+    while not sensor.color == 1:
         steer_pair.on(turn_tightness, power)
     steer_pair.off(brake=True)
 
 
 # Lower the servo arm, go forward and raise the servo arm --default : Power set to 30
 # Number of rotations of forward movement are 2
-def lower_and_pickup(power=30, rotations=2):
-    if not grabber_servo.is_stalled():
-        grabber_servo.on(-power)
-    else:
-        grabber_servo.off(brake=True)
-
-    steer_pair.on_for_rotations(0, -30, rotations)
-
-    if not grabber_servo.is_stalled():
-        grabber_servo.on(power)
-    else:
-        grabber_servo.off(brake=True)
+def lower_and_pickup(power=30, degrees=30):
+    lower_motor.on_for_degrees(speed=power, degrees=degrees)
+    steer_pair.on_for_degrees(0, -30, 30)
 
 
 # Lower the servo arm, go backwards and raise the servo arm --default : Power is set to 30, Rotations is 2
-def put_down_object(power=30, rotations=2):
-    if not grabber_servo.is_stalled():
-        grabber_servo.on(-power)
-    else:
-        grabber_servo.off(brake=True)
-
-    steer_pair.on_for_rotations(0, 30, rotations)
-
-    if not grabber_servo.is_stalled():
-        grabber_servo.on(power)
-    else:
-        grabber_servo.off(brake=True)
+def put_down_object(power=30, degrees=30):
+    lower_motor.on_for_degrees(speed=power, degrees=degrees)
+    steer_pair.on_for_degrees(0, 30, 40)
 
 
 # Start of the actual code
