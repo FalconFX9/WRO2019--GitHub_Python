@@ -46,7 +46,7 @@ not_connected = False
 
 def sensor_declaration():
     global hitechnic_1, line_1, side_color_sensor, line_2, not_connected
-    hitechnic_1 = Sensor('in1:i2c1')
+   # hitechnic_1 = Sensor('in1:i2c1')
     hitechnic_1.mode = 'RGB'
     line_1 = ColorSensor('in2')
     side_color_sensor = Sensor('in3')
@@ -134,6 +134,7 @@ def put_down_object(power=30, degrees=30):
 
 
 # Start of the actual code
+"""
 def wro2018():
     if not_connected:
         for x in range(1, 5):
@@ -172,3 +173,4 @@ def wro2018():
 
         steer_pair.off(brake=False)
         grabber_servo.off(brake=False)
+"""
