@@ -11,7 +11,8 @@ fourthblock = 0
 def start_sequence():
     global fourthblock
     lower_motor.off(brake=True)
-    stock_pid_follower(sensor=line_1, speed=30, side=1)
+    while side_color_sensor.value() == 0:
+        stock_pid_follower(sensor=line_1, speed=30, side=1)
     if not side_color_sensor.value() == 0:
         steer_pair.off()
         firstblock = side_color_sensor.value()
