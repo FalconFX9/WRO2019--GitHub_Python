@@ -28,7 +28,7 @@ def start_sequence():
         thirdblock = side_color_sensor.value()
         print("Block 3: ", thirdblock)
         sleep(4)
-        steer_pair.on_for_rotations(0, -20, 0.4)
+        steer_pair.on_for_rotations(0, -20, 0.3)
         steer_pair.off()
         fourthblock = side_color_sensor.value()
         print("Block 4: ", fourthblock)
@@ -39,5 +39,5 @@ def start_sequence():
         print("Block 4 : ", fourthblock)
         count = count + 1
 
-    steer_to_line(100, -60, line_1)
+    steer_to_line(60, -60, line_1)
     steer_pair.off()
