@@ -6,14 +6,14 @@ timelimit = time() + 10
 sensor_declaration()
 motor_initialization()
 fourthblock = 0
-
+count = 0
 
 def start_sequence():
-    global fourthblock
+    global fourthblock, count
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 0:
         stock_pid_follower(sensor=line_1, speed=30, side=1)
-    if not side_color_sensor.value() == 0:
+    if not side_color_sensor.value() == 0 and count == 0:
         steer_pair.off()
         firstblock = side_color_sensor.value()
         print("Block 1: ", firstblock)
@@ -37,6 +37,7 @@ def start_sequence():
         print("Block 2 : ", secondblock)
         print("Block 3 : ", thirdblock)
         print("Block 4 : ", fourthblock)
+        count = count + 1
 
     steer_to_line(100, -60, line_1)
     steer_pair.off()
