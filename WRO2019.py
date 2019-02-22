@@ -13,4 +13,5 @@ t.start()
 while not btn.any():
     pass
 
+steer_pair.off()
 quit()
