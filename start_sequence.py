@@ -16,21 +16,25 @@ def start_sequence():
         if not side_color_sensor.value() == 0:
             steer_pair.off()
             firstblock = side_color_sensor.value()
+            print(firstblock)
             sleep(4)
             steer_pair.on_for_rotations(0, -20, 0.2)
             if not side_color_sensor.value() == 0:
                 steer_pair.off()
                 secondblock = side_color_sensor.value()
+                print(secondblock)
                 sleep(4)
                 steer_pair.on_for_rotations(0, -20, 0.2)
                 if not side_color_sensor.value() == 0:
                     steer_pair.off()
                     thirdblock = side_color_sensor.value()
+                    print(thirdblock)
                     sleep(4)
                     steer_pair.on_for_rotations(0, -20, 0.2)
                     if not side_color_sensor.value() == 0:
                         steer_pair.off()
                         fourthblock = side_color_sensor.value()
+                        print(fourthblock)
                         steer_pair.on_for_rotations(0, -20, 0.2)
                         print("Block 1: ", firstblock)
                         print("Block 2 : ", secondblock)
