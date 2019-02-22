@@ -51,7 +51,7 @@ def sensor_declaration():
     line_1 = ColorSensor('in2')
     side_color_sensor = Sensor('in3')
     side_color_sensor.mode = 'COLOR'
-    line_2 = ColorSensor('in4')
+   # line_2 = ColorSensor('in4')
 
 
 # Motor Declaration
