@@ -5,10 +5,13 @@ from time import *
 timelimit = time() + 10
 sensor_declaration()
 motor_initialization()
+fourthblock = 0
 
 
 def start_sequence():
-    while time() < timelimit:
+    global fourthblock
+    lower_motor.stop(brake=True)
+    while fourthblock == 0:
         stock_pid_follower(sensor=line_1, speed=30, side=1)
         if not side_color_sensor.value() == 0:
             steer_pair.off()
