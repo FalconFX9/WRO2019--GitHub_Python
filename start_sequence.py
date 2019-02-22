@@ -18,17 +18,17 @@ def start_sequence():
             steer_pair.off()
             firstblock = side_color_sensor.value()
             steer_pair.on_for_rotations(0, -20, 0.2)
-        if not side_color_sensor.value() == 0 and not side_color_sensor.value() == firstblock:
+            if not side_color_sensor.value() == 0 and not side_color_sensor.value() == firstblock:
                 steer_pair.off()
                 secondblock = side_color_sensor.value()
                 steer_pair.on_for_rotations(0, -20, 0.2)
-        if not side_color_sensor.value() == 0 and not side_color_sensor.value() == secondblock \
-                and not side_color_sensor.value() == firstblock:
+                if not side_color_sensor.value() == 0 and not side_color_sensor.value() == secondblock \
+                        and not side_color_sensor.value() == firstblock:
                     steer_pair.off()
                     thirdblock = side_color_sensor.value()
                     steer_pair.on_for_rotations(0, -20, 0.2)
-        if not side_color_sensor.value() == 0 and not side_color_sensor.value() == firstblock \
-                and not side_color_sensor.value() == secondblock and not side_color_sensor.value() == thirdblock:
+                    if not side_color_sensor.value() == 0 and not side_color_sensor.value() == firstblock \
+                            and not side_color_sensor.value() == secondblock and not side_color_sensor.value() == thirdblock:
                         steer_pair.off()
                         fourthblock = side_color_sensor.value()
                         steer_pair.on_for_rotations(0, -20, 0.2)
