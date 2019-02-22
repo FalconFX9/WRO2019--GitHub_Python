@@ -31,5 +31,5 @@ def start_sequence():
                         print(thirdblock)
                         print(fourthblock)
 
-    steer_to_line(100, -60, hitechnic_1)
+    steer_to_line(100, -60, line_1)
     steer_pair.off()
