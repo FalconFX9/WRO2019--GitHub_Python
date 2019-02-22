@@ -10,7 +10,7 @@ fourthblock = 0
 
 def start_sequence():
     global fourthblock
-    lower_motor.stop(brake=True)
+    lower_motor.off(brake=True)
     while fourthblock == 0:
         stock_pid_follower(sensor=line_1, speed=30, side=1)
         if not side_color_sensor.value() == 0:
