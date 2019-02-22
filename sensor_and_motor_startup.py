@@ -47,7 +47,7 @@ not_connected = False
 def sensor_declaration():
     global hitechnic_1, line_1, side_color_sensor, line_2, not_connected
    # hitechnic_1 = Sensor('in1:i2c1')
-    hitechnic_1.mode = 'RGB'
+   # hitechnic_1.mode = 'RGB'
     line_1 = ColorSensor('in2')
     side_color_sensor = Sensor('in3')
     side_color_sensor.mode = 'COLOR'
