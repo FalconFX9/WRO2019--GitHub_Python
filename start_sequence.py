@@ -8,6 +8,7 @@ motor_initialization()
 fourthblock = 0
 count = 0
 
+
 def start_sequence():
     global fourthblock, count
     lower_motor.off(brake=True)
