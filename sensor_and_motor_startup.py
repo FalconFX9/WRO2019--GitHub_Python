@@ -28,7 +28,7 @@ Kp = 0.3
 Ki = 0
 Kd = 0
 
-Skp = 0.3
+Skp = 0.15
 Ski = 0
 Skd = 0
 # To follow in a straight line -- Kp 0.085, Ki 0, Kd 0.005
@@ -94,10 +94,6 @@ def hitechnic_pid_line_follower(sensor=hitechnic_1, side=1, speed=60):
 
 def stock_pid_follower(sensor=line_1, side=1, speed=60, corretion='L'):
     global starget, error2, last_error2, integral2, derivative2, Skp, Ski, Skd, steer_pair, motor_steering2
-    if corretion == 'H':
-        Skp = 0.1
-        Ski = 0
-        Skd = 0
     error2 = starget - sensor.reflected_light_intensity
     print(sensor.reflected_light_intensity)
     integral2 = error2 + integral2
