@@ -4,4 +4,4 @@ from goto_blocks import *
 
 
 def wro2019():
-    goto_blocks()
+    start_sequence()
