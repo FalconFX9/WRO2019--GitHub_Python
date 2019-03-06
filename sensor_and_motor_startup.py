@@ -28,7 +28,7 @@ Kp = 0.3
 Ki = 0
 Kd = 0
 
-Skp = 1.3
+Skp = 4
 Ski = 0
 Skd = 0.1
 # To follow in a straight line -- Kp 0.085, Ki 0, Kd 0.005
