@@ -93,11 +93,11 @@ def hitechnic_pid_line_follower(sensor=hitechnic_1, side=1, speed=60):
 
 
 def stock_pid_follower(sensor=line_1, side=1, speed=60, corretion='L'):
+    global starget, error2, last_error2, integral2, derivative2, Skp, Ski, Skd, steer_pair, motor_steering2
     if corretion == 'H':
         Skp = 0.1
         Ski = 0
         Skd = 0
-    global starget, error2, last_error2, integral2, derivative2, Skp, Ski, Skd, steer_pair, motor_steering2
     error2 = starget - sensor.reflected_light_intensity
     print(sensor.reflected_light_intensity)
     integral2 = error2 + integral2
