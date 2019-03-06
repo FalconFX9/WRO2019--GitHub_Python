@@ -6,7 +6,7 @@ from threading import *
 
 btn = Button()
 
-t = Thread(start_sequence())
+t = Thread(wro2019())
 t.setDaemon(True)
 t.start()
 
