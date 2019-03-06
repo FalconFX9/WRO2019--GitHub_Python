@@ -30,7 +30,7 @@ Kd = 0
 
 Skp = 4
 Ski = 0
-Skd = 0.1
+Skd = 2
 # To follow in a straight line -- Kp 0.085, Ki 0, Kd 0.005
 Kp2 = 0.085
 Ki2 = 0
@@ -38,7 +38,7 @@ Kd2 = 0.005
 
 # Sensor declaration
 hitechnic_1 = None
-line_1 = None
+line_1 = ColorSensor('in2')
 side_color_sensor = None
 line_2 = None
 not_connected = False
@@ -137,6 +137,7 @@ def put_down_object(power=30, degrees=30):
 # Start of the actual code
 """
 def wro2018():
+
     if not_connected:
         for x in range(1, 5):
             sound = Sound()
