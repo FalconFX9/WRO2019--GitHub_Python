@@ -1,5 +1,3 @@
-from enum import Enum
-
 DEFAULT_SPEED = 60
 
 # PID Values --These are subjective and need to be tuned to the robot and mat
@@ -24,16 +22,19 @@ class OneSensorLineFollower:
         self.__move_steering = move_steering
 
     def follower(self, side_of_line=None, speed=DEFAULT_SPEED):
-        if None:
+        if side_of_line is None:
             side_of_line = self.SideOfLine.left
+        else:
+            side_of_line = self.SideOfLine.right
         self.error = self.target - (self.__color_sensor.value(3) / 2)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
         motor_steering = ((self.error * K_PROPORTIONAL) + (self.integral * K_INTEGRAL) + (self.derivative * K_DERIVATIVE
-                                                                                          )) * int(side_of_line)
+                                                                                          )) * float(side_of_line)
         self.__move_steering.on(motor_steering, -speed)
         self.last_error = self.error
 
-    class SideOfLine(Enum):
+    class SideOfLine:
         left = 0
         right = 1
+
