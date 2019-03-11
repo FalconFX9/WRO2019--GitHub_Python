@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from sensor_and_motor_startup import *
+from line_follower_class import *
 from time import *
 
 timelimit = time() + 10
@@ -13,7 +13,7 @@ def start_sequence():
     global fourthblock, count
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 0:
-        hitechnic_pid_line_follower(sensor=right_side_sensor, speed=30, side=1)
+        low_speed_follower_rotations()
     if not side_color_sensor.value() == 0 and count == 0:
         steer_pair.off()
         firstblock = side_color_sensor.value()

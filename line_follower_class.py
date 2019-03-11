@@ -1,4 +1,7 @@
 from sensor_and_motor_startup import *
+import threading
+import queue
+
 DEFAULT_SPEED = 60
 
 # PID Values --These are subjective and need to be tuned to the robot and mat
@@ -18,9 +21,8 @@ class OneSensorLineFollower:
     derivative = 0
     integral = 0
 
-    def __init__(self, color_sensor, move_steering):
+    def __init__(self, color_sensor):
         self.__color_sensor = color_sensor
-        self.__move_steering = move_steering
 
     def follower(self, side_of_line=None, kp=K_PROPORTIONAL):
         if side_of_line is None:
@@ -40,7 +42,28 @@ class OneSensorLineFollower:
         right = -1
 
 
-def low_speed_follower_rotations(speed=DEFAULT_SPEED, rotations=5):
-    follower = OneSensorLineFollower(center_sensor, steer_pair)
+def hisp_center_corrector():
+    follow = OneSensorLineFollower(center_sensor)
+    while True:
+        steering = follow.follower(kp=0.15)
+        return steering
+
+
+que = queue.Queue()
+threads_list = list()
+t = threading.Thread(target=lambda q, arg1: q.put(hisp_center_corrector()))
+t.start()
+threads_list.append(t)
+for t in threads_list:
+    t.join()
+while not que.empty():
+    result = que.get()
+    print(result)
+
+
+def low_speed_follower(speed=DEFAULT_SPEED, rotations=5):
+    follower = OneSensorLineFollower(center_sensor)
     steer_pair.on_for_rotations(follower.follower(kp=0.3), speed, rotations)
+
+
 
