@@ -43,15 +43,9 @@ class OneSensorLineFollower:
 
 
 def hisp_center_corrector(num, out_que):
-    """
     follow = OneSensorLineFollower(left_side_sensor)
-    while True:
-        steering = follow.follower(kp=0.15)
-        out_que.put(steering)
-    """
-    my_str = 'Lol' + num
-    while True:
-        out_que.put(my_str)
+    steering = follow.follower(kp=0.15)
+    out_que.put(steering)
 
 
 def low_speed_follower(speed=DEFAULT_SPEED, rotations=5):
