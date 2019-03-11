@@ -50,19 +50,17 @@ def hisp_center_corrector(out_que):
         sleep(0.1)
 
 
-def low_speed_follower(speed=DEFAULT_SPEED, rotations=5):
-    follower = OneSensorLineFollower(center_sensor)
-    steer_pair.on_for_rotations(follower.follower(kp=0.3), speed, rotations)
-
-
-que = queue.Queue()
+que = queue.Queue(maxsize=1)
 t = threading.Thread(target=hisp_center_corrector, args=(que,))
 t.setDaemon(True)
 t.start()
-while True:
-    value = que.get()
-    print(value)
+timemax = time.time() + 5
+while time.time() < timemax:
+    print(que.get())
 
+
+def high_speed_follower(speed=DEFAULT_SPEED, rotations=5):
+    steer_pair.on_for_rotations(que.get(), speed, rotations)
 
 
 
