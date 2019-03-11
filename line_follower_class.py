@@ -57,7 +57,8 @@ que = queue.Queue()
 t = threading.Thread(target=hisp_center_corrector, args=('3', que))
 t.start()
 t.join()
-print(que.get())
+while True:
+    print(que.get())
 
 
 
