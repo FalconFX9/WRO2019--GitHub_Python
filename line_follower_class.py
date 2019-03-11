@@ -42,11 +42,11 @@ class OneSensorLineFollower:
         right = -1
 
 
-def hisp_center_corrector():
+def hisp_center_corrector(out_que):
     follow = OneSensorLineFollower(left_side_sensor)
     while True:
         steering = follow.follower(kp=0.15)
-        que.put(steering)
+        out_que.put(steering)
 
 
 def low_speed_follower(speed=DEFAULT_SPEED, rotations=5):
@@ -55,11 +55,10 @@ def low_speed_follower(speed=DEFAULT_SPEED, rotations=5):
 
 
 que = queue.Queue()
-t = threading.Thread(target=hisp_center_corrector())
+t = threading.Thread(target=hisp_center_corrector(que))
 t.start()
 t.join()
-while True:
-    print(que.get())
+print(que.get())
 
 
 
