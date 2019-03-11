@@ -50,7 +50,7 @@ def hisp_center_corrector(out_que):
         sleep(0.1)
 
 
-que = queue.Queue(maxsize=1)
+que = queue.Queue(maxsize=0)
 t = threading.Thread(target=hisp_center_corrector, args=(que,))
 t.setDaemon(True)
 t.start()
