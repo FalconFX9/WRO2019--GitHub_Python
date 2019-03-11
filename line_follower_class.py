@@ -43,7 +43,7 @@ class OneSensorLineFollower:
 
 
 def hisp_center_corrector():
-    follow = OneSensorLineFollower(center_sensor)
+    follow = OneSensorLineFollower(left_side_sensor)
     while True:
         steering = follow.follower(kp=0.15)
         que.put(steering)
