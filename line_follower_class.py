@@ -47,6 +47,7 @@ def hisp_center_corrector(out_que):
         follow = OneSensorLineFollower(left_side_sensor)
         steering = follow.follower(kp=0.15)
         out_que.put(steering)
+        sleep(0.1)
 
 
 def low_speed_follower(speed=DEFAULT_SPEED, rotations=5):
