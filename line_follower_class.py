@@ -50,7 +50,8 @@ def hisp_center_corrector(num, out_que):
         out_que.put(steering)
     """
     my_str = 'Lol' + num
-    out_que.put(my_str)
+    while True:
+        out_que.put(my_str)
 
 
 def low_speed_follower(speed=DEFAULT_SPEED, rotations=5):
