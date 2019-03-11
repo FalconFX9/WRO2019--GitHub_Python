@@ -54,8 +54,8 @@ que = queue.Queue(maxsize=1)
 t = threading.Thread(target=hisp_center_corrector, args=(que,))
 t.setDaemon(True)
 t.start()
-timemax = time.time() + 5
-while time.time() < timemax:
+timemax = time() + 5
+while time() < timemax:
     print(que.get())
 
 
