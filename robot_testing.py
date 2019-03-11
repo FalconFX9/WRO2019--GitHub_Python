@@ -6,4 +6,4 @@ sensor_declaration()
 motor_initialization()
 
 while time() < time() + 10:
-    stock_pid_follower(sensor=line_1, side=1, speed=80)
+    stock_pid_follower(sensor=center_sensor, side=1, speed=80)

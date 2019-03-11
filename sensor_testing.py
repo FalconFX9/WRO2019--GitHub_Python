@@ -21,7 +21,7 @@ if grabber_servo.is_stalled:
 
 print('First Sensor Value')
 for x in range(1, 50):
-    print(hitechnic_1.value(3))
+    print(left_side_sensor.value(3))
     sleep(0.1)
 
 print('Second Sensor Value')

@@ -37,22 +37,22 @@ Ki2 = 0
 Kd2 = 0.005
 
 # Sensor declaration
-hitechnic_1 = None
-line_1 = ColorSensor('in2')
+left_side_sensor = None
+center_sensor = ColorSensor('in2')
 side_color_sensor = None
-line_2 = None
+right_side_sensor = None
 not_connected = False
 
 
 def sensor_declaration():
-    global hitechnic_1, line_1, side_color_sensor, line_2, not_connected
-    hitechnic_1 = Sensor('in1:i2c1')
-    hitechnic_1.mode = 'RGB'
-    line_1 = ColorSensor('in2')
+    global left_side_sensor, center_sensor, side_color_sensor, right_side_sensor, not_connected
+    left_side_sensor = Sensor('in1:i2c1')
+    left_side_sensor.mode = 'RGB'
+    center_sensor = ColorSensor('in2')
     side_color_sensor = Sensor('in3')
     side_color_sensor.mode = 'COLOR'
-    line_2 = Sensor('in4:i2c1')
-    line_2.mode = 'RGB'
+    right_side_sensor = Sensor('in4:i2c1')
+    right_side_sensor.mode = 'RGB'
 
 
 # Motor Declaration
@@ -83,7 +83,7 @@ motor_initialization()
 
 
 # PID Line Follower (1 sensor) --default : Hitechnic sensor in port 1, follows the line on the right side
-def hitechnic_pid_line_follower(sensor=hitechnic_1, side=1, speed=60):
+def hitechnic_pid_line_follower(sensor=left_side_sensor, side=1, speed=60):
     global target, error, last_error, integral, derivative, Kp, Ki, Kd, steer_pair, motor_steering2
     error = target - (sensor.value(3) / 2)
     integral = error + integral
@@ -93,7 +93,7 @@ def hitechnic_pid_line_follower(sensor=hitechnic_1, side=1, speed=60):
     last_error = error
 
 
-def stock_pid_follower(sensor=line_1, side=1, speed=60, corretion='L'):
+def stock_pid_follower(sensor=center_sensor, side=1, speed=60, corretion='L'):
     global starget, error2, last_error2, integral2, derivative2, Skp, Ski, Skd, steer_pair, motor_steering2
     error2 = starget - sensor.reflected_light_intensity
     print(sensor.reflected_light_intensity)
@@ -107,7 +107,7 @@ def stock_pid_follower(sensor=line_1, side=1, speed=60, corretion='L'):
 # PID Line Follower (2 sensors)
 def double_pid_line_follower(speed=60):
     global error2, last_error2, integral2, derivative2, Kp2, Ki2, Kd2, steer_pair, motor_steering
-    error2 = line_1.reflected_light_intensity - line_2.reflected_light_intensity
+    error2 = center_sensor.reflected_light_intensity - right_side_sensor.reflected_light_intensity
     integral2 = error + integral2
     derivative2 = error2 - last_error2
     motor_steering = ((error2 * Kp2) + (integral2 * Ki2) + (derivative2 * Kd2))
@@ -116,7 +116,7 @@ def double_pid_line_follower(speed=60):
 
 
 # Turn until line --default : Power set to -50, the amplitude and direction of the steering is set to 0
-def steer_to_line(turn_tightness=0, power=-50, sensor=line_1):
+def steer_to_line(turn_tightness=0, power=-50, sensor=center_sensor):
     while not sensor.color == 1:
         steer_pair.on(turn_tightness, power)
     steer_pair.off(brake=True)

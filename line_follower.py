@@ -60,18 +60,13 @@ class SingleLineFollower:
 def _single_line_follower_test():
     line_follower = SingleLineFollower(Sensor('in1:i2c1'), Sensor('in2:i2c1'), MoveSteering(OUTPUT_B, OUTPUT_C))
 
-    while hitechnic_1.value(3) > 30:
+    while left_side_sensor.value(3) > 30:
         line_follower.follow()
-
-
-if __name__ == "__main__":
-    # Single line follower test
-    _single_line_follower_test()
 
 
 def _line_follower_to_next_line(side, side_of_line, speed=DEFAULT_SPEED):
     line_follower = SingleLineFollower(MoveSteering(OUTPUT_B, OUTPUT_C))
-    while not hitechnic_1.value(3) > 30:
+    while not left_side_sensor.value(3) > 30:
         line_follower.follow(side=side, side_of_line=side_of_line, speed=speed)
 
 
