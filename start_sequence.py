@@ -42,3 +42,6 @@ def start_sequence():
 
     follow_to_line(following_sensor=right_side_sensor, side_of_line=1)
     steer_pair.off()
+
+
+start_sequence()
