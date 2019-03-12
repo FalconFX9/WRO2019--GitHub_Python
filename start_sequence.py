@@ -13,7 +13,7 @@ def start_sequence():
     global fourthblock, count
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 0:
-        low_speed_follower_rotations()
+        pass
     if not side_color_sensor.value() == 0 and count == 0:
         steer_pair.off()
         firstblock = side_color_sensor.value()
