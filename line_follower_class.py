@@ -122,8 +122,6 @@ t6.start()
 timemax = time() + 5
 while time() < timemax:
     print(que.get())
-    left_side_sensor.mode = 'COLOR'
-    print(left_side_sensor.value())
 
 
 def high_speed_follower(speed=DEFAULT_SPEED, rotations=5):
