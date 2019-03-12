@@ -82,7 +82,6 @@ def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, sp
     else:
         sensor_type = 'Hitechnic'
     while line_sensor.reflected_light_intensity > 20:
-        print(line_sensor.value(3))
         follow.follower(side_of_line=side_of_line, kp=0.15, speed=speed, sensor_type=sensor_type)
 
 
