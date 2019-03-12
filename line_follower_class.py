@@ -50,7 +50,8 @@ def hisp_center_corrector(out_que):
     while True:
         follow = OneSensorLineFollower(center_sensor)
         steering = follow.follower(kp=0.15, sensor_type='Stock')
-        out_que.put(steering)
+        s_t = time()
+        out_que.put(s_t)
         sleep(0.01)
 
 
@@ -121,7 +122,7 @@ t6.setDaemon(True)
 t6.start()
 timemax = time() + 5
 while time() < timemax:
-    print(que.get())
+    print(float(que.get())-time())
     left_side_sensor.mode = 'COLOR'
     print(left_side_sensor.value())
 
