@@ -13,7 +13,7 @@ def start_sequence():
     global fourthblock, count
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 17 or side_color_sensor.value() == 0:
-        losp_right_follower(side_of_line=1)
+        losp_right_follower()
     if not (side_color_sensor.value() == 0 and side_color_sensor.value() == 17):
         steer_pair.off()
         firstblock = side_color_sensor.value()
