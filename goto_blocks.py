@@ -1,14 +1,29 @@
 from line_follower_class import *
+import threading
+import queue
+
+
+def check_for_lines(out_que, num_lines):
+    count = 0
+    while count < num_lines:
+        if left_side_sensor.value(3) > 80:
+            count = count + 1
+            sleep(0.3)
+    lines_passed = True
+    out_que.put(lines_passed)
+
+
+que = queue.Queue(maxsize=0)
+t = threading.Thread(target=check_for_lines, args=(que, 4, ))
+t.setDaemon(True)
+t.start()
 
 
 def goto_blocks():
     steer_pair.on_for_rotations(20, -20, 0.6)
-    count = 0
-    while count < 4:
+    while not que.get():
         hisp_center_follower(side_of_line=1)
-        if left_side_sensor.value(3) > 100:
-            count = count + 1
-            sleep(0.3)
+        print(que.get())
     steer_pair.off()
 
 
