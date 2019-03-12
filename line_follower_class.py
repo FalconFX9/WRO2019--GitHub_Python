@@ -30,9 +30,9 @@ class OneSensorLineFollower:
         else:
             side_of_line = self.SideOfLine.right
         if sensor_type == 'Hitechnic':
-            self.error = self.target - (self.__color_sensor.value(3) / 2)
+            self.error = self.target - (float(self.__color_sensor.value(3)) / 2)
         else:
-            self.error = self.target - self.__color_sensor.reflected_light_intensity
+            self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
         motor_steering = ((self.error * kp) + (self.integral * K_INTEGRAL) + (self.derivative * K_DERIVATIVE)) * float(
