@@ -56,7 +56,7 @@ def hisp_center_corrector(out_que):
 def losp_center_corrector(out_que):
     while True:
         follow = OneSensorLineFollower(center_sensor)
-        steering = follow.follower(kp=0.3)
+        steering = follow.follower(kp=0.3, sensor_type='Stock')
         out_que.put(steering)
         sleep(0.01)
 
