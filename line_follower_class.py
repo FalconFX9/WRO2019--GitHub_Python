@@ -30,6 +30,7 @@ class OneSensorLineFollower:
         else:
             side_of_line = self.SideOfLine.right
         if sensor_type == 'Hitechnic':
+            self.__color_sensor.mode = 'RGB'
             self.error = self.target - (self.__color_sensor.value(3) / 2)
         else:
             self.error = self.target - self.__color_sensor.reflected_light_intensity
@@ -121,7 +122,7 @@ t6.start()
 timemax = time() + 5
 while time() < timemax:
     print(que.get())
-    left_side_sensor.mode = 'RGB'
+    left_side_sensor.mode = 'COLOR'
     print(left_side_sensor.value())
 
 
