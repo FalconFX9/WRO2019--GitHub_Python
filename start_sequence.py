@@ -20,7 +20,7 @@ def start_sequence():
         firstblock = side_color_sensor.value()
         print("Block 1: ", firstblock)
         sleep(4)
-        steer_pair.on_for_rotations(0, -20, 0.31)
+        steer_pair.on_for_rotations(0, -20, 0.33)
         steer_pair.off()
         secondblock = side_color_sensor.value()
         print("Block 2: ", secondblock)
