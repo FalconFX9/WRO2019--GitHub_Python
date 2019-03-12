@@ -120,9 +120,9 @@ t5.start()
 #t6.start()
 timemax = time() + 5
 while time() < timemax:
-    print("First Sensor Value : " + que.get())
-    print("Second Sensor Value : " + que3.get())
-    print("Third Sensor Value : " + que5.get())
+    print("First Sensor Value : " + str(que.get()))
+    print("Second Sensor Value : " + str(que3.get()))
+    print("Third Sensor Value : " + str(que5.get()))
 
 def high_speed_follower(speed=DEFAULT_SPEED, rotations=5):
     steer_pair.on_for_rotations(que.get(), speed, rotations)
