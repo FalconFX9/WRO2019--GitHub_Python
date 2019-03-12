@@ -51,7 +51,7 @@ def hisp_center_follower(side_of_line=None, speed=DEFAULT_SPEED):
 
 def losp_center_follower(side_of_line=None, speed=20):
     follow = OneSensorLineFollower(center_sensor)
-    follow.follower(side_of_line=side_of_line, kp=0.15, sensor_type='Stock', speed=speed)
+    follow.follower(side_of_line=side_of_line, kp=0.3, sensor_type='Stock', speed=speed)
 
 
 def hisp_left_follower(side_of_line=None, speed=DEFAULT_SPEED):
