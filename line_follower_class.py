@@ -74,6 +74,16 @@ def losp_right_follower(side_of_line=None, speed=20):
     follow.follower(side_of_line=side_of_line, kp=0.3, speed=speed)
 
 
+def follow_to_line(following_sensor=center_sensor, line_sensor=left_side_sensor, speed=DEFAULT_SPEED, side_of_line=None):
+    follow = OneSensorLineFollower(following_sensor)
+    if following_sensor == center_sensor:
+        sensor_type = 'Stock'
+    else:
+        sensor_type = 'Hitechnic'
+    while line_sensor.value(3) > 50:
+        follow.follower(side_of_line=side_of_line, kp=0.15, speed=speed, sensor_type=sensor_type)
+
+
 """
 # Initiating threads for all sensors and correction values
 que = queue.Queue(maxsize=0)
