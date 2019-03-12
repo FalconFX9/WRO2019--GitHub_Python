@@ -1,11 +1,11 @@
-from sensor_and_motor_startup import *
 from line_follower_class import *
 
 
 def goto_blocks():
-    while not steer_pair.wait_until_not_moving():
+    global timemax
+    timemax = time() + 5
+    while time() < timemax:
         high_speed_follower()
-    #stock_pid_follower(sensor=center_sensor, speed=60, side=-1)
     steer_pair.off()
 
 

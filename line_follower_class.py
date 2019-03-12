@@ -98,8 +98,8 @@ while time() < timemax:
     print("Third Sensor Value : " + str(que5.get()) + str(que6.get()))
 
 
-def high_speed_follower(speed=DEFAULT_SPEED, rotations=5):
-    steer_pair.on_for_rotations(que2.get(), speed, rotations)
+def high_speed_follower(speed=DEFAULT_SPEED):
+    steer_pair.on(que2.get(), speed)
 
 
 
