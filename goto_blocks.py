@@ -6,7 +6,7 @@ import queue
 def check_for_lines(out_que, num_lines):
     count = 0
     while count < num_lines:
-        if left_side_sensor.value(3) > 80:
+        if left_side_sensor.value(3) < 80:
             count = count + 1
             sleep(0.3)
     lines_passed = True
