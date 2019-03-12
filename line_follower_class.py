@@ -45,20 +45,23 @@ class OneSensorLineFollower:
         right = -1
 
 
-def hisp_center_corrector(out_que):
+def center_corrector(out_que, out_que2):
     while True:
         follow = OneSensorLineFollower(center_sensor)
         steering = follow.follower(kp=0.15, sensor_type='Stock')
+        steering2 = follow.follower(kp=0.3, sensor_type='Stock')
         out_que.put(steering)
+        out_que2.put(steering2)
         sleep(0.01)
 
-
+"""
 def losp_center_corrector(out_que):
     while True:
         follow = OneSensorLineFollower(center_sensor)
         steering = follow.follower(kp=0.3, sensor_type='Stock')
         out_que.put(steering)
         sleep(0.01)
+"""
 
 
 def hisp_left_corrector(out_que):
@@ -100,12 +103,12 @@ que2 = queue.Queue(maxsize=0)
 #que4 = queue.Queue(maxsize=0)
 #que5 = queue.Queue(maxsize=0)
 #que6 = queue.Queue(maxsize=0)
-t = threading.Thread(target=hisp_center_corrector, args=(que,))
+t = threading.Thread(target=center_corrector, args=(que, que2, ))
 t.setDaemon(True)
 t.start()
-t2 = threading.Thread(target=losp_center_corrector, args=(que2,))
-t2.setDaemon(True)
-t2.start()
+#t2 = threading.Thread(target=losp_center_corrector, args=(que2,))
+#t2.setDaemon(True)
+#t2.start()
 #t3 = threading.Thread(target=hisp_left_corrector, args=(que3,))
 #t3.setDaemon(True)
 #t3.start()
