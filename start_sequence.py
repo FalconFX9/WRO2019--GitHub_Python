@@ -11,7 +11,7 @@ count = 0
 
 def start_sequence():
     global fourthblock, count
-    steer_pair.on_for_rotations(20, -30, 1)
+    steer_pair.on_for_rotations(10, -30, 1)
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 17 or side_color_sensor.value() == 0:
         losp_right_follower()
