@@ -29,6 +29,7 @@ class OneSensorLineFollower:
             side_of_line = self.SideOfLine.right
         if sensor_type == 'Hitechnic':
             self.error = self.target - (float(self.__color_sensor.value(3)) / 2)
+            print(self.__color_sensor.value(3))
         else:
             self.target = 30
             self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
