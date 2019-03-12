@@ -75,13 +75,13 @@ def losp_right_follower(side_of_line=None, speed=20):
     follow.follower(side_of_line=side_of_line, kp=0.15, speed=speed, sensor_target=65)
 
 
-def follow_to_line(following_sensor=center_sensor, line_sensor=left_side_sensor, speed=DEFAULT_SPEED, side_of_line=None):
+def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, speed=DEFAULT_SPEED, side_of_line=None):
     follow = OneSensorLineFollower(following_sensor)
     if following_sensor == center_sensor:
         sensor_type = 'Stock'
     else:
         sensor_type = 'Hitechnic'
-    while line_sensor.value(3) > 50:
+    while line_sensor.reflected_light_intensity > 20:
         print(line_sensor.value(3))
         follow.follower(side_of_line=side_of_line, kp=0.15, speed=speed, sensor_type=sensor_type)
 
