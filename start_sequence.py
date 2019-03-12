@@ -14,7 +14,7 @@ def start_sequence():
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 0:
         losp_right_follower(side_of_line=1)
-    if not side_color_sensor.value() == 0 and count == 0:
+    if not (side_color_sensor.value() == 0 and side_color_sensor.value() == 17):
         steer_pair.off()
         firstblock = side_color_sensor.value()
         print("Block 1: ", firstblock)
@@ -38,7 +38,6 @@ def start_sequence():
         print("Block 2 : ", secondblock)
         print("Block 3 : ", thirdblock)
         print("Block 4 : ", fourthblock)
-        count = count + 1
 
     follow_to_line(following_sensor=right_side_sensor, side_of_line=1)
     steer_pair.off()
