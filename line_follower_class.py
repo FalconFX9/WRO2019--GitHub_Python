@@ -99,7 +99,7 @@ while time() < timemax:
 
 
 def high_speed_follower(speed=DEFAULT_SPEED):
-    steer_pair.on(que2.get(), speed)
+    steer_pair.on(que2.get(), -speed)
 
 
 
