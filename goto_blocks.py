@@ -8,6 +8,7 @@ def goto_blocks():
         hisp_center_follower(side_of_line=1)
         if left_side_sensor.value(3) > 100:
             count = count + 1
+            sleep(0.3)
     steer_pair.off()
 
 
