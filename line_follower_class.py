@@ -22,13 +22,14 @@ class OneSensorLineFollower:
     def __init__(self, color_sensor):
         self.__color_sensor = color_sensor
 
-    def follower(self, side_of_line=None, kp=K_PROPORTIONAL, sensor_type='Hitechnic', speed=DEFAULT_SPEED):
+    def follower(self, side_of_line=None, kp=K_PROPORTIONAL, sensor_type='Hitechnic', speed=DEFAULT_SPEED,
+                 sensor_target=target):
         if side_of_line is None:
             side_of_line = self.SideOfLine.left
         else:
             side_of_line = self.SideOfLine.right
         if sensor_type == 'Hitechnic':
-            self.error = self.target - (float(self.__color_sensor.value(3)) / 2)
+            self.error = sensor_target - (float(self.__color_sensor.value(3)) / 2)
             print(self.__color_sensor.value(3))
         else:
             self.target = 30
@@ -72,7 +73,7 @@ def hisp_right_follower(side_of_line=None, speed=DEFAULT_SPEED):
 
 def losp_right_follower(side_of_line=None, speed=20):
     follow = OneSensorLineFollower(right_side_sensor)
-    follow.follower(side_of_line=side_of_line, kp=0.3, speed=speed)
+    follow.follower(side_of_line=side_of_line, kp=0.3, speed=speed, sensor_target=60)
 
 
 def follow_to_line(following_sensor=center_sensor, line_sensor=left_side_sensor, speed=DEFAULT_SPEED, side_of_line=None):
