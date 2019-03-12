@@ -30,7 +30,7 @@ class OneSensorLineFollower:
         if sensor_type == 'Hitechnic':
             self.error = self.target - (float(self.__color_sensor.value(3)) / 2)
         else:
-            self.target = 24
+            self.target = 30
             self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
