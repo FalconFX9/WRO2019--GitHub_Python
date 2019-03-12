@@ -14,16 +14,14 @@ def check_for_lines(out_que, num_lines):
     out_que.put(lines_passed)
 
 
-que = queue.Queue(maxsize=0)
-t = threading.Thread(target=check_for_lines, args=(que, 4, ))
-t.setDaemon(True)
-t.start()
-
-
 def goto_blocks():
     steer_pair.on_for_rotations(20, -20, 0.6)
+    que = queue.Queue(maxsize=0)
+    t = threading.Thread(target=check_for_lines, args=(que, 4,))
+    t.setDaemon(True)
+    t.start()
     print(que.get())
-    while not bool(que.get()):
+    while que.get() is None:
         print(que.get())
         hisp_center_follower(side_of_line=1)
         print(que.get())
