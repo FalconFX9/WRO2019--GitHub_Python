@@ -1,6 +1,4 @@
 from sensor_and_motor_startup import *
-import threading
-import queue
 
 DEFAULT_SPEED = 60
 
@@ -15,7 +13,7 @@ K_DERIVATIVE = 0
 
 
 class OneSensorLineFollower:
-    target = 24
+    target = 35
     error = 0
     last_error = 0
     derivative = 0
@@ -24,7 +22,7 @@ class OneSensorLineFollower:
     def __init__(self, color_sensor):
         self.__color_sensor = color_sensor
 
-    def follower(self, side_of_line=None, kp=K_PROPORTIONAL, sensor_type='Hitechnic'):
+    def follower(self, side_of_line=None, kp=K_PROPORTIONAL, sensor_type='Hitechnic', speed=DEFAULT_SPEED):
         if side_of_line is None:
             side_of_line = self.SideOfLine.left
         else:
@@ -32,49 +30,51 @@ class OneSensorLineFollower:
         if sensor_type == 'Hitechnic':
             self.error = self.target - (float(self.__color_sensor.value(3)) / 2)
         else:
+            self.target = 24
             self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
         motor_steering = ((self.error * kp) + (self.integral * K_INTEGRAL) + (self.derivative * K_DERIVATIVE)) * float(
             side_of_line)
         self.last_error = self.error
-        return motor_steering
+        steer_pair.on(motor_steering, -speed)
 
     class SideOfLine:
         left = 1
         right = -1
 
 
-def center_corrector(out_que, out_que2):
-    while True:
-        follow = OneSensorLineFollower(center_sensor)
-        steering = follow.follower(kp=0.15, sensor_type='Stock')
-        steering2 = follow.follower(kp=0.3, sensor_type='Stock')
-        out_que.put(steering)
-        out_que2.put(steering2)
-        sleep(0.01)
+def hisp_center_follower(side_of_line=None, speed=DEFAULT_SPEED):
+    follow = OneSensorLineFollower(center_sensor)
+    follow.follower(side_of_line=side_of_line, kp=0.15, sensor_type='Stock', speed=speed)
 
 
-def left_corrector(out_que, out_que2):
-    while True:
-        follow = OneSensorLineFollower(left_side_sensor)
-        steering = follow.follower(kp=0.15)
-        steering2 = follow.follower(kp=0.3)
-        out_que.put(steering)
-        out_que2.put(steering2)
-        sleep(0.01)
+def losp_center_follower(side_of_line=None, speed=20):
+    follow = OneSensorLineFollower(center_sensor)
+    follow.follower(side_of_line=side_of_line, kp=0.15, sensor_type='Stock', speed=speed)
 
 
-def right_corrector(out_que, out_que2):
-    while True:
-        follow = OneSensorLineFollower(right_side_sensor)
-        steering = follow.follower(kp=0.15)
-        steering2 = follow.follower(kp=0.3)
-        out_que.put(steering)
-        out_que2.put(steering2)
-        sleep(0.01)
+def hisp_left_follower(side_of_line=None, speed=DEFAULT_SPEED):
+    follow = OneSensorLineFollower(left_side_sensor)
+    follow.follower(side_of_line=side_of_line, kp=0.15, speed=speed)
 
 
+def losp_left_follower(side_of_line=None, speed=20):
+    follow = OneSensorLineFollower(left_side_sensor)
+    follow.follower(side_of_line=side_of_line, kp=0.3, speed=speed)
+
+
+def hisp_right_follower(side_of_line=None, speed=DEFAULT_SPEED):
+    follow = OneSensorLineFollower(right_side_sensor)
+    follow.follower(side_of_line=side_of_line, kp=0.15, speed=speed)
+
+
+def losp_right_follower(side_of_line=None, speed=20):
+    follow = OneSensorLineFollower(right_side_sensor)
+    follow.follower(side_of_line=side_of_line, kp=0.3, speed=speed)
+
+
+"""
 # Initiating threads for all sensors and correction values
 que = queue.Queue(maxsize=0)
 que2 = queue.Queue(maxsize=0)
@@ -100,8 +100,4 @@ while time() < timemax:
 
 def high_speed_follower(speed=DEFAULT_SPEED):
     steer_pair.on(que2.get(), -speed)
-
-
-
-
-
+"""

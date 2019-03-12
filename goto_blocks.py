@@ -5,7 +5,7 @@ def goto_blocks():
     global timemax
     timemax = time() + 5
     while time() < timemax:
-        high_speed_follower(speed=20)
+        losp_center_follower()
     steer_pair.off()
 
 
