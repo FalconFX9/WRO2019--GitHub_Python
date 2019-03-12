@@ -37,10 +37,10 @@ Ki2 = 0
 Kd2 = 0.005
 
 # Sensor declaration
-left_side_sensor = None
+left_side_sensor = Sensor('in1:i2c1')
 center_sensor = ColorSensor('in2')
-side_color_sensor = None
-right_side_sensor = None
+side_color_sensor = Sensor('in3:i2c1')
+right_side_sensor = Sensor('in4:i2c1')
 not_connected = False
 
 
