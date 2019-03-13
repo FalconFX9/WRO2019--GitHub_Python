@@ -16,10 +16,6 @@ def check_for_lines(out_que, num_lines):
 
 def goto_blocks():
     steer_pair.on_for_rotations(20, -20, 0.6)
-    que = queue.Queue(maxsize=0)
-    t = threading.Thread(target=check_for_lines, args=(que, 4,))
-    t.setDaemon(True)
-    t.start()
     print(" This is que.get() : ", que.get())
     while not que.get():
         print(que.get())
@@ -28,4 +24,9 @@ def goto_blocks():
     steer_pair.off()
 
 
+que = queue.Queue(maxsize=0)
+t = threading.Thread(target=check_for_lines, args=(que, 4,))
+t.setDaemon(True)
+t.start()
+t.join()
 goto_blocks()
