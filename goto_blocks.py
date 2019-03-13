@@ -22,10 +22,10 @@ def check_for_lines(num_lines):
 def goto_blocks():
     steer_pair.on_for_rotations(20, -20, 0.6)
     while not lines_passed:
-        hisp_right_follower(speed=30)
+        hisp_right_follower(speed=40)
     steer_pair.off()
 
 
-t = threading.Thread(target=check_for_lines, args=(4, ))
+t = threading.Thread(target=check_for_lines, args=(5, ))
 t.start()
 goto_blocks()
