@@ -21,7 +21,6 @@ def check_for_lines(num_lines):
 
 
 def goto_cable():
-    steer_pair.on_for_rotations(20, -20, 0.6)
     while not lines_passed:
         hisp_right_follower(speed=40)
     steer_pair.off()
