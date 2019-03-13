@@ -23,13 +23,13 @@ def check_for_lines(num_lines):
 def goto_cable():
     steer_pair.on_for_rotations(20, -20, 0.6)
     while not lines_passed:
-        hisp_right_follower(speed=40)
+        hisp_right_follower(speed=50)
     steer_pair.off()
 
 
 def pick_up_cable():
     lower_motor.on_for_degrees(speed=10, degrees=90)
-    timed_follower(center_sensor, side_of_line=1, speed=20, timemax=0.8)
+    timed_follower(center_sensor, side_of_line=1, speed=20, timemax=0.85)
     steer_pair.off()
     lower_motor.on_for_degrees(speed=10, degrees=-70)
 
