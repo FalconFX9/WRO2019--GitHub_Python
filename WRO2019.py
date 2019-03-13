@@ -1,16 +1,6 @@
 #!/usr/bin/env python3
 from regrouped_functions import wro2019
-from start_sequence import *
-from threading import *
+from sensor_and_motor_startup import *
 
-btn = Button()
-
-t = Thread(wro2019())
-t.setDaemon(True)
-t.start()
-
-while not btn.any():
-    pass
-
+wro2019()
 steer_pair.off()
-quit()
