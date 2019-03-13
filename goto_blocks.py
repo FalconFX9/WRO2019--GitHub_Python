@@ -9,10 +9,13 @@ def check_for_lines(num_lines):
     count = 0
     while count < num_lines:
         if left_side_sensor.value(3) < 80:
-            beep = Sound()
-            count = count + 1
-            beep.beep()
-            sleep(0.5)
+            if count < num_lines - 1:
+                beep = Sound()
+                count = count + 1
+                beep.beep()
+                sleep(0.5)
+            else:
+                count = count + 1
     lines_passed = True
 
 
