@@ -5,3 +5,4 @@ from goto_blocks import *
 
 def wro2019():
     start_sequence()
+    goto_cables_package()
