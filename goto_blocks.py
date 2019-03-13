@@ -20,8 +20,8 @@ def goto_blocks():
     t = threading.Thread(target=check_for_lines, args=(que, 4,))
     t.setDaemon(True)
     t.start()
-    print(que.get())
-    while que.get() is None:
+    print(" This is que.get() : ", que.get())
+    while not que.get():
         print(que.get())
         hisp_center_follower(side_of_line=1)
         print(que.get())
