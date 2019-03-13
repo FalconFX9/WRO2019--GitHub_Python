@@ -2,6 +2,7 @@ from line_follower_class import *
 import threading
 
 lines_passed = False
+lower_motor.off(brake=True)
 
 
 def check_for_lines(num_lines):
@@ -19,13 +20,18 @@ def check_for_lines(num_lines):
     lines_passed = True
 
 
-def goto_blocks():
+def goto_cable():
     steer_pair.on_for_rotations(20, -20, 0.6)
     while not lines_passed:
         hisp_right_follower(speed=40)
     steer_pair.off()
 
 
+def pick_up_cable():
+    timed_follower(center_sensor, side_of_line=1, speed=20, timemax=0.6)
+    lower_motor.on_for_degrees(speed=10, degrees=-70)
+
+
 t = threading.Thread(target=check_for_lines, args=(5, ))
 t.start()
-goto_blocks()
+goto_cable()
