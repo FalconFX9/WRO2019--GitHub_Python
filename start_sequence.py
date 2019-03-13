@@ -49,6 +49,3 @@ def start_sequence():
 
 
 start_sequence()
-steer_pair.off(brake=False)
-lower_motor.off(brake=False)
-grabber_servo.off(brake=False)
