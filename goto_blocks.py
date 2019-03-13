@@ -23,6 +23,6 @@ def goto_blocks():
     steer_pair.off()
 
 
-t = threading.Thread(target=check_for_lines, args=(5, ))
+t = threading.Thread(target=check_for_lines, args=(4, ))
 t.start()
 goto_blocks()
