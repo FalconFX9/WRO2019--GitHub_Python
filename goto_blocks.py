@@ -18,7 +18,7 @@ def check_for_lines(num_lines):
 def goto_blocks():
     steer_pair.on_for_rotations(20, -20, 0.6)
     while not lines_passed:
-        hisp_center_follower(side_of_line=1, speed=20)
+        hisp_center_follower(side_of_line=1, speed=40)
     steer_pair.off()
 
 
