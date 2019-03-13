@@ -32,6 +32,7 @@ class OneSensorLineFollower:
             self.error = sensor_target - (float(self.__color_sensor.value(3)) / 2)
         else:
             self.target = 40
+            print(self.__color_sensor.reflected_light_intensity)
             self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
@@ -47,7 +48,7 @@ class OneSensorLineFollower:
 
 def hisp_center_follower(side_of_line=None, speed=DEFAULT_SPEED):
     follow = OneSensorLineFollower(center_sensor)
-    follow.follower(side_of_line=side_of_line, kp=0.15, sensor_type='Stock', speed=speed)
+    follow.follower(side_of_line=side_of_line, kp=0.3, sensor_type='Stock', speed=speed)
 
 
 def losp_center_follower(side_of_line=None, speed=20):
