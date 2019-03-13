@@ -23,6 +23,7 @@ def check_for_lines(num_lines):
 def goto_cable():
     while not lines_passed:
         hisp_right_follower(speed=40)
+        print(right_side_sensor.value(3)/2)
     steer_pair.off()
 
 
