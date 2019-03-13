@@ -11,6 +11,9 @@ count = 0
 
 def start_sequence():
     global fourthblock, count
+    lower_motor.on_for_degrees(speed=10, degrees=40)
+    grabber_servo.on_for_degrees(speed=10, degrees=180)
+    lower_motor.on_for_degrees(speed=10, degrees=50)
     steer_pair.on_for_rotations(20, -30, 0.4)
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 17 or side_color_sensor.value() == 0:
