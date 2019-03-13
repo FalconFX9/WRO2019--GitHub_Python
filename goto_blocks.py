@@ -36,3 +36,4 @@ def pick_up_cable():
 t = threading.Thread(target=check_for_lines, args=(5, ))
 t.start()
 goto_cable()
+pick_up_cable()
