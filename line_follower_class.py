@@ -32,7 +32,6 @@ class OneSensorLineFollower:
             self.error = sensor_target - (float(self.__color_sensor.value(3)) / 2)
         else:
             self.target = 50
-            print(self.__color_sensor.reflected_light_intensity)
             self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
