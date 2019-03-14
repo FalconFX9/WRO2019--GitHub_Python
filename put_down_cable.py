@@ -38,7 +38,7 @@ def put_down_cable():
             losp_right_follower()
         steer_pair.off()
         sleep(3)
-        steer_pair.on_for_rotations(0, -30, 0.08)
+        steer_pair.on_for_rotations(0, -30, 0.1)
         sleep(3)
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)
