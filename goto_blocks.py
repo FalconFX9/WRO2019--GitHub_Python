@@ -1,13 +1,15 @@
 from line_follower_class import *
 import threading
 
+lines_passed = False
+count = 0
+
 
 def goto_cables_group():
-    lines_passed = False
     lower_motor.off(brake=True)
 
     def check_for_lines(num_lines):
-        global lines_passed
+        global lines_passed, count
         count = 0
         while count < num_lines:
             if center_sensor.reflected_light_intensity < 30:
@@ -23,7 +25,7 @@ def goto_cables_group():
     def goto_cable():
         while not lines_passed:
             hisp_right_follower(speed=40)
-            print(right_side_sensor.value(3)/2)
+            print(lines_passed, count)
         steer_pair.off()
 
     def pick_up_cable():
