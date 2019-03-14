@@ -24,22 +24,23 @@ def put_down_cable():
 
     def goto_drop():
         global lines_passed
-        steer_pair.on_for_rotations(100, -30, 2)
+        steer_pair.on_for_rotations(100, -30, 2.2)
         sleep(4)
         t = Thread(target=check_for_lines, args=(1,))
         t.start()
         while not lines_passed:
             hisp_left_follower(side_of_line=1, speed=40)
         steer_pair.off()
+        steer_pair.on_for_rotations(0, -30, 1)
         steer_pair.on_for_rotations(-70, -30, 1)
         sleep(4)
         lines_passed = False
         t = Thread(target=check_for_lines, args=(2,))
         t.start()
         while not lines_passed:
-            hisp_right_follower(speed=40)
+            hisp_right_follower(speed=30)
         steer_pair.off()
-        steer_pair.on_for_rotations(70, -30, 1)
+        steer_pair.on_for_rotations(75, -30, 1)
         sleep(4)
         left_side_sensor.mode = 'COLOR'
         while not left_side_sensor.value() == 8:
