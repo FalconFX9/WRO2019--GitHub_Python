@@ -26,7 +26,7 @@ def put_down_cable():
 
     def goto_drop():
         global numlines, reset, counter, check
-        steer_pair.on_for_rotations(100, -60, 1)
+        steer_pair.on_for_rotations(100, -30, 3)
         sleep(4)
         numlines = 1
         while not counter == 1:
