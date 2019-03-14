@@ -24,8 +24,6 @@ def put_down_cable():
 
     def goto_drop():
         global lines_passed
-        steer_pair.on_for_rotations(100, -30, 2.2)
-        sleep(4)
         t = Thread(target=check_for_lines, args=(1,))
         t.start()
         while not lines_passed:
