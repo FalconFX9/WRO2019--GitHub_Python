@@ -5,12 +5,9 @@ from time import *
 timelimit = time() + 10
 sensor_declaration()
 motor_initialization()
-fourthblock = 0
-count = 0
 
 
 def start_sequence():
-    global fourthblock, count
     lower_motor.on_for_degrees(speed=10, degrees=-40)
     grabber_servo.on_for_degrees(speed=10, degrees=180)
     lower_motor.on_for_degrees(speed=10, degrees=-50)
