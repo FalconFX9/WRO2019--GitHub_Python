@@ -7,7 +7,8 @@ sensor_declaration()
 motor_initialization()
 
 # SSH and on Brick Debugging
-
+left_side_sensor.mode = 'RAW'
+right_side_sensor.mode = 'RAW'
 print('First Sensor Value')
 for x in range(1, 50):
     print(left_side_sensor.value(0))
