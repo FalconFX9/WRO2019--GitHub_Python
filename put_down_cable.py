@@ -37,7 +37,6 @@ def put_down_cable():
         while not lines_passed:
             hisp_right_follower(speed=30)
         steer_pair.off()
-        steer_pair.on_for_rotations(0, -30, 0.14)
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)
         steer_pair.off()
