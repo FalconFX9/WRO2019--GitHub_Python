@@ -2,43 +2,42 @@ from line_follower_class import *
 from threading import *
 
 counter = 0
-check = True
-reset = False
-numlines = 0
+lines_passed = False
 
 
 def put_down_cable():
 
-    def check_for_lines():
-        global counter, numlines, reset, check
-        while check:
-            if reset:
-                counter = 0
-                reset = False
-            else:
-                if center_sensor.reflected_light_intensity < 30:
-                    if counter < numlines - 1:
-                        counter = counter + 1
-                    else:
-                        counter = counter + 1
-                        sleep(0.5)
-            print(counter)
+    def check_for_lines(num_lines):
+        global lines_passed, counter
+        counter = 0
+        while counter < num_lines:
+            if center_sensor.reflected_light_intensity < 30:
+                if counter < num_lines - 1:
+                    beep = Sound()
+                    counter = counter + 1
+                    beep.beep()
+                    sleep(0.5)
+                else:
+                    counter = counter + 1
+        lines_passed = True
 
     def goto_drop():
-        global numlines, reset, counter, check
+        global lines_passed
         steer_pair.on_for_rotations(100, -30, 3)
         sleep(4)
-        numlines = 1
-        while not counter == 1:
+        t = Thread(target=check_for_lines, args=(1,))
+        t.start()
+        while not lines_passed:
             hisp_left_follower(side_of_line=1, speed=40)
         steer_pair.off()
         steer_pair.on_for_rotations(-70, -30, 1)
         sleep(4)
-        numlines = 2
-        while not counter == 2:
+        lines_passed = False
+        t = Thread(target=check_for_lines, args=(2,))
+        t.start()
+        while not lines_passed:
             hisp_right_follower(speed=40)
         steer_pair.off()
-        check = False
         steer_pair.on_for_rotations(70, -30, 1)
         sleep(4)
         left_side_sensor.mode = 'COLOR'
@@ -48,8 +47,6 @@ def put_down_cable():
         left_side_sensor.mode = 'RGB'
         lower_motor.on_for_degrees(speed=10, degrees=90)
 
-    t = Thread(target=check_for_lines)
-    t.start()
     goto_drop()
 
 
