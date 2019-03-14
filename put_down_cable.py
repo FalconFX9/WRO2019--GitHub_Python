@@ -29,7 +29,7 @@ def put_down_cable():
         while not lines_passed:
             hisp_left_follower(side_of_line=1, speed=40)
         steer_pair.off()
-        steer_pair.on_for_rotations(0, -40, 0.3)
+        steer_pair.on_for_rotations(0, -40, 0.27)
         steer_pair.on_for_rotations(-70, -30, 0.85)
         lines_passed = False
         t = Thread(target=check_for_lines, args=(2,))
@@ -40,10 +40,12 @@ def put_down_cable():
         steer_pair.on_for_rotations(0, -30, 0.14)
         steer_pair.on_for_rotations(75, -30, 1.1)
         left_side_sensor.mode = 'COLOR'
-        while not left_side_sensor.value() == 8:
+        right_side_sensor.mode = 'COLOR'
+        while not left_side_sensor.value() == 8 and right_side_sensor.value() == 3:
             losp_center_follower(side_of_line=1)
         steer_pair.off()
         left_side_sensor.mode = 'RGB'
+        right_side_sensor.mode = 'RGB'
         lower_motor.on_for_degrees(speed=10, degrees=90)
 
     lower_motor.off()
