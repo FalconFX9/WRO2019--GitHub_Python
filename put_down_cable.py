@@ -19,6 +19,7 @@ def put_down_cable():
                     sleep(0.3)
                 else:
                     counter = counter + 1
+            print(counter)
         lines_passed = True
 
     def goto_drop():
@@ -43,11 +44,7 @@ def put_down_cable():
         steer_pair.off()
         left_side_sensor.mode = 'COLOR'
         right_side_sensor.mode = 'COLOR'
-        print(left_side_sensor.value())
-        print(right_side_sensor.value())
         while not (left_side_sensor.value() == 8 and right_side_sensor.value() == 3):
-            print(left_side_sensor.value())
-            print(right_side_sensor.value())
             losp_center_follower(side_of_line=1)
         steer_pair.off()
         left_side_sensor.mode = 'RGB'
