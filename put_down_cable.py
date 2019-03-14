@@ -16,7 +16,7 @@ def put_down_cable():
                     beep = Sound()
                     counter = counter + 1
                     beep.beep()
-                    sleep(0.5)
+                    sleep(0.3)
                 else:
                     counter = counter + 1
             print(counter)
@@ -31,7 +31,8 @@ def put_down_cable():
         while not lines_passed:
             hisp_left_follower(side_of_line=1, speed=40)
         steer_pair.off()
-        steer_pair.on_for_rotations(0, -30, 1)
+        steer_pair.on_for_rotations(0, -40, 2)
+        sleep(4)
         steer_pair.on_for_rotations(-70, -30, 1)
         sleep(4)
         lines_passed = False
