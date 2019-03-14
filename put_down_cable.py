@@ -19,11 +19,12 @@ def put_down_cable():
                     sleep(0.5)
                 else:
                     counter = counter + 1
+            print(counter)
         lines_passed = True
 
     def goto_drop():
         global lines_passed
-        steer_pair.on_for_rotations(100, -30, 3)
+        steer_pair.on_for_rotations(100, -30, 2)
         sleep(4)
         t = Thread(target=check_for_lines, args=(1,))
         t.start()
