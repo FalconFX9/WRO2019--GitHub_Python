@@ -43,7 +43,8 @@ def put_down_cable():
         steer_pair.off()
         left_side_sensor.mode = 'COLOR'
         right_side_sensor.mode = 'COLOR'
-        while not (left_side_sensor.value() == 8 and right_side_sensor.value() == 3):
+        wait = time() + 0.5
+        while not (left_side_sensor.value() == 8 and right_side_sensor.value() == 3 and time() > wait):
             losp_center_follower(side_of_line=1)
         steer_pair.off()
         left_side_sensor.mode = 'RGB'
