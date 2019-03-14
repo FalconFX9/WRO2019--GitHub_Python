@@ -37,12 +37,12 @@ def put_down_cable():
             hisp_right_follower(speed=30)
         steer_pair.off()
         steer_pair.on_for_rotations(0, -30, 0.14)
-        steer_pair.on_for_rotations(75, -30, 1.1)
+        steer_pair.on_for_rotations(75, -30, 1.3)
         left_side_sensor.mode = 'COLOR'
         right_side_sensor.mode = 'COLOR'
         print(left_side_sensor.value())
         print(right_side_sensor.value())
-        while not left_side_sensor.value() == 8 and right_side_sensor.value() == 3:
+        while not (left_side_sensor.value() == 8 and right_side_sensor.value() == 3):
             print(left_side_sensor.value())
             print(right_side_sensor.value())
             losp_center_follower(side_of_line=1)
