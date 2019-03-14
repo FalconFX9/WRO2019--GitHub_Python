@@ -49,6 +49,7 @@ def put_down_cable():
         left_side_sensor.mode = 'RGB'
         lower_motor.on_for_degrees(speed=10, degrees=90)
 
+    lower_motor.off()
     goto_drop()
 
 
