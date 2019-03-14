@@ -36,3 +36,6 @@ def goto_cables_package():
     t.start()
     goto_cable()
     pick_up_cable()
+
+
+goto_cables_package()
