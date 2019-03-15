@@ -43,3 +43,6 @@ def get_second_cable():
 
     get_cable()
     pick_up_cable()
+
+
+get_second_cable()
