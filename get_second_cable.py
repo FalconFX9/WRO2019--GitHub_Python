@@ -1,7 +1,7 @@
 from line_follower_class import *
 from threading import *
 
-lines_passed = True
+lines_passed = False
 
 
 def get_second_cable():
