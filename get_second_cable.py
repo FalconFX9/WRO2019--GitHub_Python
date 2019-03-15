@@ -22,11 +22,13 @@ def get_second_cable():
         lines_passed = True
 
     def get_cable():
+        global lines_passed
         steer_pair.on_for_rotations(-100, -20, 0.68)
         t = Thread(target=check_for_lines, args=(2, ))
         t.start()
         while not lines_passed:
             losp_right_follower()
+        lines_passed = False
         steer_pair.off()
         steer_pair.on_for_rotations(-100, -20, 0.68)
         t = Thread(target=check_for_lines, args=(1, ))
