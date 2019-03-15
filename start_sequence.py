@@ -11,7 +11,7 @@ def start_sequence():
     lower_motor.on_for_degrees(speed=10, degrees=-40)
     grabber_servo.on_for_degrees(speed=10, degrees=180)
     lower_motor.on_for_degrees(speed=10, degrees=-50)
-    steer_pair.on_for_rotations(20, -30, 0.4)
+    steer_pair.on_for_rotations(25, -30, 0.4)
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 17 or side_color_sensor.value() == 0:
         losp_right_follower()
@@ -42,5 +42,5 @@ def start_sequence():
 
     follow_to_line(following_sensor=right_side_sensor, side_of_line=1, speed=40)
     steer_pair.off()
-    steer_pair.on_for_rotations(70, -30, 0.75)
+    steer_pair.on_for_rotations(100, -30, 0.75)
     steer_pair.off()
