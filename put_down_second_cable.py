@@ -19,7 +19,6 @@ def put_down_second_cable():
                     sleep(0.3)
                 else:
                     counter = counter + 1
-            print(counter)
         lines_passed = True
 
     def goto_drop():
