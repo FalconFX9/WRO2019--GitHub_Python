@@ -28,6 +28,7 @@ def put_down_second_cable():
         t.start()
         while not lines_passed:
             hisp_right_follower(speed=40)
+            print(right_side_sensor.value(3)/2)
         steer_pair.off()
         lines_passed = False
         while center_sensor.reflected_light_intensity > 30:
