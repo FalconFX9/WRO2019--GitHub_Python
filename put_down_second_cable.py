@@ -33,6 +33,7 @@ def put_down_second_cable():
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)
             print(center_sensor.reflected_light_intensity)
+        steer_pair.off()
         sleep(3)
         steer_pair.on_for_rotations(100, -20, 0.2)
         t = Thread(target=check_for_lines, args=(2,))
