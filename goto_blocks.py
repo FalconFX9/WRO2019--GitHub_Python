@@ -33,12 +33,16 @@ def goto_cables_group():
 
     def pick_up_cable():
         lower_motor.on_for_degrees(speed=10, degrees=90)
-        timed_follower(center_sensor, side_of_line=1, speed=20, timemax=0.85, kp=0.2)
+        timed_follower(center_sensor, side_of_line=1, speed=20, timemax=0.85, kp=0.25)
         steer_pair.off()
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
+    def turn_around():
+        steer_pair.on_for_rotations(30, 30, 0.8)
+
     goto_cable()
     pick_up_cable()
+    turn_around()
 
 
 goto_cables_group()
