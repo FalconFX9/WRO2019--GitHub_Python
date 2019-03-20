@@ -24,6 +24,8 @@ def goto_cables_group():
 
     def goto_cable():
         timed_follower(sensor=right_side_sensor, timemax=3.2, side_of_line=1, speed=60)
+        t = threading.Thread(target=check_for_lines, args=(1,))
+        t.start()
         while not lines_passed:
             hisp_right_follower(side_of_line=1, speed=30)
             print(lines_passed, count)
@@ -35,8 +37,6 @@ def goto_cables_group():
         steer_pair.off()
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
-    t = threading.Thread(target=check_for_lines, args=(1, ))
-    t.start()
     goto_cable()
     pick_up_cable()
 
