@@ -3,7 +3,6 @@ from line_follower_class import *
 from time import *
 
 timelimit = time() + 10
-sensor_declaration()
 motor_initialization()
 
 
