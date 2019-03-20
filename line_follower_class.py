@@ -76,7 +76,7 @@ def timed_follower(sensor, timemax, side_of_line=None, speed=DEFAULT_SPEED):
     follower = OneSensorLineFollower(sensor)
     timemax = time() + timemax
     while time() < timemax:
-        follower.follower(side_of_line=side_of_line, kp=0.3, speed=speed, sensor_target=50)
+        follower.follower(side_of_line=side_of_line, kp=0.1, speed=speed, sensor_target=40)
 
 
 def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, speed=DEFAULT_SPEED, side_of_line=None):
