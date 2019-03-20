@@ -28,8 +28,8 @@ class OneSensorLineFollower:
             side_of_line = self.SideOfLine.left
         else:
             side_of_line = self.SideOfLine.right
-            self.target = sensor_target
-            self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
+        self.target = sensor_target
+        self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
         motor_steering = ((self.error * kp) + (self.integral * K_INTEGRAL) + (self.derivative * K_DERIVATIVE)) * float(
