@@ -43,16 +43,6 @@ side_color_sensor = Sensor('in3:i2c1')
 right_side_sensor = ColorSensor('in4')
 not_connected = False
 
-
-def sensor_declaration():
-    global left_side_sensor, center_sensor, side_color_sensor, right_side_sensor, not_connected
-    left_side_sensor = Sensor('in1')
-    center_sensor = ColorSensor('in2')
-    side_color_sensor = Sensor('in3:i2c1')
-    side_color_sensor.mode = 'COLOR'
-    right_side_sensor = ColorSensor('in4')
-
-
 # Motor Declaration
 steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 grabber_servo = MediumMotor(OUTPUT_A)
@@ -75,8 +65,6 @@ def motor_initialization():
 
 
 # Function declaration --use these as much as possible
-
-sensor_declaration()
 motor_initialization()
 
 
