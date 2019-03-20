@@ -23,7 +23,7 @@ def goto_cables_group():
         lines_passed = True
 
     def goto_cable():
-        timed_follower(sensor=right_side_sensor, timemax=3.4, side_of_line=1, speed=80)
+        timed_follower(sensor=right_side_sensor, timemax=3.2, side_of_line=1, speed=80)
         while not lines_passed:
             hisp_right_follower(side_of_line=1, speed=30)
             print(lines_passed, count)
