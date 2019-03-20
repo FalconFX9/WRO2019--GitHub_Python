@@ -72,11 +72,11 @@ def losp_right_follower(side_of_line=None, speed=20):
     follow.follower(side_of_line=side_of_line, kp=0.4, speed=speed, sensor_target=20)
 
 
-def timed_follower(sensor, timemax, side_of_line=None, speed=DEFAULT_SPEED):
+def timed_follower(sensor, timemax, side_of_line=None, speed=DEFAULT_SPEED, kp=0.15):
     follower = OneSensorLineFollower(sensor)
     timemax = time() + timemax
     while time() < timemax:
-        follower.follower(side_of_line=side_of_line, kp=0.15, speed=speed, sensor_target=35)
+        follower.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=35)
 
 
 def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, speed=DEFAULT_SPEED, side_of_line=None):
