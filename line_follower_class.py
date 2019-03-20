@@ -70,7 +70,7 @@ def hisp_right_follower(side_of_line=None, speed=DEFAULT_SPEED):
 
 def losp_right_follower(side_of_line=None, speed=20):
     follow = OneSensorLineFollower(right_side_sensor)
-    follow.follower(side_of_line=side_of_line, kp=2, speed=speed, sensor_target=20)
+    follow.follower(side_of_line=side_of_line, kp=0.7, speed=speed, sensor_target=20)
 
 
 def timed_follower(sensor, timemax, side_of_line=None, speed=DEFAULT_SPEED):
