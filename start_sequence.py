@@ -43,3 +43,6 @@ def start_sequence():
     steer_pair.off()
     steer_pair.on_for_rotations(100, -30, 0.75)
     steer_pair.off()
+
+
+start_sequence()

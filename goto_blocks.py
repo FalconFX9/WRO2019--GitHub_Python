@@ -24,7 +24,7 @@ def goto_cables_group():
 
     def goto_cable():
         while not lines_passed:
-            hisp_right_follower(speed=40)
+            hisp_right_follower(side_of_line=1, speed=40)
             print(lines_passed, count)
         steer_pair.off()
 
