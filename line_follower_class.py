@@ -35,6 +35,7 @@ class OneSensorLineFollower:
         motor_steering = ((self.error * kp) + (self.integral * K_INTEGRAL) + (self.derivative * K_DERIVATIVE)) * float(
             side_of_line)
         self.last_error = self.error
+        print(motor_steering)
         steer_pair.on(motor_steering, -speed)
 
     class SideOfLine:
