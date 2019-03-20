@@ -12,7 +12,7 @@ def goto_cables_group():
         global lines_passed, count
         count = 0
         while count < num_lines:
-            if center_sensor.reflected_light_intensity < 30:
+            if left_side_sensor.reflected_light_intensity < 30:
                 if count < num_lines - 1:
                     beep = Sound()
                     count = count + 1

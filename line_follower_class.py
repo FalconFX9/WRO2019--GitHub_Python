@@ -22,16 +22,13 @@ class OneSensorLineFollower:
     def __init__(self, color_sensor):
         self.__color_sensor = color_sensor
 
-    def follower(self, side_of_line=None, kp=K_PROPORTIONAL, sensor_type='Hitechnic', speed=DEFAULT_SPEED,
+    def follower(self, side_of_line=None, kp=K_PROPORTIONAL, speed=DEFAULT_SPEED,
                  sensor_target=target):
         if side_of_line is None:
             side_of_line = self.SideOfLine.left
         else:
             side_of_line = self.SideOfLine.right
-        if sensor_type == 'Hitechnic':
-            self.error = sensor_target - (float(self.__color_sensor.value(3)) / 2)
-        else:
-            self.target = 50
+            self.target = sensor_target
             self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
@@ -47,17 +44,17 @@ class OneSensorLineFollower:
 
 def hisp_center_follower(side_of_line=None, speed=DEFAULT_SPEED):
     follow = OneSensorLineFollower(center_sensor)
-    follow.follower(side_of_line=side_of_line, kp=0.15, sensor_type='Stock', speed=speed)
+    follow.follower(side_of_line=side_of_line, kp=0.15, speed=speed)
 
 
 def losp_center_follower(side_of_line=None, speed=20):
     follow = OneSensorLineFollower(center_sensor)
-    follow.follower(side_of_line=side_of_line, kp=0.3, sensor_type='Stock', speed=speed)
+    follow.follower(side_of_line=side_of_line, kp=0.3, speed=speed)
 
 
 def hisp_left_follower(side_of_line=None, speed=DEFAULT_SPEED):
     follow = OneSensorLineFollower(left_side_sensor)
-    follow.follower(side_of_line=side_of_line, kp=0.15, speed=speed, sensor_target=90)
+    follow.follower(side_of_line=side_of_line, kp=0.15, speed=speed, sensor_target=50)
 
 
 def losp_left_follower(side_of_line=None, speed=20):
@@ -67,12 +64,12 @@ def losp_left_follower(side_of_line=None, speed=20):
 
 def hisp_right_follower(side_of_line=None, speed=DEFAULT_SPEED):
     follow = OneSensorLineFollower(right_side_sensor)
-    follow.follower(side_of_line=side_of_line, kp=0.1, speed=speed, sensor_target=95)
+    follow.follower(side_of_line=side_of_line, kp=0.1, speed=speed, sensor_target=50)
 
 
 def losp_right_follower(side_of_line=None, speed=20):
     follow = OneSensorLineFollower(right_side_sensor)
-    follow.follower(side_of_line=side_of_line, kp=0.3, speed=speed, sensor_target=65)
+    follow.follower(side_of_line=side_of_line, kp=0.3, speed=speed, sensor_target=35)
 
 
 def timed_follower(sensor, timemax, side_of_line=None, speed=DEFAULT_SPEED):

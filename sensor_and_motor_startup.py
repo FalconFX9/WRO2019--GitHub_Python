@@ -37,22 +37,20 @@ Ki2 = 0
 Kd2 = 0.005
 
 # Sensor declaration
-left_side_sensor = Sensor('in1:i2c1')
+left_side_sensor = ColorSensor('in1')
 center_sensor = ColorSensor('in2')
 side_color_sensor = Sensor('in3:i2c1')
-right_side_sensor = Sensor('in4:i2c1')
+right_side_sensor = ColorSensor('in4')
 not_connected = False
 
 
 def sensor_declaration():
     global left_side_sensor, center_sensor, side_color_sensor, right_side_sensor, not_connected
-    left_side_sensor = Sensor('in1:i2c1')
-    left_side_sensor.mode = 'RGB'
+    left_side_sensor = Sensor('in1')
     center_sensor = ColorSensor('in2')
-    side_color_sensor = Sensor('in3')
+    side_color_sensor = Sensor('in3:i2c1')
     side_color_sensor.mode = 'COLOR'
-    right_side_sensor = Sensor('in4:i2c1')
-    right_side_sensor.mode = 'RGB'
+    right_side_sensor = ColorSensor('in4')
 
 
 # Motor Declaration
