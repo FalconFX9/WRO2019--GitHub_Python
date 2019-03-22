@@ -24,6 +24,8 @@ def put_down_cable():
 
     def goto_drop():
         global lines_passed
+        left_side_sensor.mode = 'COL-REFLECT'
+        right_side_sensor.mode = 'COL-REFLECT'
         t = Thread(target=check_for_lines, args=(1,))
         t.start()
         while not lines_passed:
