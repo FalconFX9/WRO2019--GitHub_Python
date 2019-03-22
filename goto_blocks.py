@@ -38,7 +38,7 @@ def goto_cables_group():
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
     def turn_around():
-        steer_pair.on_for_rotations(-60, 30, 1.7)
+        steer_pair.on_for_rotations(-60, 30, 1)
 
     goto_cable()
     pick_up_cable()
