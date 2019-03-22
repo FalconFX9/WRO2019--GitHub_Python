@@ -21,11 +21,11 @@ def start_sequence():
     steer_pair.on_for_rotations(25, -30, 0.4)
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 17 or side_color_sensor.value() == 0:
-        losp_right_follower(speed=30)
+        losp_right_follower(speed=35)
     t = Thread(target=see_color_blocks)
     t.start()
     while not len(colorblock) == 4:
-        losp_right_follower(speed=30)
+        losp_right_follower(speed=35)
     print(colorblock)
     follow_to_line(following_sensor=right_side_sensor, side_of_line=1, speed=40)
     steer_pair.off()
