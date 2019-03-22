@@ -39,11 +39,13 @@ def second_scan():
                 # Go pick up the block
             else:
                 blocks.append(False)
+            white_blocks_seen = 0
             for i in range(0, len(blocks)):
                 if not blocks[i]:
                     white_blocks_seen += 1
         else:
             print("All white blocks have been seen")
+            blocks.append(True)
             # Go pick up all the next blocks
 
 
@@ -61,3 +63,4 @@ def pick_up_blocks():
 
 first_scan()
 second_scan()
+print(blocks)

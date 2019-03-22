@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
 from line_follower_class import *
 from time import *
+from threading import *
 
 timelimit = time() + 10
 motor_initialization()
+colorblock = []
 
 
 def start_sequence():
+    def see_color_blocks():
+        while len(colorblock) < 4:
+            colorblock.append(side_color_sensor.value())
+            sleep(0.3)
+    global colorblock
     lower_motor.on_for_degrees(speed=10, degrees=-40)
     grabber_servo.on_for_degrees(speed=10, degrees=180)
     lower_motor.on_for_degrees(speed=10, degrees=-50)
@@ -14,30 +21,10 @@ def start_sequence():
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 17 or side_color_sensor.value() == 0:
         losp_right_follower()
-    if not (side_color_sensor.value() == 0 and side_color_sensor.value() == 17):
-        steer_pair.off()
-        firstblock = side_color_sensor.value()
-        print("Block 1: ", firstblock)
-        sleep(0.1)
-        steer_pair.on_for_rotations(0, -20, 0.35)
-        steer_pair.off()
-        secondblock = side_color_sensor.value()
-        print("Block 2: ", secondblock)
-        sleep(0.1)
-        steer_pair.on_for_rotations(0, -20, 0.3)
-        steer_pair.off()
-        thirdblock = side_color_sensor.value()
-        print("Block 3: ", thirdblock)
-        sleep(0.1)
-        steer_pair.on_for_rotations(0, -20, 0.3)
-        steer_pair.off()
-        fourthblock = side_color_sensor.value()
-        print("Block 4: ", fourthblock)
-        steer_pair.on_for_rotations(0, -20, 0.2)
-        print("Block 1: ", firstblock)
-        print("Block 2 : ", secondblock)
-        print("Block 3 : ", thirdblock)
-        print("Block 4 : ", fourthblock)
+    t = Thread(target=see_color_blocks)
+    t.start()
+    while not len(colorblock) == 4:
+        losp_right_follower()  
 
     follow_to_line(following_sensor=right_side_sensor, side_of_line=1, speed=40)
     steer_pair.off()
