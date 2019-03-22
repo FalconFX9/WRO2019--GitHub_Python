@@ -25,7 +25,7 @@ def start_sequence():
     t = Thread(target=see_color_blocks)
     t.start()
     while not len(colorblock) == 4:
-        hisp_right_follower(speed=35)
+        hisp_right_follower(speed=30)
     print(colorblock)
     follow_to_line(following_sensor=right_side_sensor, side_of_line=1, speed=40)
     steer_pair.off()
