@@ -24,10 +24,6 @@ def put_down_cable():
 
     def goto_drop():
         global lines_passed
-        steer_pair.on_for_rotations(-100, 20, 0.68)
-        steer_pair.on_for_rotations(0, 20, 0.3)
-        steer_pair.on_for_rotations(100, -20, 0.68)
-        sleep(4)
         t = Thread(target=check_for_lines, args=(1,))
         t.start()
         while not lines_passed:
@@ -47,14 +43,10 @@ def put_down_cable():
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)
         steer_pair.off()
-        left_side_sensor.mode = 'COLOR'
-        right_side_sensor.mode = 'COLOR'
         wait = time() + 0.5
-        while not (left_side_sensor.value() == 8 and right_side_sensor.value() == 3 and time() > wait):
+        while not (left_side_sensor.COLOR_RED and right_side_sensor.COLOR_BLUE and time() > wait):
             losp_center_follower(side_of_line=1)
         steer_pair.off()
-        left_side_sensor.mode = 'RGB'
-        right_side_sensor.mode = 'RGB'
         lower_motor.on_for_degrees(speed=10, degrees=90)
         steer_pair.on_for_rotations(0, 30, 0.5)
         lower_motor.on_for_degrees(speed=10, degrees=-90)
