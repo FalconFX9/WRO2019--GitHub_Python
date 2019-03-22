@@ -11,8 +11,9 @@ colorblock = []
 def start_sequence():
     def see_color_blocks():
         while len(colorblock) < 4:
-            colorblock.append(side_color_sensor.value())
-            sleep(0.3)
+            if not (side_color_sensor.value() == 18 or side_color_sensor.value() == 0):
+                colorblock.append(side_color_sensor.value())
+                sleep(0.3)
     global colorblock
     lower_motor.on_for_degrees(speed=10, degrees=-40)
     grabber_servo.on_for_degrees(speed=10, degrees=180)
