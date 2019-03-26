@@ -39,7 +39,7 @@ def get_second_cable():
         t = Thread(target=check_for_lines, args=(1, ))
         t.start()
         while not lines_passed:
-            losp_left_follower(side_of_line=1, speed=30)
+            losp_left_follower(side_of_line=1)
         steer_pair.off()
 
     def pick_up_cable():
