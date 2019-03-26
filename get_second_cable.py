@@ -27,7 +27,7 @@ def get_second_cable():
         right_side_sensor.mode = 'COL-REFLECT'
         while right_side_sensor.reflected_light_intensity > 30:
             steer_pair.on(-100, -20)
-        steer_pair.on_for_rotations(100, -20, 0.1)
+        steer_pair.on_for_rotations(100, -20, 0.07)
         steer_pair.off()
         t = Thread(target=check_for_lines, args=(2, ))
         t.start()
@@ -35,7 +35,7 @@ def get_second_cable():
             losp_right_follower()
         lines_passed = False
         steer_pair.off()
-        steer_pair.on_for_rotations(-100, -20, 0.7)
+        steer_pair.on_for_rotations(-100, -20, 0.5)
         t = Thread(target=check_for_lines, args=(1, ))
         t.start()
         while not lines_passed:
