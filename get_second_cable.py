@@ -40,6 +40,7 @@ def get_second_cable():
         t.start()
         while not lines_passed:
             losp_left_follower(side_of_line=1)
+            print(left_side_sensor.reflected_light_intensity)
         steer_pair.off()
 
     def pick_up_cable():
