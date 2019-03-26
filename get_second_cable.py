@@ -35,7 +35,7 @@ def get_second_cable():
             losp_right_follower()
         lines_passed = False
         steer_pair.off()
-        steer_pair.on_for_rotations(-70, -50, 0.7)
+        steer_pair.on_for_rotations(-70, -60, 0.85)
         t = Thread(target=check_for_lines, args=(1, ))
         t.start()
         while not lines_passed:
