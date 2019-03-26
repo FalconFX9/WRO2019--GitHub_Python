@@ -18,7 +18,6 @@ def get_second_cable():
                     sleep(0.3)
                 else:
                     counter = counter + 1
-            print(counter)
         lines_passed = True
 
     def get_cable():
@@ -44,8 +43,8 @@ def get_second_cable():
         steer_pair.off()
 
     def pick_up_cable():
-        lower_motor.on_for_degrees(speed=10, degrees=95)
-        timed_follower(center_sensor, speed=20, timemax=0.85)
+        lower_motor.on_for_degrees(speed=10, degrees=98)
+        timed_follower(center_sensor, speed=20, timemax=0.9)
         steer_pair.off()
         lower_motor.on_for_degrees(speed=10, degrees=-95)
 
