@@ -1,3 +1,4 @@
+from line_follower_class import *
 colorblock = []
 position = {}
 color_names = {0: 'Green', 1: 'Yellow', 2: 'Blue', 3: 'Red'}
@@ -5,6 +6,10 @@ colorblock.append(4)
 colorblock.append(5)
 colorblock.append(7)
 colorblock.append(3)
+side_of_line = []
+sensor = []
+offset = []
+blocks_down = 0
 
 """
 Positions are as such :
@@ -26,8 +31,8 @@ Positions are as such :
        - - |
            |
 """
+
 for i in range(0, 4):
-    print(colorblock[i])
     if colorblock[i] == 4:
         position['Green'] = i * 90
     elif colorblock[i] == 5:
@@ -37,10 +42,8 @@ for i in range(0, 4):
     elif colorblock[i] == 7:
         position['Red'] = i * 90
 
-print(position)
 
-
-def assign_values_to_colors():
+def show_color_assignment():
     for x in range(0, 4):
         if position[color_names[x]] == 0:
             # grabber_servo.on_for_degrees(90, 40)
@@ -56,31 +59,46 @@ def assign_values_to_colors():
             print(color_names[x] + ' is in position ' + str(position[color_names[x]]))
 
 
-def put_down_blue_and_red():
-    side_of_line = []
-    sensor = []
-    offset = []
-    for x in range(2, 4):
+def put_down_all():
+    for x in range(0, 4):
         if position[color_names[x]] == 270:
             side_of_line.append('right')
-            sensor.append('left')
+            sensor.append(left_side_sensor)
             offset.append('right')
         elif position[color_names[x]] == 0:
             side_of_line.append('right')
-            sensor.append('center')
+            sensor.append(center_sensor)
             offset.append('forward')
         elif position[color_names[x]] == 90:
             side_of_line.append(None)
-            sensor.append('right')
+            sensor.append(right_side_sensor)
             offset.append('left')
         else:
             side_of_line.append('right')
-            sensor.append('center')
+            sensor.append(center_sensor)
             offset.append('back')
     print(side_of_line)
     print(sensor)
     print(offset)
 
 
-assign_values_to_colors()
-put_down_blue_and_red()
+def robot_path():
+    global blocks_down
+    blocks_down += 1
+    if offset[blocks_down] == 'right':
+        # Turn robot to the right until leftmost sensor senses the line
+        pass
+    elif offset[blocks_down] == 'left':
+        # Turn robot to the left until leftmost sensor senses the line
+        pass
+    elif offset[blocks_down] == 'forward':
+        # Make the robot go forward a bit more
+        pass
+    else:
+        # Make the robot go back a bit
+        pass
+    timed_follower(sensor=sensor[blocks_down], timemax=1, side_of_line=side_of_line[blocks_down], speed=30, kp=0.3)
+
+
+show_color_assignment()
+put_down_all()
