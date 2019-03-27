@@ -28,8 +28,7 @@ def put_down_cable():
         right_side_sensor.mode = 'COL-REFLECT'
         t = Thread(target=check_for_lines, args=(1,))
         t.start()
-        while not lines_passed:
-            hisp_center_follower(side_of_line=1, speed=40)
+        follow_to_line(line_sensor=right_side_sensor, speed=40, side_of_line=1)
         steer_pair.off()
         steer_pair.on_for_rotations(0, -40, 0.3)
         # steer_pair.on_for_rotations(-100, -20, 0.4)
