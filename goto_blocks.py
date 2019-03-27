@@ -43,6 +43,3 @@ def goto_cables_group():
     goto_cable()
     pick_up_cable()
     turn_around()
-
-
-goto_cables_group()
