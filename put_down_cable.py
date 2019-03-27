@@ -53,7 +53,7 @@ def put_down_cable():
             print(center_sensor.reflected_light_intensity)
         steer_pair.off()
         lower_motor.on_for_degrees(speed=10, degrees=90)
-        steer_pair.on_for_rotations(0, 60, 0.4)
+        steer_pair.on_for_rotations(0, 60, 0.6)
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
     lower_motor.off()
