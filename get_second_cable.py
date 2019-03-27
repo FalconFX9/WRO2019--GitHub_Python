@@ -2,6 +2,7 @@ from line_follower_class import *
 from threading import *
 
 lines_passed = False
+lower_motor.off()
 
 
 def get_second_cable():
