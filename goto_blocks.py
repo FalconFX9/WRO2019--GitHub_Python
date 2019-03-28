@@ -45,6 +45,7 @@ def goto_cables_group():
             steer_pair.on(-70, 40)
         steer_pair.off()
         steer_pair.on_for_rotations(100, 20, 0.04)
+        sleep(3)
 
     goto_cable()
     pick_up_cable()

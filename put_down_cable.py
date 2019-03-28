@@ -34,6 +34,7 @@ def put_down_cable():
         while right_side_sensor.reflected_light_intensity > 30:
             steer_pair.on(-100, -20)
         steer_pair.on_for_rotations(100, -30, 0.1)
+        sleep(3)
         lines_passed = False
         t = Thread(target=check_for_lines, args=(2,))
         t.start()
@@ -44,6 +45,7 @@ def put_down_cable():
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)
         steer_pair.off()
+        sleep(3)
         wait = time() + 0.5
         left_side_sensor.mode = 'COL-COLOR'
         right_side_sensor.mode = 'COL-COLOR'
