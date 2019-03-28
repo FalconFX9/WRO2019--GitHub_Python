@@ -38,7 +38,9 @@ def goto_cables_group():
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
     def turn_around():
-        while not center_sensor.reflected_light_intensity > 30:
+        t = threading.Thread(target=check_for_lines, args=(3, ))
+        t.start()
+        while not lines_passed:
             steer_pair.on(-70, 40)
         steer_pair.off()
         steer_pair.on_for_rotations(100, 20, 0.04)
