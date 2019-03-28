@@ -42,7 +42,7 @@ def goto_cables_group():
         t.start()
         lines_passed = False
         while not lines_passed:
-            steer_pair.on(-70, 40)
+            steer_pair.on(-70, 20)
         steer_pair.off()
         steer_pair.on_for_rotations(100, 20, 0.04)
         sleep(3)
