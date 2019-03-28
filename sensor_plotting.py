@@ -1,4 +1,3 @@
-import time
 import datetime as dt
 import matplotlib.pyplot as plt
 from line_follower_class import *
@@ -14,10 +13,10 @@ ys2 = []
 ys3 = []
 ts = []
 
-# Sample temperature every second for 10 seconds
+# Sample reflected light intensity every 100th of a second for 10 seconds
 for t in range(0, 1000):
 
-    # Read temperature (Celsius) from TMP102
+    # Read reflected light intensity from the color sensors
     sensor_value = center_sensor.reflected_light_intensity
 
     # Add x and y to lists
@@ -27,8 +26,8 @@ for t in range(0, 1000):
     ys3.append(right_side_sensor.reflected_light_intensity)
     ts.append(35)
 
-    # Wait 1 second before sampling temperature again
-    time.sleep(0.01)
+    # Wait 0.01 second before sampling light intensity again
+    sleep(0.01)
 
 # Draw plot
 ax.plot(xs, ys)
