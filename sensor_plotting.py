@@ -8,11 +8,12 @@ ax = fig.add_subplot(1, 1, 1)
 xs = []
 ys = []
 ts = []
+go = True
 
 
 def sensor_plotting(sensor=center_sensor):
     # Sample reflected light intensity every 100th of a second for 10 seconds
-    for t in range(0, 1000):
+    while go:
 
         # Add x and y to lists
         xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
@@ -34,3 +35,6 @@ def sensor_plotting(sensor=center_sensor):
 
     # Draw the graph
     plt.show()
+
+
+sensor_plotting()
