@@ -28,7 +28,6 @@ def goto_cables_group():
         t.start()
         while not lines_passed:
             hisp_right_follower(side_of_line=1, speed=30)
-            print(lines_passed, count)
         steer_pair.off()
 
     def pick_up_cable():
@@ -38,8 +37,10 @@ def goto_cables_group():
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
     def turn_around():
+        global lines_passed
         t = threading.Thread(target=check_for_lines, args=(3, ))
         t.start()
+        lines_passed = False
         while not lines_passed:
             steer_pair.on(-70, 40)
         steer_pair.off()
