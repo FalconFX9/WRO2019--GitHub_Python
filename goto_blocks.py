@@ -38,7 +38,7 @@ def goto_cables_group():
 
     def turn_around():
         global lines_passed
-        t = threading.Thread(target=check_for_lines, args=(3, ))
+        t = threading.Thread(target=check_for_lines, args=(2, ))
         t.start()
         lines_passed = False
         while not lines_passed:
