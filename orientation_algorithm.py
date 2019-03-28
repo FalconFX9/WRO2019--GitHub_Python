@@ -1,4 +1,3 @@
-from line_follower_class import *
 colorblock = []
 position = {}
 color_names = {0: 'Green', 1: 'Yellow', 2: 'Blue', 3: 'Red'}
@@ -63,19 +62,19 @@ def put_down_all():
     for x in range(0, 4):
         if position[color_names[x]] == 270:
             side_of_line.append('right')
-            sensor.append(left_side_sensor)
+            sensor.append('left')
             offset.append('right')
         elif position[color_names[x]] == 0:
             side_of_line.append('right')
-            sensor.append(center_sensor)
+            sensor.append('center')
             offset.append('forward')
         elif position[color_names[x]] == 90:
             side_of_line.append(None)
-            sensor.append(right_side_sensor)
+            sensor.append('right')
             offset.append('left')
         else:
             side_of_line.append('right')
-            sensor.append(center_sensor)
+            sensor.append('center')
             offset.append('back')
     print(side_of_line)
     print(sensor)
@@ -97,7 +96,7 @@ def robot_path():
     else:
         # Make the robot go back a bit
         pass
-    timed_follower(sensor=sensor[blocks_down], timemax=1, side_of_line=side_of_line[blocks_down], speed=30, kp=0.3)
+    # timed_follower(sensor=sensor[blocks_down], timemax=1, side_of_line=side_of_line[blocks_down], speed=30, kp=0.3)
 
 
 show_color_assignment()
