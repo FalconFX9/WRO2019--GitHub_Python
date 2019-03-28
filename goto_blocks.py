@@ -38,12 +38,7 @@ def goto_cables_group():
 
     def turn_around():
         global lines_passed
-        t = threading.Thread(target=check_for_lines, args=(2, ))
-        t.start()
-        lines_passed = False
-        while not lines_passed:
-            steer_pair.on(-70, 20)
-        steer_pair.off()
+        steer_pair.on_for_rotations(-70, 40, 2)
         steer_pair.on_for_rotations(100, 20, 0.04)
         sleep(3)
 
