@@ -25,8 +25,6 @@ def put_down_cable():
         global lines_passed
         left_side_sensor.mode = 'COL-REFLECT'
         right_side_sensor.mode = 'COL-REFLECT'
-        t = Thread(target=check_for_lines, args=(1,))
-        t.start()
         follow_to_line(line_sensor=right_side_sensor, speed=40, side_of_line=1)
         steer_pair.off()
         steer_pair.on_for_rotations(0, -40, 0.3)
