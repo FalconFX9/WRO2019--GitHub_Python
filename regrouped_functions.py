@@ -3,6 +3,7 @@ from start_sequence import *
 from goto_blocks import *
 from put_down_cable import *
 from get_second_cable import *
+from put_down_second_cable import *
 
 
 def wro2019():
@@ -10,3 +11,4 @@ def wro2019():
     goto_cables_group()
     put_down_cable()
     get_second_cable()
+    put_down_second_cable()

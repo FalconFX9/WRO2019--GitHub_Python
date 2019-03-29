@@ -68,6 +68,3 @@ def put_down_second_cable():
 
     goto_drop()
     put_down_cable()
-
-
-put_down_second_cable()
