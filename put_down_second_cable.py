@@ -23,10 +23,11 @@ def put_down_second_cable():
 
     def goto_drop():
         global lines_passed
-        t = Thread(target=check_for_lines, args=(5, ))
+        follow_to_line(following_sensor=right_side_sensor, line_sensor=left_side_sensor, speed=30, side_of_line=1)
+        t = Thread(target=check_for_lines, args=(4, ))
         t.start()
         while not lines_passed:
-            hisp_right_follower(speed=40)
+            hisp_right_follower(speed=40, side_of_line=1)
         steer_pair.off()
         lines_passed = False
         steer_pair.on_for_rotations(0, -20, 0.1)
