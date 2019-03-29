@@ -80,10 +80,11 @@ def timed_follower(sensor, timemax, side_of_line=None, speed=DEFAULT_SPEED, kp=0
         print(sensor.reflected_light_intensity)
 
 
-def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, speed=DEFAULT_SPEED, side_of_line=None):
+def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, speed=DEFAULT_SPEED, side_of_line=None,
+                   kp=0.25):
     follow = OneSensorLineFollower(following_sensor)
     while line_sensor.reflected_light_intensity > 20:
-        follow.follower(side_of_line=side_of_line, kp=0.25, speed=speed, sensor_target=45)
+        follow.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=45)
 
 
 """
