@@ -24,7 +24,7 @@ def put_down_second_cable():
     def goto_drop():
         global lines_passed
         follow_to_line(following_sensor=right_side_sensor, line_sensor=left_side_sensor, speed=30, side_of_line=1)
-        t = Thread(target=check_for_lines, args=(4, ))
+        t = Thread(target=check_for_lines, args=(5, ))
         t.start()
         while not lines_passed:
             hisp_right_follower(speed=40, side_of_line=1)
@@ -48,7 +48,7 @@ def put_down_second_cable():
         left_side_sensor.mode = 'COL-COLOR'
         right_side_sensor.mode = 'COL-COLOR'
         wait = time() + 0.5
-        while not (left_side_sensor.value() == 5 and right_side_sensor.value() == 4 and time() > wait):
+        while not (left_side_sensor.value() == 4 and right_side_sensor.value() == 6 and time() > wait):
             losp_center_follower(side_of_line=1)
         steer_pair.off()
         left_side_sensor.mode = 'COL-REFLECT'
