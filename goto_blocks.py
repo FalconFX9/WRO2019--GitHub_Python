@@ -3,6 +3,9 @@ import threading
 
 lines_passed = False
 count = 0
+file_s = open('sensor_data.txt', 'w+')
+file_x = open('time_data.txt', 'w+')
+loging = True
 
 
 def goto_cables_group():
@@ -22,8 +25,22 @@ def goto_cables_group():
                     count = count + 1
         lines_passed = True
 
+    def log_data():
+        global file_x, file_s, loging
+        starttime = time()
+        while log:
+            file_s.write(str(center_sensor.reflected_light_intensity) + '\n')
+            file_x.write(str(round((time() - starttime), 1)) + '\n')
+            sleep(0.1)
+        file_x.close()
+        file_s.close()
+
     def goto_cable():
+        global loging
+        t2 = threading.Thread(target=log_data)
+        t2.start()
         timed_follower(sensor=right_side_sensor, timemax=3.6, side_of_line=1, speed=60, kp=0.2, ttarget=50)
+        loging = False
         t = threading.Thread(target=check_for_lines, args=(1,))
         t.start()
         while not lines_passed:
