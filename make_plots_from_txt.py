@@ -8,7 +8,7 @@ x = []
 y = []
 t = []
 st = []
-target = 35
+target = 50
 plt.subplot(2, 1, 1)
 for i in file_s:
     y.append(int(i))
