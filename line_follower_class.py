@@ -4,6 +4,7 @@ file_s = open('sensor_data.txt', 'w+')
 file_st = open('steering_data.txt', 'w+')
 file_x = open('time_data.txt', 'w+')
 log_to_files = True
+start_time = 0
 
 DEFAULT_SPEED = 60
 
@@ -43,7 +44,7 @@ class OneSensorLineFollower:
         steer_pair.on(motor_steering, -speed)
         if log_to_files:
             file_s.write(str(right_side_sensor.reflected_light_intensity) + '\n')
-            file_x.write(str(round((time()), 1)) + '\n')
+            file_x.write(str(round((time() - start_time), 1)) + '\n')
             file_st.write(str(motor_steering) + '\n')
         else:
             file_st.close()
