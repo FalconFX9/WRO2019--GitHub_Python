@@ -94,6 +94,9 @@ def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, sp
         file_x.write(str(round((time() - starttime), 1)) + '\n')
         log_error = 50 - float(right_side_sensor.reflected_light_intensity)
         file_st.write(str((log_error * 0.2)) + '\n')
+    file_st.close()
+    file_x.close()
+    file_s.close()
 
 
 """
