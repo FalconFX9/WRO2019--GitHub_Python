@@ -32,8 +32,8 @@ def goto_cables_group():
         while loging:
             file_s.write(str(center_sensor.reflected_light_intensity) + '\n')
             file_x.write(str(round((time() - starttime), 1)) + '\n')
-            file_st.write(str(log_motor_steering) + '\n')
-            print(log_motor_steering)
+            log_error = 50 - float(right_side_sensor.reflected_light_intensity)
+            file_st.write(str((log_error * 0.2)) + '\n')
             sleep(0.1)
         file_x.close()
         file_s.close()
