@@ -13,7 +13,7 @@ DEFAULT_SPEED = 60
 # Kd to 1, and move up or done until smooth, after Kp and Ki
 # This process can take a VERY long time to fine-tune
 K_PROPORTIONAL = 0.2
-K_INTEGRAL = 0.1
+K_INTEGRAL = 0
 K_DERIVATIVE = 0.25
 
 
