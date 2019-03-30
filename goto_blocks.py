@@ -33,6 +33,7 @@ def goto_cables_group():
             file_s.write(str(center_sensor.reflected_light_intensity) + '\n')
             file_x.write(str(round((time() - starttime), 1)) + '\n')
             log_error = 50 - float(right_side_sensor.reflected_light_intensity)
+            print(log_error)
             file_st.write(str((log_error * 0.2)) + '\n')
             sleep(0.1)
         file_x.close()
