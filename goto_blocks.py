@@ -27,8 +27,6 @@ def goto_cables_group():
         lines_passed = True
 
     def goto_cable():
-        global start_time
-        start_time = time()
         timed_follower(sensor=right_side_sensor, timemax=3.6, side_of_line=1, speed=60, kp=0.2, ttarget=50)
         t = threading.Thread(target=check_for_lines, args=(1,))
         t.start()
