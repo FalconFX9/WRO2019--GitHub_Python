@@ -18,6 +18,7 @@ class OneSensorLineFollower:
     last_error = 0
     derivative = 0
     integral = 0
+    motor_steering = 0
 
     def __init__(self, color_sensor):
         self.__color_sensor = color_sensor
@@ -32,10 +33,10 @@ class OneSensorLineFollower:
         self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
-        motor_steering = ((self.error * kp) + (self.integral * K_INTEGRAL) + (self.derivative * K_DERIVATIVE)) * float(
+        self.motor_steering = ((self.error * kp) + (self.integral * K_INTEGRAL) + (self.derivative * K_DERIVATIVE)) * float(
             side_of_line)
         self.last_error = self.error
-        steer_pair.on(motor_steering, -speed)
+        steer_pair.on(self.motor_steering, -speed)
 
     class SideOfLine:
         left = 1

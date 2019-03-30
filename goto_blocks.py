@@ -4,6 +4,7 @@ import threading
 lines_passed = False
 count = 0
 file_s = open('sensor_data.txt', 'w+')
+file_st = open('steering_data.txt', 'w+')
 file_x = open('time_data.txt', 'w+')
 loging = True
 
@@ -26,14 +27,16 @@ def goto_cables_group():
         lines_passed = True
 
     def log_data():
-        global file_x, file_s, loging
+        global file_x, file_s, loging, file_st
         starttime = time()
         while loging:
             file_s.write(str(center_sensor.reflected_light_intensity) + '\n')
             file_x.write(str(round((time() - starttime), 1)) + '\n')
+            file_st.write(str(OneSensorLineFollower.motor_steering) + '\n')
             sleep(0.1)
         file_x.close()
         file_s.close()
+        file_st.close()
 
     def goto_cable():
         global loging
