@@ -38,6 +38,7 @@ class OneSensorLineFollower:
             side_of_line)
         self.last_error = self.error
         log_motor_steering = motor_steering
+        print(log_motor_steering)
         steer_pair.on(motor_steering, -speed)
 
     class SideOfLine:
