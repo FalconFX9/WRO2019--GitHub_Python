@@ -26,26 +26,8 @@ def goto_cables_group():
                     count = count + 1
         lines_passed = True
 
-    def log_data():
-        global file_x, file_s, loging, file_st
-        starttime = time()
-        while loging:
-            file_s.write(str(center_sensor.reflected_light_intensity) + '\n')
-            file_x.write(str(round((time() - starttime), 1)) + '\n')
-            log_error = 50 - float(right_side_sensor.reflected_light_intensity)
-            print(log_error)
-            file_st.write(str((log_error * 0.2)) + '\n')
-            sleep(0.1)
-        file_x.close()
-        file_s.close()
-        file_st.close()
-
     def goto_cable():
-        global loging
-        t2 = threading.Thread(target=log_data)
-        t2.start()
         timed_follower(sensor=right_side_sensor, timemax=3.6, side_of_line=1, speed=60, kp=0.2, ttarget=50)
-        loging = False
         t = threading.Thread(target=check_for_lines, args=(1,))
         t.start()
         while not lines_passed:
