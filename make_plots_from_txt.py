@@ -20,16 +20,16 @@ for p in range(0, len(y)):
     plt.plot(x, t)
 plt.title('Target is ' + str(target) + ' (blue line).')
 plt.ylim(0, 100)
-target = 0
 plt.subplot(2, 1, 2)
+t.clear()
 for i in file_st:
-    st.append(int(i))
+    st.append(float(i))
+    t.append(0)
 for i in file_x:
     x.append(i)
-    t.append(target)
 for p in range(0, len(y)):
     plt.plot(x, st)
     plt.plot(x, t)
-plt.title('Target is ' + str(target) + ' (blue line).')
+plt.title('Target is ' + str(0) + ' (blue line).')
 plt.ylim(-20, 20)
 plt.show()

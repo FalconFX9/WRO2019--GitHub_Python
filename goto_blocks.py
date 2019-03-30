@@ -35,8 +35,10 @@ def goto_cables_group():
         steer_pair.off()
 
     def pick_up_cable():
+        global log_to_files
         lower_motor.on_for_degrees(speed=10, degrees=90)
         timed_follower(center_sensor, side_of_line=1, speed=20, timemax=0.85, kp=0.3)
+        log_to_files = False
         steer_pair.off()
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
@@ -48,5 +50,6 @@ def goto_cables_group():
     goto_cable()
     pick_up_cable()
     turn_around()
+
 
 goto_cables_group()
