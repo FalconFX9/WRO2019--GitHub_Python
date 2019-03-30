@@ -37,7 +37,6 @@ def goto_cables_group():
     def turn_around():
         global lines_passed
         steer_pair.on_for_rotations(-70, 40, 1.5)
-        sleep(3)
 
     goto_cable()
     pick_up_cable()
