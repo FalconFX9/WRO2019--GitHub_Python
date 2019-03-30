@@ -13,9 +13,7 @@ def get_second_cable():
         while counter < num_lines:
             if center_sensor.reflected_light_intensity < 30:
                 if counter < num_lines - 1:
-                    beep = Sound()
                     counter = counter + 1
-                    beep.beep()
                     sleep(0.3)
                 else:
                     counter = counter + 1

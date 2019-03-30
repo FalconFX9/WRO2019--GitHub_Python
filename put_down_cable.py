@@ -13,16 +13,14 @@ def put_down_cable():
         while counter < num_lines:
             if center_sensor.reflected_light_intensity < 30:
                 if counter < num_lines - 1:
-                    beep = Sound()
                     counter += 1
-                    beep.beep()
                     sleep(0.3)
                 else:
                     counter += 1
         lines_passed = True
 
     def goto_drop():
-        global lines_passed, log_to_files
+        global lines_passed
         left_side_sensor.mode = 'COL-REFLECT'
         right_side_sensor.mode = 'COL-REFLECT'
         follow_to_line(line_sensor=right_side_sensor, speed=40, side_of_line=1)
@@ -44,7 +42,6 @@ def put_down_cable():
         steer_pair.off()
         steer_pair.on_for_rotations(-75, -30, 0.03)
         wait = time() + 0.5
-        log_to_files = False
         print("Switching modes")
         left_side_sensor.mode = 'COL-COLOR'
         right_side_sensor.mode = 'COL-COLOR'

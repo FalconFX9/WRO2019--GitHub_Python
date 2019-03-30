@@ -13,16 +13,14 @@ def put_down_second_cable():
         while counter < num_lines:
             if center_sensor.reflected_light_intensity < 30:
                 if counter < num_lines - 1:
-                    beep = Sound()
                     counter = counter + 1
-                    beep.beep()
                     sleep(0.3)
                 else:
                     counter = counter + 1
         lines_passed = True
 
     def goto_drop():
-        global lines_passed
+        global lines_passed, log_to_files
         steer_pair.on_for_rotations(70, 40, 1.56)
         while right_side_sensor.reflected_light_intensity > 30:
             steer_pair.on(70, 20)
@@ -58,6 +56,7 @@ def put_down_second_cable():
         while not (left_side_sensor.value() == 4 and right_side_sensor.value() == 6 and time() > wait):
             losp_center_follower(side_of_line=1)
         steer_pair.off()
+        log_to_files = False
         left_side_sensor.mode = 'COL-REFLECT'
         right_side_sensor.mode = 'COL-REFLECT'
 
