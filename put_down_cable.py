@@ -22,7 +22,7 @@ def put_down_cable():
         lines_passed = True
 
     def goto_drop():
-        global lines_passed
+        global lines_passed, log_to_files
         left_side_sensor.mode = 'COL-REFLECT'
         right_side_sensor.mode = 'COL-REFLECT'
         follow_to_line(line_sensor=right_side_sensor, speed=40, side_of_line=1)
@@ -44,6 +44,7 @@ def put_down_cable():
         steer_pair.off()
         steer_pair.on_for_rotations(-75, -30, 0.03)
         wait = time() + 0.5
+        log_to_files = False
         print("Switching modes")
         left_side_sensor.mode = 'COL-COLOR'
         right_side_sensor.mode = 'COL-COLOR'
