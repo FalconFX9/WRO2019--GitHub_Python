@@ -44,9 +44,11 @@ def get_second_cable():
         steer_pair.off()
 
     def pick_up_cable():
+        global log_to_files
         lower_motor.on_for_degrees(speed=10, degrees=98)
         timed_follower(center_sensor, speed=20, timemax=0.83)
         steer_pair.off()
+        log_to_files = False
         lower_motor.on_for_degrees(speed=10, degrees=-100)
 
     get_cable()

@@ -98,32 +98,3 @@ def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, sp
     follow = OneSensorLineFollower(following_sensor)
     while line_sensor.reflected_light_intensity > 20:
         follow.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=45)
-
-
-"""
-# Initiating threads for all sensors and correction values
-que = queue.Queue(maxsize=0)
-que2 = queue.Queue(maxsize=0)
-que3 = queue.Queue(maxsize=0)
-que4 = queue.Queue(maxsize=0)
-que5 = queue.Queue(maxsize=0)
-que6 = queue.Queue(maxsize=0)
-t = threading.Thread(target=center_corrector, args=(que, que2, ))
-t.setDaemon(True)
-t.start()
-t3 = threading.Thread(target=left_corrector, args=(que3, que4, ))
-t3.setDaemon(True)
-t3.start()
-t5 = threading.Thread(target=right_corrector, args=(que5, que6, ))
-t5.setDaemon(True)
-t5.start()
-timemax = time() + 5
-while time() < timemax:
-    print("First Sensor Value : " + str(que.get()) + str(que2.get()))
-    print("Second Sensor Value : " + str(que3.get()) + str(que4.get()))
-    print("Third Sensor Value : " + str(que5.get()) + str(que6.get()))
-
-
-def high_speed_follower(speed=DEFAULT_SPEED):
-    steer_pair.on(que2.get(), -speed)
-"""
