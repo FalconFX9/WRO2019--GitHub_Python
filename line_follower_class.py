@@ -10,6 +10,7 @@ DEFAULT_SPEED = 60
 K_PROPORTIONAL = 0.2
 K_INTEGRAL = 0
 K_DERIVATIVE = 0
+log_motor_steering = 0
 
 
 class OneSensorLineFollower:
@@ -18,13 +19,13 @@ class OneSensorLineFollower:
     last_error = 0
     derivative = 0
     integral = 0
-    motor_steering = 0
 
     def __init__(self, color_sensor):
         self.__color_sensor = color_sensor
 
     def follower(self, side_of_line=None, kp=K_PROPORTIONAL, speed=DEFAULT_SPEED,
                  sensor_target=target):
+        global log_motor_steering
         if side_of_line is None:
             side_of_line = self.SideOfLine.left
         else:
@@ -33,14 +34,11 @@ class OneSensorLineFollower:
         self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
-        self.motor_steering = ((self.error * kp) + (self.integral * K_INTEGRAL) + (self.derivative * K_DERIVATIVE)) * float(
+        motor_steering = ((self.error * kp) + (self.integral * K_INTEGRAL) + (self.derivative * K_DERIVATIVE)) * float(
             side_of_line)
         self.last_error = self.error
-        steer_pair.on(self.motor_steering, -speed)
-
-    def logging(self):
-        pass
-        return self.motor_steering
+        log_motor_steering = motor_steering
+        steer_pair.on(motor_steering, -speed)
 
     class SideOfLine:
         left = 1
