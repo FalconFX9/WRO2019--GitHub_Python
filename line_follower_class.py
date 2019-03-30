@@ -14,7 +14,7 @@ DEFAULT_SPEED = 60
 # This process can take a VERY long time to fine-tune
 K_PROPORTIONAL = 0.2
 K_INTEGRAL = 0
-K_DERIVATIVE = 0.1
+K_DERIVATIVE = 0.2
 
 
 class OneSensorLineFollower:
