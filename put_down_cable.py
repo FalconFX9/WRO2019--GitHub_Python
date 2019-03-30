@@ -44,6 +44,7 @@ def put_down_cable():
         steer_pair.off()
         steer_pair.on_for_rotations(-75, -30, 0.03)
         wait = time() + 0.5
+        print("Switching modes")
         left_side_sensor.mode = 'COL-COLOR'
         right_side_sensor.mode = 'COL-COLOR'
         while not (left_side_sensor.value() == 5 and right_side_sensor.value() == 6 and time() > wait):
