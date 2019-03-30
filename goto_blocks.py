@@ -28,7 +28,7 @@ def goto_cables_group():
     def log_data():
         global file_x, file_s, loging
         starttime = time()
-        while log:
+        while loging:
             file_s.write(str(center_sensor.reflected_light_intensity) + '\n')
             file_x.write(str(round((time() - starttime), 1)) + '\n')
             sleep(0.1)
