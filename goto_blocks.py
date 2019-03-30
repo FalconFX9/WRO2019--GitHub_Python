@@ -32,7 +32,7 @@ def goto_cables_group():
         while loging:
             file_s.write(str(center_sensor.reflected_light_intensity) + '\n')
             file_x.write(str(round((time() - starttime), 1)) + '\n')
-            file_st.write(str(OneSensorLineFollower.motor_steering) + '\n')
+            file_st.write(str(OneSensorLineFollower.logging(right_side_sensor)) + '\n')
             sleep(0.1)
         file_x.close()
         file_s.close()

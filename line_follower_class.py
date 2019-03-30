@@ -38,6 +38,10 @@ class OneSensorLineFollower:
         self.last_error = self.error
         steer_pair.on(self.motor_steering, -speed)
 
+    def logging(self):
+        pass
+        return self.motor_steering
+
     class SideOfLine:
         left = 1
         right = -1
