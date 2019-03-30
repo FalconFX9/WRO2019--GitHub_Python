@@ -72,24 +72,17 @@ def losp_right_follower(side_of_line=None, speed=20):
     follow.follower(side_of_line=side_of_line, kp=0.4, speed=speed, sensor_target=25)
 
 
-def timed_follower(sensor, timemax, side_of_line=None, speed=DEFAULT_SPEED, kp=0.15, ttarget=35):
-    follower = OneSensorLineFollower(sensor)
-    timemax = time() + timemax
-    while time() < timemax:
-        follower.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=ttarget)
-
-
 file_s = open('sensor_data.txt', 'w+')
 file_st = open('steering_data.txt', 'w+')
 file_x = open('time_data.txt', 'w+')
 
 
-def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, speed=DEFAULT_SPEED, side_of_line=None,
-                   kp=0.25):
-    follow = OneSensorLineFollower(following_sensor)
+def timed_follower(sensor, timemax, side_of_line=None, speed=DEFAULT_SPEED, kp=0.15, ttarget=35):
+    follower = OneSensorLineFollower(sensor)
+    timemax = time() + timemax
     starttime = time()
-    while line_sensor.reflected_light_intensity > 20:
-        follow.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=45)
+    while time() < timemax:
+        follower.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=ttarget)
         file_s.write(str(right_side_sensor.reflected_light_intensity) + '\n')
         file_x.write(str(round((time() - starttime), 1)) + '\n')
         log_error = 50 - float(right_side_sensor.reflected_light_intensity)
@@ -97,6 +90,13 @@ def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, sp
     file_st.close()
     file_x.close()
     file_s.close()
+
+
+def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, speed=DEFAULT_SPEED, side_of_line=None,
+                   kp=0.25):
+    follow = OneSensorLineFollower(following_sensor)
+    while line_sensor.reflected_light_intensity > 20:
+        follow.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=45)
 
 
 """
