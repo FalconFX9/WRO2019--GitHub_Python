@@ -1,4 +1,5 @@
 from line_follower_class import *
+from threading import *
 
 file_s = open('sensor_data.txt', 'w+')
 file_x = open('time_data.txt', 'w+')
@@ -17,6 +18,8 @@ def look_at_blocks():
 lower_motor.off(brake=True)
 tick = 0
 start_time = time()
+t = Thread(target=look_at_blocks)
+t.start()
 while not block_is_black:
     hisp_right_follower(speed=20)
     file_s.write(str(side_color_sensor.value(3)) + '\n')
