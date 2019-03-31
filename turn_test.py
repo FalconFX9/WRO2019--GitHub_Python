@@ -11,6 +11,8 @@ def look_at_blocks():
     global block_is_black
     while not block_is_black:
         print('Thread running')
+        file_s.write(str(side_color_sensor.value(3)) + '\n')
+        file_x.write(str(round((time() - start_time), 1)) + '\n')
         if side_color_sensor.value(3) > 100:
             sleep(0.3)
         elif 100 > side_color_sensor.value(3) > 40:
@@ -24,8 +26,6 @@ t = Thread(target=look_at_blocks)
 t.start()
 while not block_is_black:
     hisp_right_follower(speed=20)
-    file_s.write(str(side_color_sensor.value(3)) + '\n')
-    file_x.write(str(round((time() - start_time), 1)) + '\n')
 steer_pair.off()
 
 file_s.close()
