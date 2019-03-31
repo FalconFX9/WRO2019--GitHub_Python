@@ -2,9 +2,9 @@ from line_follower_class import *
 
 lower_motor.off(brake=True)
 
-while side_color_sensor.value() == 0:
+while not (side_color_sensor.value() == 0 and center_sensor.reflected_light_intensity < 30):
     hisp_right_follower(speed=30)
-
+steer_pair.off()
 
 def turn_and_pick_up():
     lower_motor.on_for_degrees(10, -10)
