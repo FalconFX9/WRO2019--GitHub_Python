@@ -2,7 +2,7 @@ from line_follower_class import *
 
 lower_motor.off(brake=True)
 
-while not side_color_sensor.value() == 0:
+while side_color_sensor.value() == 0:
     hisp_right_follower(speed=30)
 
 
