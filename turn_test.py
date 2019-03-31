@@ -10,6 +10,7 @@ block_is_black = False
 def look_at_blocks():
     global block_is_black
     while not block_is_black:
+        print('Thread running')
         if side_color_sensor.value(3) > 100:
             sleep(0.3)
         elif 100 > side_color_sensor.value(3) > 40:
