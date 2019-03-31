@@ -2,8 +2,10 @@ from line_follower_class import *
 
 lower_motor.off(brake=True)
 side_color_sensor.mode = 'RGB'
-while not (100 > side_color_sensor.value() > 40 and center_sensor.reflected_light_intensity < 30):
+tick = 0
+while not (100 > side_color_sensor.value() > 40 and center_sensor.reflected_light_intensity < 30 and tick >= 5):
     hisp_right_follower(speed=20)
+    tick += 1
 steer_pair.off()
 
 
