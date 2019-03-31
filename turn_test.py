@@ -2,12 +2,22 @@ from line_follower_class import *
 
 file_s = open('sensor_data.txt', 'w+')
 file_x = open('time_data.txt', 'w+')
+side_color_sensor.mode = 'RGB'
+block_is_black = False
+
+
+def look_at_blocks():
+    global block_is_black
+    if side_color_sensor.value(3) > 100:
+        sleep(0.3)
+    elif 100 > side_color_sensor.value(3) > 40:
+        block_is_black = True
+
 
 lower_motor.off(brake=True)
-side_color_sensor.mode = 'RGB'
 tick = 0
 start_time = time()
-while not (100 > side_color_sensor.value() > 40 and center_sensor.reflected_light_intensity < 30 and tick >= 5):
+while not block_is_black:
     hisp_right_follower(speed=20)
     file_s.write(str(side_color_sensor.value(3)) + '\n')
     file_x.write(str(round((time() - start_time), 1)) + '\n')
