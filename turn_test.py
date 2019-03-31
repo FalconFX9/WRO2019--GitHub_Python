@@ -3,7 +3,7 @@ from line_follower_class import *
 lower_motor.off(brake=True)
 
 while not (side_color_sensor.value() == 0 and center_sensor.reflected_light_intensity < 30):
-    hisp_right_follower(speed=30)
+    hisp_right_follower(speed=20)
     print(side_color_sensor.value())
 steer_pair.off()
 
