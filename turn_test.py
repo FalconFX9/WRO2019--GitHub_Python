@@ -1,12 +1,20 @@
 from line_follower_class import *
 
+file_s = open('sensor_data.txt', 'w+')
+file_x = open('time_data.txt', 'w+')
+
 lower_motor.off(brake=True)
 side_color_sensor.mode = 'RGB'
 tick = 0
+start_time = time()
 while not (100 > side_color_sensor.value() > 40 and center_sensor.reflected_light_intensity < 30 and tick >= 5):
     hisp_right_follower(speed=20)
-    tick += 1
+    file_s.write(str(side_color_sensor.value(3)) + '\n')
+    file_x.write(str(round((time() - start_time), 1)) + '\n')
 steer_pair.off()
+
+file_s.close()
+file_x.close()
 
 
 def turn_and_pick_up():
