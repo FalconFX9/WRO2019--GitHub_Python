@@ -8,16 +8,18 @@ x = []
 y = []
 t = []
 st = []
-target = 50
+target = 40
 plt.subplot(2, 1, 1)
 for i in file_s:
     y.append(int(i))
 for i in file_x:
     x.append(i)
     t.append(target)
+    st.append(100)
 for p in range(0, len(y)):
     plt.plot(x, y)
     plt.plot(x, t)
+    plt.plot(x, st)
 plt.title('Target is ' + str(target) + ' (blue line).')
 plt.ylim(0, 255)
 """

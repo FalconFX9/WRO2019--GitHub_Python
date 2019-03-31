@@ -9,10 +9,11 @@ block_is_black = False
 
 def look_at_blocks():
     global block_is_black
-    if side_color_sensor.value(3) > 100:
-        sleep(0.3)
-    elif 100 > side_color_sensor.value(3) > 40:
-        block_is_black = True
+    while not block_is_black:
+        if side_color_sensor.value(3) > 100:
+            sleep(0.3)
+        elif 100 > side_color_sensor.value(3) > 40:
+            block_is_black = True
 
 
 lower_motor.off(brake=True)
