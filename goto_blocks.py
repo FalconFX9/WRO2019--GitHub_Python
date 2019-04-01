@@ -1,11 +1,24 @@
 from line_follower_class import *
 import threading
 
-count = 0
+lines_passed = False
 
 
 def goto_cables_group():
     lower_motor.off(brake=True)
+
+    def check_for_lines(num_lines):
+        global lines_passed
+        counter = 0
+        while counter < num_lines:
+            print(counter)
+            if center_sensor.reflected_light_intensity < 30:
+                if counter < num_lines - 1:
+                    counter = counter + 1
+                    sleep(0.3)
+                else:
+                    counter = counter + 1
+        lines_passed = True
 
     def goto_cable():
         global lines_passed
