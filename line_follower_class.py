@@ -107,6 +107,7 @@ def check_for_lines(num_lines):
     global lines_passed
     counter = 0
     while counter < num_lines:
+        print(counter)
         if center_sensor.reflected_light_intensity < 30:
             if counter < num_lines - 1:
                 counter = counter + 1
