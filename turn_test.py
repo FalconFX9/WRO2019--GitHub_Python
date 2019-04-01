@@ -29,7 +29,7 @@ while not block_is_black:
 steer_pair.off()
 file_s.close()
 file_x.close()
-
+sleep(3)
 steer_pair.on_for_rotations(0, -30, 0.1)
 
 

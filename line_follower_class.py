@@ -76,9 +76,9 @@ def losp_left_follower(side_of_line=None, speed=20):
     follow.follower(side_of_line=side_of_line, kp=0.4, speed=speed, sensor_target=45)
 
 
-def hisp_right_follower(side_of_line=None, speed=DEFAULT_SPEED):
+def hisp_right_follower(side_of_line=None, speed=DEFAULT_SPEED, kp=0.1):
     follow = OneSensorLineFollower(right_side_sensor)
-    follow.follower(side_of_line=side_of_line, kp=0.1, speed=speed, sensor_target=40)
+    follow.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=40)
 
 
 def losp_right_follower(side_of_line=None, speed=20):
