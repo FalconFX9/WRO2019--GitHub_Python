@@ -2,22 +2,9 @@ from line_follower_class import *
 from threading import *
 
 counter = 0
-lines_passed = False
 
 
 def put_down_cable():
-
-    def check_for_lines(num_lines):
-        global lines_passed, counter
-        counter = 0
-        while counter < num_lines:
-            if center_sensor.reflected_light_intensity < 30:
-                if counter < num_lines - 1:
-                    counter += 1
-                    sleep(0.3)
-                else:
-                    counter += 1
-        lines_passed = True
 
     def goto_drop():
         global lines_passed
@@ -36,6 +23,7 @@ def put_down_cable():
         while not lines_passed:
             losp_right_follower()
         steer_pair.off()
+        lines_passed = False
         steer_pair.on_for_rotations(0, -30, 0.35)
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)

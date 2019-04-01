@@ -98,3 +98,19 @@ def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, sp
     follow = OneSensorLineFollower(following_sensor)
     while line_sensor.reflected_light_intensity > 20:
         follow.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=45)
+
+
+lines_passed = False
+
+
+def check_for_lines(num_lines):
+    global lines_passed
+    counter = 0
+    while counter < num_lines:
+        if center_sensor.reflected_light_intensity < 30:
+            if counter < num_lines - 1:
+                counter = counter + 1
+                sleep(0.3)
+            else:
+                counter = counter + 1
+    lines_passed = True

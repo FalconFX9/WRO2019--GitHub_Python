@@ -1,23 +1,10 @@
 from line_follower_class import *
 from threading import *
 
-lines_passed = False
 lower_motor.off()
 
 
 def get_second_cable():
-
-    def check_for_lines(num_lines):
-        global lines_passed
-        counter = 0
-        while counter < num_lines:
-            if center_sensor.reflected_light_intensity < 30:
-                if counter < num_lines - 1:
-                    counter = counter + 1
-                    sleep(0.3)
-                else:
-                    counter = counter + 1
-        lines_passed = True
 
     def get_cable():
         global lines_passed
@@ -40,6 +27,7 @@ def get_second_cable():
             losp_left_follower(side_of_line=1, speed=30)
             print(left_side_sensor.reflected_light_intensity)
         steer_pair.off()
+        lines_passed = False
 
     def pick_up_cable():
         lower_motor.on_for_degrees(speed=10, degrees=98)
