@@ -10,7 +10,6 @@ block_is_black = False
 def look_at_blocks():
     global block_is_black
     while not block_is_black:
-        print('Thread running')
         file_s.write(str(side_color_sensor.value(3)) + '\n')
         file_x.write(str(round((time() - start_time), 2)) + '\n')
         if side_color_sensor.value(3) > 100:
@@ -29,8 +28,9 @@ while not block_is_black:
 steer_pair.off()
 file_s.close()
 file_x.close()
-sleep(3)
 steer_pair.on_for_rotations(0, -30, 0.1)
+follow_to_line(following_sensor=right_side_sensor, speed=30, kp=0.1)
+sleep(5)
 
 
 def turn_and_pick_up():
@@ -42,3 +42,6 @@ def turn_and_pick_up():
     timed_follower(sensor=center_sensor, timemax=0.65, speed=20, kp=0.2, side_of_line=1)
     steer_pair.off()
     lower_motor.on_for_degrees(10, -75)
+
+
+turn_and_pick_up()
