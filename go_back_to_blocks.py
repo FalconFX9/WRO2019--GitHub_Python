@@ -1,9 +1,25 @@
 from line_follower_class import *
 from threading import *
 
+lines_passed = False
+
 
 def go_back_to_blocks():
     global lines_passed
+
+    def check_for_lines(num_lines):
+        global lines_passed
+        counter = 0
+        while counter < num_lines:
+            print(counter)
+            if center_sensor.reflected_light_intensity < 30:
+                if counter < num_lines - 1:
+                    counter = counter + 1
+                    sleep(0.3)
+                else:
+                    counter = counter + 1
+        lines_passed = True
+
     while right_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(-100, -30)
     steer_pair.on_for_rotations(100, -20, 0.07)
