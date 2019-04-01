@@ -13,9 +13,6 @@ def start_sequence():
         sound = Sound()
         sound.play('/home/robot/Sounds/soviet-anthem.wav')
 
-    music = Thread(target=play_soviet_anthem)
-    music.start()
-
     def see_color_blocks():
         while len(colorblock) < 4:
             if not (side_color_sensor.value() == 18 or side_color_sensor.value() == 0):
