@@ -34,7 +34,7 @@ def start_sequence():
     while not len(colorblock) == 4:
         hisp_right_follower(speed=30)
     print(colorblock)
-    follow_to_line(following_sensor=right_side_sensor, side_of_line=1, speed=40)
+    follow_to_line(following_sensor=right_side_sensor, speed=40)
     steer_pair.off()
     steer_pair.on_for_rotations(0, -35, 0.3)
     while right_side_sensor.reflected_light_intensity > 30:
