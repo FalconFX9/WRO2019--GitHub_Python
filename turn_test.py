@@ -25,11 +25,12 @@ t = Thread(target=look_at_blocks)
 t.start()
 while not block_is_black:
     hisp_right_follower(speed=40)
-steer_pair.off()
+steer_pair.off(brake=False)
 file_s.close()
 file_x.close()
 steer_pair.on_for_rotations(0, -30, 0.1)
-follow_to_line(following_sensor=right_side_sensor, speed=30, kp=0.1)
+follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, speed=30, kp=0.1)
+steer_pair.off()
 sleep(5)
 
 
