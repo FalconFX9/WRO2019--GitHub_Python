@@ -3,7 +3,7 @@ from sensor_and_motor_startup import *
 file_s = open('sensor_data.txt', 'w+')
 file_st = open('steering_data.txt', 'w+')
 file_x = open('time_data.txt', 'w+')
-log_to_files = False
+log_to_files = True
 DEFAULT_SPEED = 60
 
 # PID Values --These are subjective and need to be tuned to the robot and mat

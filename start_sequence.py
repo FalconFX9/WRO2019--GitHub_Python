@@ -19,6 +19,7 @@ def start_sequence():
                 colorblock.append(side_color_sensor.value())
                 sleep(0.3)
     global colorblock
+    print('Start Sequence')
     lower_motor.on_for_degrees(speed=10, degrees=-40)
     grabber_servo.on_for_degrees(speed=10, degrees=180)
     lower_motor.on_for_degrees(speed=10, degrees=-50)
