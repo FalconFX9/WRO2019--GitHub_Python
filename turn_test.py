@@ -31,14 +31,13 @@ file_x.close()
 steer_pair.on_for_rotations(0, -30, 0.1)
 follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, speed=30, kp=0.1)
 steer_pair.off()
-sleep(5)
 
 
 def turn_and_pick_up():
     lower_motor.on_for_degrees(10, -10)
     steer_pair.on_for_rotations(60, 40, 1.06)
     steer_pair.on_for_rotations(0, 20, 0.2)
-    lower_motor.on_for_degrees(10, 56)
+    lower_motor.on_for_degrees(10, 58)
     grabber_servo.on_for_degrees(10, -90)
     timed_follower(sensor=center_sensor, timemax=0.65, speed=20, kp=0.2, side_of_line=1)
     steer_pair.off()
