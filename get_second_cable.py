@@ -7,12 +7,12 @@ lines_passed = False
 
 def get_second_cable():
 
-    def check_for_lines(num_lines):
+    def check_for_lines(num_lines, sensor=center_sensor):
         global lines_passed
         counter = 0
         while counter < num_lines:
             print(counter)
-            if center_sensor.reflected_light_intensity < 30:
+            if sensor.reflected_light_intensity < 30:
                 if counter < num_lines - 1:
                     counter = counter + 1
                     sleep(0.3)
@@ -28,14 +28,14 @@ def get_second_cable():
             steer_pair.on(-100, -30)
         steer_pair.on_for_rotations(100, -20, 0.07)
         steer_pair.off()
-        t = Thread(target=check_for_lines, args=(2, ))
+        t = Thread(target=check_for_lines, args=(2, center_sensor, ))
         t.start()
         while not lines_passed:
             losp_right_follower(speed=30)
         lines_passed = False
         steer_pair.off()
         steer_pair.on_for_rotations(-70, -60, 0.9)
-        t = Thread(target=check_for_lines, args=(1, ))
+        t = Thread(target=check_for_lines, args=(1, right_side_sensor, ))
         t.start()
         while not lines_passed:
             losp_left_follower(side_of_line=1, speed=30)
