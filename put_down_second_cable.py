@@ -54,7 +54,7 @@ def put_down_second_cable():
         left_side_sensor.mode = 'COL-COLOR'
         right_side_sensor.mode = 'COL-COLOR'
         wait = time() + 0.5
-        while not (left_side_sensor.value() == 4 and right_side_sensor.value() == 6 and time() > wait):
+        while not (left_side_sensor.value() == 4 and right_side_sensor.value() == 1 and time() > wait):
             losp_center_follower(side_of_line=1)
         steer_pair.off()
         log_to_files = False
