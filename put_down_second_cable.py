@@ -51,6 +51,8 @@ def put_down_second_cable():
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)
         steer_pair.off()
+        steer_pair.on_for_rotations(-75, -30, 0.05)
+        steer_pair.off()
         left_side_sensor.mode = 'COL-COLOR'
         right_side_sensor.mode = 'COL-COLOR'
         wait = time() + 0.5
