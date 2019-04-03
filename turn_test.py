@@ -14,6 +14,8 @@ class BlackOrWhite:
 
     def __init__(self):
         self.light_intensity = side_color_sensor.value(3)
+        self.t = Thread(target=BlackOrWhite.count_blocks_passed, args=())
+        self.t2 = Thread(target=BlackOrWhite.count_blocks_passed, args=())
 
     def count_blocks_passed(self):
         global blocks_passed
@@ -33,6 +35,12 @@ class BlackOrWhite:
                 sleep(0.3)
             elif 100 > side_color_sensor.value(3) > 40:
                 block_is_black = True
+
+    def start_t(self):
+        self.t.start()
+
+    def start_t2(self):
+        self.t2.start()
 
 
 def turn_and_pick_up():
@@ -64,8 +72,7 @@ def turn_and_pick_up():
 
 
 lower_motor.off()
-t = Thread(target=BlackOrWhite.look_at_blocks, args=())
-t.start()
-t2 = Thread(target=BlackOrWhite.count_blocks_passed, args=())
-t2.start()
+t = BlackOrWhite()
+t.start_t()
+t.start_t2()
 turn_and_pick_up()
