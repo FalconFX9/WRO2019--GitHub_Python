@@ -48,6 +48,7 @@ def turn_and_pick_up():
     while not block_is_black:
         hisp_right_follower(speed=40)
     steer_pair.off()
+    block_is_black = False
     file_s.close()
     file_x.close()
     steer_pair.on_for_rotations(0, -30, 0.1)
@@ -60,7 +61,7 @@ def turn_and_pick_up():
     steer_pair.on_for_rotations(0, 30, 0.15)
     steer_pair.on_for_rotations(60, 40, 1.14)
     steer_pair.on_for_rotations(0, 20, 0.2)
-    lower_motor.on_for_degrees(10, 55)
+    lower_motor.on_for_degrees(10, 52)
     if not block_left:
         grabber_servo.on_for_degrees(10, -90)
         block_left = True
@@ -69,7 +70,7 @@ def turn_and_pick_up():
         block_left = False
     timed_follower(sensor=center_sensor, timemax=0.65, speed=20, kp=0.2, side_of_line=1)
     steer_pair.off()
-    lower_motor.on_for_degrees(10, -57)
+    lower_motor.on_for_degrees(10, -52)
 
 
 lower_motor.off()
