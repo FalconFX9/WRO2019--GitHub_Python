@@ -28,13 +28,14 @@ class BlackOrWhite:
     def look_at_blocks(self):
         global block_is_black, block_left, blocks_passed
         start_time = time()
-        while not block_is_black:
-            file_s.write(str(self.light_intensity) + '\n')
-            file_x.write(str(round((time() - start_time), 2)) + '\n')
-            if side_color_sensor.value(3) > 100:
-                sleep(0.3)
-            elif 100 > side_color_sensor.value(3) > 40:
-                block_is_black = True
+        for i in range(0, 3):
+            while not block_is_black:
+                file_s.write(str(self.light_intensity) + '\n')
+                file_x.write(str(round((time() - start_time), 2)) + '\n')
+                if side_color_sensor.value(3) > 100:
+                    sleep(0.3)
+                elif 100 > side_color_sensor.value(3) > 40:
+                    block_is_black = True
 
     def start_t(self):
         self.t.start()
@@ -79,5 +80,4 @@ t.start_t()
 t.start_t2()
 turn_and_pick_up()
 sleep(5)
-t.start_t2()
 turn_and_pick_up()
