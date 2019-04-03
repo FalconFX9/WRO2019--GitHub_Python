@@ -64,8 +64,8 @@ def turn_and_pick_up():
 
 
 lower_motor.off()
-t = Thread(target=BlackOrWhite.look_at_blocks)
+t = Thread(target=BlackOrWhite.look_at_blocks, args=())
 t.start()
-t2 = Thread(target=BlackOrWhite.count_blocks_passed)
+t2 = Thread(target=BlackOrWhite.count_blocks_passed, args=())
 t2.start()
 turn_and_pick_up()
