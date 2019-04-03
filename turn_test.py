@@ -69,7 +69,7 @@ def turn_and_pick_up():
         block_left = False
     timed_follower(sensor=center_sensor, timemax=0.65, speed=20, kp=0.2, side_of_line=1)
     steer_pair.off()
-    lower_motor.on_for_degrees(10, -75)
+    lower_motor.on_for_degrees(10, -57)
 
 
 lower_motor.off()
@@ -77,4 +77,5 @@ t = BlackOrWhite()
 t.start_t()
 t.start_t2()
 turn_and_pick_up()
+sleep(5)
 turn_and_pick_up()
