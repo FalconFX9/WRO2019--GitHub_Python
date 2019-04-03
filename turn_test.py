@@ -5,43 +5,67 @@ file_s = open('sensor_data.txt', 'w+')
 file_x = open('time_data.txt', 'w+')
 side_color_sensor.mode = 'RGB'
 block_is_black = False
+block_left = False
+blocks_passed = 0
+stop_log = False
 
 
-def look_at_blocks():
-    global block_is_black
-    while not block_is_black:
-        file_s.write(str(side_color_sensor.value(3)) + '\n')
-        file_x.write(str(round((time() - start_time), 2)) + '\n')
-        if side_color_sensor.value(3) > 100:
-            sleep(0.3)
-        elif 100 > side_color_sensor.value(3) > 40:
-            block_is_black = True
+class BlackOrWhite:
 
+    def __init__(self):
+        self.light_intensity = side_color_sensor.value(3)
 
-lower_motor.off(brake=True)
-tick = 0
-start_time = time()
-t = Thread(target=look_at_blocks)
-t.start()
-while not block_is_black:
-    hisp_right_follower(speed=40)
-steer_pair.off(brake=False)
-file_s.close()
-file_x.close()
-steer_pair.on_for_rotations(0, -30, 0.1)
-follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, speed=30, kp=0.1)
-steer_pair.off()
+    def count_blocks_passed(self):
+        global blocks_passed
+        blocks_passed = 0
+        while not (blocks_passed == 3 and stop_log):
+            if self.light_intensity > 40:
+                blocks_passed += 1
+                sleep(0.3)
+
+    def look_at_blocks(self):
+        global block_is_black, block_left, blocks_passed
+        start_time = time()
+        while not block_is_black:
+            file_s.write(str(self.light_intensity) + '\n')
+            file_x.write(str(round((time() - start_time), 2)) + '\n')
+            if side_color_sensor.value(3) > 100:
+                sleep(0.3)
+            elif 100 > side_color_sensor.value(3) > 40:
+                block_is_black = True
 
 
 def turn_and_pick_up():
+    global block_left, block_is_black, stop_log, blocks_passed
+    while not block_is_black:
+        hisp_right_follower(speed=40)
+    steer_pair.off()
+    file_s.close()
+    file_x.close()
+    steer_pair.on_for_rotations(0, -30, 0.1)
+    follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, speed=30, kp=0.1)
+    stop_log = True
+    if blocks_passed > 2:
+        steer_pair.on_for_rotations(0, 30, 0.3)
+    steer_pair.off()
     lower_motor.on_for_degrees(10, -10)
     steer_pair.on_for_rotations(60, 40, 1.06)
     steer_pair.on_for_rotations(0, 20, 0.2)
     lower_motor.on_for_degrees(10, 58)
-    grabber_servo.on_for_degrees(10, -90)
+    if not block_left:
+        grabber_servo.on_for_degrees(10, -90)
+        block_left = True
+    else:
+        grabber_servo.on_for_degrees(10, -180)
+        block_left = False
     timed_follower(sensor=center_sensor, timemax=0.65, speed=20, kp=0.2, side_of_line=1)
     steer_pair.off()
     lower_motor.on_for_degrees(10, -75)
 
 
+lower_motor.off()
+t = Thread(target=BlackOrWhite.look_at_blocks)
+t.start()
+t2 = Thread(target=BlackOrWhite.count_blocks_passed)
+t2.start()
 turn_and_pick_up()
