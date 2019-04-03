@@ -14,8 +14,8 @@ class BlackOrWhite:
 
     def __init__(self):
         self.light_intensity = side_color_sensor.value(3)
-        self.t = Thread(target=BlackOrWhite.count_blocks_passed, args=())
-        self.t2 = Thread(target=BlackOrWhite.count_blocks_passed, args=())
+        self.t = Thread(target=self.count_blocks_passed, args=())
+        self.t2 = Thread(target=self.look_at_blocks, args=())
 
     def count_blocks_passed(self):
         global blocks_passed
