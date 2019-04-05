@@ -20,9 +20,8 @@ def start_sequence():
                 sleep(0.3)
     global colorblock
     print('Start Sequence')
-    lower_motor.on_for_degrees(speed=10, degrees=-40)
-    grabber_servo.on_for_degrees(speed=10, degrees=180)
-    lower_motor.on_for_degrees(speed=10, degrees=-50)
+    grabber_servo.on_for_degrees(speed=10, degrees=-180)
+    lower_motor.on_for_degrees(speed=30, degrees=-90)
     steer_pair.on_for_rotations(25, -30, 0.4)
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 17 or side_color_sensor.value() == 0:

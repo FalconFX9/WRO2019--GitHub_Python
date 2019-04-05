@@ -15,6 +15,7 @@ class BlackOrWhite:
     def __init__(self):
         self.light_intensity = side_color_sensor.value(3)
         self.t = Thread(target=self.count_blocks_passed, args=())
+        self.t2_5 = Thread(target=self.count_blocks_passed, args=())
         self.t2 = Thread(target=self.look_at_blocks, args=())
 
     def count_blocks_passed(self):
@@ -24,24 +25,28 @@ class BlackOrWhite:
             if self.light_intensity > 40:
                 blocks_passed += 1
                 sleep(0.3)
+        print('Thread count_blocks_passed is finished')
 
     def look_at_blocks(self):
         global block_is_black, block_left, blocks_passed
         start_time = time()
-        for i in range(0, 3):
-            while not block_is_black:
-                file_s.write(str(self.light_intensity) + '\n')
-                file_x.write(str(round((time() - start_time), 2)) + '\n')
-                if side_color_sensor.value(3) > 100:
-                    sleep(0.3)
-                elif 100 > side_color_sensor.value(3) > 40:
-                    block_is_black = True
+        while not block_is_black:
+            file_s.write(str(self.light_intensity) + '\n')
+            file_x.write(str(round((time() - start_time), 2)) + '\n')
+            if side_color_sensor.value(3) > 100:
+                sleep(0.3)
+            elif 100 > side_color_sensor.value(3) > 40:
+                block_is_black = True
+        print('Thread look_at_blocks is finished')
 
     def start_t(self):
         self.t.start()
 
     def start_t2(self):
         self.t2.start()
+
+    def start_t2_5(self):
+        self.t2_5.start()
 
 
 def turn_and_pick_up():
@@ -80,4 +85,5 @@ t.start_t()
 t.start_t2()
 turn_and_pick_up()
 sleep(5)
+t.start_t2_5()
 turn_and_pick_up()
