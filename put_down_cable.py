@@ -49,7 +49,7 @@ def put_down_cable():
             losp_center_follower(side_of_line=1)
         steer_pair.off()
         lower_motor.on_for_degrees(speed=10, degrees=90)
-        steer_pair.on_for_rotations(0, 60, 0.6)
+        steer_pair.on_for_rotations(0, 60, 0.65)
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
     lower_motor.off()
