@@ -44,8 +44,8 @@ def get_second_cable():
         lines_passed = False
 
     def pick_up_cable():
-        lower_motor.on_for_degrees(speed=10, degrees=98)
-        timed_follower(center_sensor, speed=20, timemax=0.83)
+        lower_motor.on_for_degrees(speed=10, degrees=90)
+        timed_follower(center_sensor, speed=20, timemax=0.94)
         steer_pair.off()
         lower_motor.on_for_degrees(speed=10, degrees=-100)
 
