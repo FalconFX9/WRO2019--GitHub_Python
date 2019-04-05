@@ -47,7 +47,8 @@ def put_down_cable():
         right_side_sensor.mode = 'COL-COLOR'
         while not (left_side_sensor.value() == 5 and right_side_sensor.value() == 2 and time() > wait):
             losp_center_follower(side_of_line=1)
-        steer_pair.off()
+        steer_pair.off(brake=False)
+        steer_pair.on_for_rotations(0, -30, 0.1)
         lower_motor.on_for_degrees(speed=10, degrees=90)
         steer_pair.on_for_rotations(0, 60, 0.65)
         lower_motor.on_for_degrees(speed=10, degrees=-90)

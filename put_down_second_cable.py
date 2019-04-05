@@ -28,7 +28,7 @@ def put_down_second_cable():
         steer_pair.off()
         steer_pair.on_for_rotations(70, 40, 0.07)
         follow_to_line(following_sensor=right_side_sensor, line_sensor=left_side_sensor, speed=30, side_of_line=1,
-                       kp=0.38)
+                       kp=0.43)
         t = Thread(target=check_for_lines, args=(5, ))
         t.start()
         while not lines_passed:
@@ -59,12 +59,13 @@ def put_down_second_cable():
         while not (left_side_sensor.value() == 4 and right_side_sensor.value() == 3 and time() > wait):
             print('Left side : ' + str(left_side_sensor.value()) + 'Right side : ' + str(right_side_sensor.value()))
             losp_center_follower(side_of_line=1)
-        steer_pair.off()
+        steer_pair.off(brake=False)
         log_to_files = False
         left_side_sensor.mode = 'COL-REFLECT'
         right_side_sensor.mode = 'COL-REFLECT'
 
     def put_down_cable():
+        steer_pair.on_for_rotations(0, -30, 0.1)
         lower_motor.on_for_degrees(speed=10, degrees=90)
         steer_pair.on_for_rotations(0, 30, 0.5)
         lower_motor.on_for_degrees(speed=10, degrees=-90)

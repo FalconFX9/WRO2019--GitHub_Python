@@ -43,7 +43,7 @@ def goto_cables_group():
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(-70, 40)
         steer_pair.off()
-        steer_pair.on_for_rotations(70, 40, 0.05)
+        steer_pair.on_for_rotations(70, 60, 0.05)
         steer_pair.off()
 
     goto_cable()
