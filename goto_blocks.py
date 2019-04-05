@@ -23,7 +23,7 @@ def goto_cables_group():
     def goto_cable():
         global lines_passed, log_to_files
         print('Going to the first cable')
-        timed_follower(sensor=right_side_sensor, timemax=3.6, side_of_line=1, speed=60, kp=0.1, ttarget=60)
+        timed_follower(sensor=right_side_sensor, timemax=3.6, side_of_line=1, speed=60, kp=0.15, ttarget=60)
         t = threading.Thread(target=check_for_lines, args=(1,))
         t.start()
         while not lines_passed:
