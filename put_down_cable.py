@@ -22,21 +22,21 @@ def put_down_cable():
         global lines_passed
         left_side_sensor.mode = 'COL-REFLECT'
         right_side_sensor.mode = 'COL-REFLECT'
-        follow_to_line(line_sensor=right_side_sensor, speed=40, side_of_line=1)
+        follow_to_line(line_sensor=right_side_sensor, speed=60, side_of_line=1)
         steer_pair.off()
         steer_pair.on_for_rotations(0, -40, 0.3)
         # steer_pair.on_for_rotations(-100, -20, 0.4)
         while right_side_sensor.reflected_light_intensity > 30:
-            steer_pair.on(-100, -20)
+            steer_pair.on(-100, -40)
         steer_pair.on_for_rotations(100, -20, 0.05)
         lines_passed = False
         t = Thread(target=check_for_lines, args=(2,))
         t.start()
         while not lines_passed:
-            losp_right_follower()
+            losp_right_follower(speed=50)
         steer_pair.off()
         lines_passed = False
-        steer_pair.on_for_rotations(0, -30, 0.35)
+        steer_pair.on_for_rotations(0, -40, 0.35)
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)
         steer_pair.off()
