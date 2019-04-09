@@ -33,7 +33,7 @@ def put_down_cable():
         t = Thread(target=check_for_lines, args=(2,))
         t.start()
         while not lines_passed:
-            losp_right_follower(speed=50, kp=0.4)
+            losp_right_follower(speed=50, kp=0.3)
         steer_pair.off()
         lines_passed = False
         steer_pair.on_for_rotations(0, -40, 0.35)
