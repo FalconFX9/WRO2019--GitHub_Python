@@ -34,7 +34,7 @@ def get_second_cable():
             hisp_right_follower(speed=50, kp=0.25)
         lines_passed = False
         steer_pair.off()
-        steer_pair.on_for_rotations(-70, -60, 0.9)
+        steer_pair.on_for_rotations(-70, -75, 0.9)
         t = Thread(target=check_for_lines, args=(1, right_side_sensor, ))
         t.start()
         while not lines_passed:
