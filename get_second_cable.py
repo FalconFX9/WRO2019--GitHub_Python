@@ -31,21 +31,21 @@ def get_second_cable():
         t = Thread(target=check_for_lines, args=(2, center_sensor, ))
         t.start()
         while not lines_passed:
-            hisp_right_follower(speed=30, kp=0.4)
+            hisp_right_follower(speed=50, kp=0.4)
         lines_passed = False
         steer_pair.off()
         steer_pair.on_for_rotations(-70, -60, 0.9)
         t = Thread(target=check_for_lines, args=(1, right_side_sensor, ))
         t.start()
         while not lines_passed:
-            hisp_left_follower(side_of_line=1, speed=30)
+            hisp_left_follower(side_of_line=1, speed=40)
             print(left_side_sensor.reflected_light_intensity)
         steer_pair.off()
         lines_passed = False
 
     def pick_up_cable():
         lower_motor.on_for_degrees(speed=10, degrees=90)
-        timed_follower(center_sensor, speed=20, timemax=0.94)
+        timed_follower(center_sensor, speed=30, timemax=0.94)
         steer_pair.off()
         lower_motor.on_for_degrees(speed=10, degrees=-100)
 
