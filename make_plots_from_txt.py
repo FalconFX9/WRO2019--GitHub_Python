@@ -1,5 +1,14 @@
 import matplotlib
 import matplotlib.pyplot as plt
+
+"""
+HOW TO TUNE PD CONTROLLER ACCORDING TO ZIERGLER-NICHOLLS METHOD
+Start to increase P from 0 until robot oscillates consistently
+Value of P when robots starts to oscillate consistently is ultimate gain, or Ku
+Kp should then be 0.8Ku
+Look at graph and take oscillation period, this is Tu
+Kd should be Ku*Tu/10
+"""
 matplotlib.use('Qt5Agg')
 file_s = open('sensor_data.txt', 'r')
 file_st = open('steering_data.txt', 'r')
