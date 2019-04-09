@@ -32,7 +32,7 @@ def put_down_second_cable():
         t = Thread(target=check_for_lines, args=(5, ))
         t.start()
         while not lines_passed:
-            hisp_right_follower(speed=60, side_of_line=1, kp=0.15)
+            hisp_right_follower(speed=60, side_of_line=1, kp=0.05)
         steer_pair.off()
         lines_passed = False
         steer_pair.on_for_rotations(0, -20, 0.1)
