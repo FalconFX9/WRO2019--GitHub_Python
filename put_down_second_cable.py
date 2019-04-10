@@ -65,8 +65,9 @@ def put_down_second_cable():
         right_side_sensor.mode = 'COL-REFLECT'
         # Put down cable
         steer_pair.on_for_rotations(0, -30, 0.1)
-        lower_motor.on_for_degrees(speed=10, degrees=85)
-        steer_pair.on_for_rotations(0, 30, 0.5)
-        lower_motor.on_for_degrees(speed=10, degrees=-85)
+        lower_motor.on_for_degrees(speed=30, degrees=85)
+        sleep(3)
+        steer_pair.on_for_rotations(0, 60, 1)
+        lower_motor.on_for_degrees(speed=30, degrees=-85)
 
     goto_drop()
