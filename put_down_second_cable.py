@@ -70,6 +70,3 @@ def put_down_second_cable():
         lower_motor.on_for_degrees(speed=10, degrees=-85)
 
     goto_drop()
-
-
-put_down_second_cable()
