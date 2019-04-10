@@ -38,7 +38,7 @@ def get_second_cable():
         t = Thread(target=check_for_lines, args=(1, right_side_sensor, ))
         t.start()
         while not lines_passed:
-            hisp_left_follower(side_of_line=1, speed=40)
+            hisp_left_follower(side_of_line=1, speed=40, kp=0.2)
             print(left_side_sensor.reflected_light_intensity)
         steer_pair.off()
         lines_passed = False

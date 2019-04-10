@@ -66,7 +66,6 @@ def put_down_second_cable():
         # Put down cable
         steer_pair.on_for_rotations(0, -30, 0.1)
         lower_motor.on_for_degrees(speed=30, degrees=85)
-        sleep(3)
         steer_pair.on_for_rotations(0, 60, 1)
         lower_motor.on_for_degrees(speed=30, degrees=-85)
 
