@@ -24,7 +24,7 @@ def put_down_cable():
         right_side_sensor.mode = 'COL-REFLECT'
         follow_to_line(line_sensor=right_side_sensor, speed=60, side_of_line=1)
         steer_pair.off()
-        steer_pair.on_for_rotations(0, -40, 0.3)
+        steer_pair.on_for_rotations(0, -40, 0.6)
         # steer_pair.on_for_rotations(-100, -20, 0.4)
         while right_side_sensor.reflected_light_intensity > 30:
             steer_pair.on(-100, -40)
