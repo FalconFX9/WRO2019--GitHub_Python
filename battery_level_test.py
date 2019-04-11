@@ -1,60 +1,41 @@
-def get_battery_percentage():
-    """
-    Return an int() of the percentage of battery life remaining
-    """
-    voltage_max = None
-    voltage_min = None
-    voltage_now = None
+#!/usr/bin/env python3
+"""`cat` for Python 3.
+ - if a file has no newline at the end then the last line is merged
+   with the first line of the next file like `cat` does
+ - os.fsencode() is not used to encode error message therefore there
+   could be surrogates in the output (encoded using the default for
+   errors 'backslashreplace' error handler): it is always possible to
+   restore the original filename whatever (ascii-based) locale
+   settings are
+ - line separator is always b'\n' regardless of the platform
+"""
+import fileinput
+import os
+import sys
 
-    with open('/sys/devices/platform/legoev3-battery/power_supply/legoev3-battery/uevent', 'r') as fh:
-        for line in fh:
+def progname():
+    """Get program name."""
+    # NOTE: to follow symlinks, os.path.realpath() could be used
+    return os.path.basename(sys.argv[0]) or 'cat.py'
 
-            if not voltage_max:
-                re_voltage_max = re.search(
-                    'POWER_SUPPLY_VOLTAGE_MAX_DESIGN=(\d+)', line)
 
-                if re_voltage_max:
-                    voltage_max = int(re_voltage_max.group(1))
-                    continue
-
-            if not voltage_min:
-                re_voltage_min = re.search(
-                    'POWER_SUPPLY_VOLTAGE_MIN_DESIGN=(\d+)', line)
-
-                if re_voltage_min:
-                    voltage_min = int(re_voltage_min.group(1))
-                    continue
-
-            if not voltage_now:
-                re_voltage_now = re.search(
-                    'POWER_SUPPLY_VOLTAGE_NOW=(\d+)', line)
-
-                if re_voltage_now:
-                    voltage_now = int(re_voltage_now.group(1))
-
-            if re_voltage_max and re_voltage_min and re_voltage_now:
-                break
-
-    if voltage_max and voltage_min and voltage_now:
-
-        # This happens with the EV3 rechargeable battery if it is fully charge
-        if voltage_now >= voltage_max:
-            return 100
-
-        # Haven't seen this scenario but it can't hurt to check for it
-        elif voltage_now <= voltage_min:
-            return 0
-
-        # voltage_now is between the min and max
-        else:
-            voltage_max -= voltage_min
-            voltage_now -= voltage_min
-            return int(voltage_now / float(voltage_max) * 100)
+if sys.version_info[:3] < (3, 4, 1): # see http://bugs.python.org/issue21075
+    sys.stdin = sys.stdin.detach() # use binary mode for files
+# XXX Is it necessary to call:
+#    msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY)
+#  on Windows (to avoid b'\n' -> b'\r\n')?
+output_file = sys.stdout = sys.stdout.detach()
+input_file = fileinput.input(mode='rb')
+while True:
+    try:
+        line = input_file.readline()
+    except OSError as e:
+        print('{}: error: {}'.format(progname(), e), file=sys.stderr)
+        # # `cat`-like error message (ignore locales):
+        # sys.stderr.buffer.write(os.fsencode(progname()) + b': ' +
+        #                         os.fsencode(e.filename) + b': ' +
+        #                         e.strerror.encode() + b'\n')
     else:
-        logger.error('voltage_max %s, voltage_min %s, voltage_now %s' %
-                     (voltage_max, voltage_min, voltage_now))
-        return 0
-
-
-for i in range(0, 100):
-    print(get_battery_percentage())
+        if not line:
+            break
+        output_file.write(line)
