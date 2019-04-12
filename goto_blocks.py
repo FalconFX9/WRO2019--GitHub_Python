@@ -1,4 +1,5 @@
 from line_follower_class import *
+from battery_level_test import check_battery
 import threading
 
 lines_passed = False
@@ -23,7 +24,11 @@ def goto_cables_group():
     def goto_cable():
         global lines_passed, log_to_files
         print('Going to the first cable')
-        timed_follower(sensor=right_side_sensor, timemax=3.6, side_of_line=1, speed=85, kp=0.3, ttarget=50)
+        if check_battery() < 8150000:
+            kp_offset = 0.15
+        else:
+            kp_offset = 0
+        timed_follower(sensor=right_side_sensor, timemax=3.6, side_of_line=1, speed=85, kp=0.3+kp_offset, ttarget=50)
         t = threading.Thread(target=check_for_lines, args=(1,))
         t.start()
         while not lines_passed:
