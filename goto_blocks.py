@@ -25,7 +25,7 @@ def goto_cables_group():
         global lines_passed, log_to_files
         print('Going to the first cable')
         if check_battery() < 8150000:
-            kp_offset = 0.06
+            kp_offset = 0.1
         else:
             kp_offset = 0
         timed_follower(sensor=right_side_sensor, timemax=3.6, side_of_line=1, speed=85, kp=0.3+kp_offset, ttarget=50)
