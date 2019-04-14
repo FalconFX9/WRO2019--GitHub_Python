@@ -22,7 +22,7 @@ K_D = float(input('Please enter a new K_D value here : '))
 timed_follower(sensor=center_sensor, side_of_line=1, timemax=4, kp=0.3, ttarget=45, kd=K_D)
 steer_pair.off()
 
-while input('Try again with different K_D ? (Y/N) ') == 'Y':
+while True:
     print('Change K_D to input value')
     K_D = float(input('Please enter a new K_D value here : '))
     if change_kp:
