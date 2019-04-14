@@ -60,9 +60,9 @@ class OneSensorLineFollower:
         right = -1
 
 
-def hisp_center_follower(side_of_line=None, speed=DEFAULT_SPEED):
+def hisp_center_follower(side_of_line=None, speed=DEFAULT_SPEED, kp=0.15, kd=0.17):
     follow = OneSensorLineFollower(center_sensor)
-    follow.follower(side_of_line=side_of_line, kp=0.15, speed=speed)
+    follow.follower(side_of_line=side_of_line, kp=kp, kd=kd, speed=speed)
 
 
 def losp_center_follower(side_of_line=None, speed=20):
