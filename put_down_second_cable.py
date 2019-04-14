@@ -7,12 +7,12 @@ lines_passed = False
 
 def put_down_second_cable():
 
-    def check_for_lines(num_lines):
+    def check_for_lines(num_lines, sensor=center_sensor):
         global lines_passed
         counter = 0
         while counter < num_lines:
             print(counter)
-            if center_sensor.reflected_light_intensity < 30:
+            if sensor.reflected_light_intensity < 30:
                 if counter < num_lines - 1:
                     counter = counter + 1
                     sleep(0.3)
@@ -29,7 +29,7 @@ def put_down_second_cable():
         steer_pair.on_for_rotations(70, 40, 0.07)
         follow_to_line(following_sensor=center_sensor, line_sensor=left_side_sensor, speed=40,
                        kp=0.5)
-        t = Thread(target=check_for_lines, args=(5, ))
+        t = Thread(target=check_for_lines, args=(5, right_side_sensor, ))
         t.start()
         while not lines_passed:
             hisp_center_follower(kp=0.1)
@@ -41,7 +41,7 @@ def put_down_second_cable():
             print(center_sensor.reflected_light_intensity)
         steer_pair.off()
         steer_pair.on_for_rotations(100, -20, 0.17)
-        t = Thread(target=check_for_lines, args=(2,))
+        t = Thread(target=check_for_lines, args=(2, center_sensor, ))
         t.start()
         while not lines_passed:
             losp_right_follower()
