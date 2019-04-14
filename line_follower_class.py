@@ -32,7 +32,7 @@ class OneSensorLineFollower:
     def __init__(self, color_sensor):
         self.__color_sensor = color_sensor
 
-    def follower(self, side_of_line=None, kp=K_PROPORTIONAL-2, speed=DEFAULT_SPEED,
+    def follower(self, side_of_line=None, kp=K_PROPORTIONAL+kp_offset, speed=DEFAULT_SPEED,
                  sensor_target=target, kd=K_DERIVATIVE):
         if side_of_line is None:
             side_of_line = self.SideOfLine.left
