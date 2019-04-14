@@ -28,7 +28,7 @@ class OneSensorLineFollower:
         self.__color_sensor = color_sensor
 
     def follower(self, side_of_line=None, kp=K_PROPORTIONAL, speed=DEFAULT_SPEED,
-                 sensor_target=target):
+                 sensor_target=target, kd=K_DERIVATIVE):
         if side_of_line is None:
             side_of_line = self.SideOfLine.left
         else:
@@ -37,7 +37,7 @@ class OneSensorLineFollower:
         self.error = self.target - float(self.__color_sensor.reflected_light_intensity)
         self.integral = self.error + self.integral
         self.derivative = self.error - self.last_error
-        motor_steering = ((self.error * kp) + (self.integral * K_INTEGRAL) + (self.derivative * K_DERIVATIVE)) * float(
+        motor_steering = ((self.error * kp) + (self.integral * K_INTEGRAL) + (self.derivative * kd)) * float(
             side_of_line)
         self.last_error = self.error
         steer_pair.on(motor_steering, -speed)
@@ -86,12 +86,12 @@ def losp_right_follower(side_of_line=None, speed=20, kp=0.25):
     follow.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=30)
 
 
-def timed_follower(sensor, timemax, side_of_line=None, speed=DEFAULT_SPEED, kp=0.15, ttarget=35):
+def timed_follower(sensor, timemax, side_of_line=None, speed=DEFAULT_SPEED, kp=0.15, ttarget=35, kd=0.17):
     follower = OneSensorLineFollower(sensor)
     timemax = time() + timemax
     while time() < timemax:
         print(sensor.reflected_light_intensity)
-        follower.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=ttarget)
+        follower.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=ttarget, kd=kd)
 
 
 def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, speed=DEFAULT_SPEED, side_of_line=None,
