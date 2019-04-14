@@ -1,4 +1,5 @@
 from sensor_and_motor_startup import *
+from battery_level_test import check_battery
 
 file_s = open('sensor_data.txt', 'w+')
 file_st = open('steering_data.txt', 'w+')
@@ -23,11 +24,15 @@ class OneSensorLineFollower:
     derivative = 0
     integral = 0
     start_time = time()
+    if check_battery() < 8150000:
+        kp_offset = 0.1
+    else:
+        kp_offset = 0
 
     def __init__(self, color_sensor):
         self.__color_sensor = color_sensor
 
-    def follower(self, side_of_line=None, kp=K_PROPORTIONAL, speed=DEFAULT_SPEED,
+    def follower(self, side_of_line=None, kp=K_PROPORTIONAL+kp_offset, speed=DEFAULT_SPEED,
                  sensor_target=target, kd=K_DERIVATIVE):
         if side_of_line is None:
             side_of_line = self.SideOfLine.left
@@ -41,7 +46,6 @@ class OneSensorLineFollower:
             side_of_line)
         self.last_error = self.error
         steer_pair.on(motor_steering, -speed)
-        print(kd)
         if log_to_files:
             file_s.write(str(self.__color_sensor.reflected_light_intensity) + '\n')
             file_x.write(str(round((time() - self.start_time), 1)) + '\n')
