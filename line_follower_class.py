@@ -41,6 +41,7 @@ class OneSensorLineFollower:
             side_of_line)
         self.last_error = self.error
         steer_pair.on(motor_steering, -speed)
+        print(K_DERIVATIVE)
         if log_to_files:
             file_s.write(str(self.__color_sensor.reflected_light_intensity) + '\n')
             file_x.write(str(round((time() - self.start_time), 1)) + '\n')
