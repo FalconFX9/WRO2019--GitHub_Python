@@ -7,12 +7,12 @@ lines_passed = False
 
 def put_down_second_cable():
 
-    def check_for_lines(num_lines, sensor=center_sensor):
+    def check_for_lines(num_lines):
         global lines_passed
         counter = 0
         while counter < num_lines:
             print(counter)
-            if sensor.reflected_light_intensity < 30:
+            if center_sensor.reflected_light_intensity < 30:
                 if counter < num_lines - 1:
                     counter = counter + 1
                     sleep(0.3)
@@ -27,13 +27,13 @@ def put_down_second_cable():
             steer_pair.on(70, 20)
         steer_pair.off()
         steer_pair.on_for_rotations(70, 40, 0.07)
-        follow_to_line(following_sensor=center_sensor, line_sensor=left_side_sensor, speed=40,
-                       kp=0.5)
+        follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, side_of_line=1, speed=40,
+                       kp=0.6)
         steer_pair.on_for_rotations(0, -40, 0.1)
-        t = Thread(target=check_for_lines, args=(4, right_side_sensor, ))
+        t = Thread(target=check_for_lines, args=(4, ))
         t.start()
         while not lines_passed:
-            hisp_center_follower(kp=0.04, speed=50)
+            hisp_right_follower(kp=0.06, side_of_line=1, speed=50)
         steer_pair.off()
         lines_passed = False
         steer_pair.on_for_rotations(0, -20, 0.1)
@@ -62,9 +62,9 @@ def put_down_second_cable():
             losp_center_follower(side_of_line=1)
         steer_pair.off(brake=False)
         # Put down cable
-        steer_pair.on_for_rotations(0, -30, 0.1)
+        steer_pair.on_for_rotations(0, -30, 0.2)
         lower_motor.on_for_degrees(speed=30, degrees=85)
-        sleep(1)
+        sleep(0.8)
         steer_pair.on_for_rotations(0, 60, 1)
         lower_motor.on_for_degrees(speed=30, degrees=-85)
         log_to_files = False
