@@ -29,7 +29,8 @@ def put_down_second_cable():
         steer_pair.on_for_rotations(70, 40, 0.07)
         follow_to_line(following_sensor=center_sensor, line_sensor=left_side_sensor, speed=40,
                        kp=0.5)
-        t = Thread(target=check_for_lines, args=(5, right_side_sensor, ))
+        steer_pair.on_for_rotations(0, -40, 0.1)
+        t = Thread(target=check_for_lines, args=(4, right_side_sensor, ))
         t.start()
         while not lines_passed:
             hisp_center_follower(kp=0.04, speed=50)
@@ -63,6 +64,7 @@ def put_down_second_cable():
         # Put down cable
         steer_pair.on_for_rotations(0, -30, 0.1)
         lower_motor.on_for_degrees(speed=30, degrees=85)
+        sleep(1)
         steer_pair.on_for_rotations(0, 60, 1)
         lower_motor.on_for_degrees(speed=30, degrees=-85)
         log_to_files = False
