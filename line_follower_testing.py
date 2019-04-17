@@ -34,3 +34,4 @@ while True:
         steer_pair.off()
     except KeyboardInterrupt:
         log_to_files = False
+        exit()
