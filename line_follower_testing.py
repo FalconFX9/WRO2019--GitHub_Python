@@ -8,7 +8,7 @@ changing K_P was selected at the start.
 Feel free to go and try out many different values and combinations
 The default K_P is 0.3, while the default K_D is 0.17
 """
-
+log_to_files = True
 if input("Do you also want to change K_P after each run ? (Y/N) ") == 'Y':
     change_kp = True
 else:
@@ -23,11 +23,14 @@ follow_for_xlines(4, sensor=right_side_sensor, side_of_line=1, ttarget=45, kd=K_
 steer_pair.off()
 
 while True:
-    print('Change K_D to input value')
-    K_D = float(input('Please enter a new K_D value here : '))
-    if change_kp:
-        kp = float(input('Enter a new K_P value here : '))
-    else:
-        kp = 0.3
-    follow_for_xlines(4, sensor=right_side_sensor, side_of_line=1, ttarget=45, kp=kp, kd=K_D)
-    steer_pair.off()
+    try:
+        print('Change K_D to input value')
+        K_D = float(input('Please enter a new K_D value here : '))
+        if change_kp:
+            kp = float(input('Enter a new K_P value here : '))
+        else:
+            kp = 0.3
+        follow_for_xlines(4, sensor=right_side_sensor, side_of_line=1, ttarget=45, kp=kp, kd=K_D)
+        steer_pair.off()
+    except KeyboardInterrupt:
+        log_to_files = False
