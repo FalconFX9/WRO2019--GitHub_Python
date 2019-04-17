@@ -1,5 +1,5 @@
 from sensor_and_motor_startup import *
-from battery_level_test import check_battery
+from battery_level_test import better_compensation
 
 file_s = open('sensor_data.txt', 'w+')
 file_st = open('steering_data.txt', 'w+')
@@ -24,15 +24,11 @@ class OneSensorLineFollower:
     derivative = 0
     integral = 0
     start_time = time()
-    if check_battery() < 8150000:
-        kp_offset = 0.1
-    else:
-        kp_offset = 0
 
     def __init__(self, color_sensor):
         self.__color_sensor = color_sensor
 
-    def follower(self, side_of_line=None, kp=K_PROPORTIONAL+kp_offset, speed=DEFAULT_SPEED,
+    def follower(self, side_of_line=None, kp=K_PROPORTIONAL, speed=DEFAULT_SPEED+better_compensation(),
                  sensor_target=target, kd=K_DERIVATIVE):
         if side_of_line is None:
             side_of_line = self.SideOfLine.left
@@ -105,20 +101,14 @@ def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, sp
         follow.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=45)
 
 
-"""
-lines_passed = False
-
-
-def check_for_lines(num_lines):
-    global lines_passed
+def follow_for_xlines(num_lines, sensor, side_of_line=None, speed=DEFAULT_SPEED, kp=0.15, ttarget=35, kd=0.17):
     counter = 0
+    follower = OneSensorLineFollower(sensor)
     while counter < num_lines:
-        print(counter)
+        follower.follower(side_of_line, kp, speed, ttarget, kd)
         if center_sensor.reflected_light_intensity < 30:
             if counter < num_lines - 1:
                 counter = counter + 1
-                sleep(0.3)
+                timed_follower(sensor, 0.3, side_of_line, speed, kp, ttarget, kd)
             else:
                 counter = counter + 1
-    lines_passed = True
-"""
