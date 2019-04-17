@@ -30,6 +30,7 @@ def put_down_second_cable():
         follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, side_of_line=1, speed=40,
                        kp=0.6)
         steer_pair.on_for_rotations(0, -40, 0.1)
+        sleep(5)
         t = Thread(target=check_for_lines, args=(4, ))
         t.start()
         while not lines_passed:
