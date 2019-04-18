@@ -60,7 +60,7 @@ def turn_and_pick_up():
     steer_pair.on_for_rotations(0, 30, 0.15)
     steer_pair.on_for_rotations(60, 40, 1.14)
     steer_pair.on_for_rotations(0, 20, 0.2)
-    lower_motor.on_for_degrees(10, 58)
+    lower_motor.on_for_degrees(10, 55)
     if not block_left:
         grabber_servo.on_for_degrees(10, -90)
         block_left = True
