@@ -61,7 +61,7 @@ def put_down_second_cable():
         steer_pair.on_for_rotations(0, -30, 0.2)
         lower_motor.on_for_degrees(speed=30, degrees=85)
         sleep(0.8)
-        steer_pair.on_for_rotations(0, 60, 1)
+        steer_pair.on_for_rotations(0, 60, 1.1)
         lower_motor.on_for_degrees(speed=30, degrees=-85)
         log_to_files = False
         left_side_sensor.mode = 'COL-REFLECT'
