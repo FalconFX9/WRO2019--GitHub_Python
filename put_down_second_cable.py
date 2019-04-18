@@ -31,7 +31,7 @@ def put_down_second_cable():
         follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, side_of_line=1, speed=40,
                        kp=0.3)
         steer_pair.on_for_rotations(0, -40, 0.1)
-        follow_for_xlines(3, sensor=right_side_sensor, side_of_line=1, ttarget=45, kp=0.2)
+        follow_for_xlines(4, sensor=right_side_sensor, side_of_line=1, ttarget=45, kp=0.2)
         steer_pair.off()
         lines_passed = False
         steer_pair.on_for_rotations(0, -20, 0.1)
