@@ -47,5 +47,6 @@ def go_home():
     steer_pair.off()
     timed_follower(left_side_sensor, timemax=2.5, speed=50, kp=0.2)
     steer_pair.off()
+    steer_pair.on_for_rotations(0, -30, 0.7)
     steer_pair.on_for_rotations(70, -30, 1)
     steer_pair.off()
