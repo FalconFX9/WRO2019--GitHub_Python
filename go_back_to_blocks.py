@@ -32,4 +32,11 @@ def go_back_to_blocks():
     steer_pair.on_for_rotations(0, 40, 1.3)
 
 
-go_back_to_blocks()
+def go_home():
+    steer_pair.on_for_rotations(-70, 40, 0.9)
+    while center_sensor.reflected_light_intensity > 30:
+        steer_pair.on(-70, 20)
+    steer_pair.off()
+
+
+go_home()
