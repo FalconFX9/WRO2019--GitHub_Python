@@ -83,7 +83,7 @@ while right_side_sensor.reflected_light_intensity > 30:
     steer_pair.on(-70, 30)
 steer_pair.off()
 while not 100 > side_color_sensor.value(3) > 40:
-    hisp_right_follower(speed=40, kp=0.15)
+    hisp_right_follower(speed=30, kp=0.1)
 steer_pair.off(brake=False)
 timed_follower(right_side_sensor, timemax=0.75, speed=40, ttarget=45)
 steer_pair.off()
