@@ -33,6 +33,7 @@ def turn_and_pick_up():
         hisp_right_follower(speed=40, kp=0.15)
     steer_pair.off()
     t_time = time() - start_time
+    print(t_time)
     block_is_black = False
     steer_pair.on_for_rotations(0, -30, 0.1)
     follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, speed=30, kp=0.1)
