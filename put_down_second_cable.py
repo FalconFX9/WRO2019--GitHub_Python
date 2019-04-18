@@ -25,7 +25,7 @@ def put_down_second_cable():
         steer_pair.on_for_rotations(70, 40, 1.56)
         sleep(5)
         while right_side_sensor.reflected_light_intensity > 30:
-            steer_pair.on(70, 10)
+            steer_pair.on(70, 20)
         steer_pair.off()
         steer_pair.on_for_rotations(70, 40, 0.07)
         follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, side_of_line=1, speed=40,
