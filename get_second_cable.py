@@ -34,6 +34,7 @@ def get_second_cable():
         steer_pair.on_for_rotations(-70, -75, 0.9)
         while left_side_sensor.reflected_light_intensity > 30:
             steer_pair.on(-70, -20)
+        steer_pair.off()
         sleep(5)
         follow_to_line(left_side_sensor, right_side_sensor, speed=40, side_of_line=1, kp=0.2)
         steer_pair.off()

@@ -41,10 +41,7 @@ def put_down_second_cable():
             print(center_sensor.reflected_light_intensity)
         steer_pair.off()
         steer_pair.on_for_rotations(100, -20, 0.17)
-        t = Thread(target=check_for_lines, args=(2, ))
-        t.start()
-        while not lines_passed:
-            losp_right_follower()
+        follow_for_xlines(2, sensor=right_side_sensor, ttarget=45, kp=0.1, speed=40)
         steer_pair.off()
         lines_passed = False
         steer_pair.on_for_rotations(0, -30, 0.35)
