@@ -23,6 +23,12 @@ def go_back_to_blocks():
     while right_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(-70, 30)
     steer_pair.off()
+    steer_pair.on_for_rotations(70, 30, 0.07)
+    lower_motor.off()
+    side_color_sensor.mode = 'RGB'
+    while not 100 > side_color_sensor.value(3) > 40:
+        hisp_right_follower(side_of_line=1, speed=40, kp=0.2)
+    steer_pair.off()
 
 
 go_back_to_blocks()
