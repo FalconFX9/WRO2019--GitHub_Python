@@ -77,6 +77,7 @@ t = BlackOrWhite()
 t.start_t()
 t.start_t2()
 turn_and_pick_up()
+steer_pair.on_for_rotations(0, -40, 0.5)
 steer_pair.on_for_rotations(-70, 40, 0.7)
 while right_side_sensor.reflected_light_intensity > 30:
     steer_pair.on(-70, 30)
