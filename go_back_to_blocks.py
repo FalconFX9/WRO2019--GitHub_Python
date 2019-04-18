@@ -37,6 +37,3 @@ def go_home():
     while center_sensor.reflected_light_intensity > 30:
         steer_pair.on(-70, 20)
     steer_pair.off()
-
-
-go_home()
