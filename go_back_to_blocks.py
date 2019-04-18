@@ -3,7 +3,7 @@ from line_follower_class import *
 
 def go_back_to_blocks():
 
-    lower_motor.on_for_degrees(30, -80)
+    lower_motor.on_for_degrees(30, -85)
     while right_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(-100, -30)
     steer_pair.on_for_rotations(100, -20, 0.07)
@@ -26,6 +26,7 @@ def go_back_to_blocks():
     steer_pair.off()
     steer_pair.on_for_rotations(0, 40, 0.6)
     steer_pair.on_for_rotations(0, -40, 1.45)
+    lower_motor.on_for_degrees(10, 5)
     grabber_servo.on_for_degrees(10, -360)
     lower_motor.off()
     steer_pair.on_for_rotations(0, 40, 1.3)
