@@ -82,7 +82,7 @@ follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, sp
 steer_pair.off()
 steer_pair.on_for_rotations(0, -40, 0.7)
 steer_pair.on_for_rotations(-70, 40, 0.7)
-while right_side_sensor.reflected_light_intensity > 30:
+while center_sensor.reflected_light_intensity > 30:
     steer_pair.on(-70, 30)
 steer_pair.off()
 steer_pair.on_for_rotations(70, 40, 0.05)
@@ -90,7 +90,7 @@ follow_to_line(following_sensor=center_sensor, line_sensor=right_side_sensor, sp
 steer_pair.off()
 steer_pair.on_for_rotations(0, -40, 0.7)
 steer_pair.on_for_rotations(70, 40, 0.7)
-while right_side_sensor.reflected_light_intensity > 30:
+while center_sensor.reflected_light_intensity > 30:
     steer_pair.on(70, 20)
 steer_pair.off()
 steer_pair.on_for_rotations(-70, 30, 0.05)
