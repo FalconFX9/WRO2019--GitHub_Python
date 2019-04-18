@@ -26,14 +26,17 @@ def go_back_to_blocks():
     steer_pair.off()
     steer_pair.on_for_rotations(0, 40, 0.6)
     steer_pair.on_for_rotations(0, -40, 1.45)
-    lower_motor.on_for_degrees(10, 15)
+    lower_motor.on_for_degrees(10, 25)
     grabber_servo.on_for_degrees(10, -360)
     lower_motor.off()
     steer_pair.on_for_rotations(0, 40, 1.3)
 
 
 def go_home():
+    steer_pair.on_for_rotations(0, -40, 0.5)
     steer_pair.on_for_rotations(-70, 40, 0.9)
     while center_sensor.reflected_light_intensity > 30:
         steer_pair.on(-70, 20)
+    steer_pair.off()
+    follow_for_xlines(3, right_side_sensor, speed=40, kp=0.25, ttarget=40, side_of_line=1)
     steer_pair.off()
