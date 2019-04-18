@@ -47,7 +47,7 @@ class BlackOrWhite:
 def turn_and_pick_up():
     global block_left, block_is_black, stop_log, blocks_passed
     while not block_is_black:
-        hisp_right_follower(speed=40, side_of_line=1)
+        hisp_right_follower(speed=40)
     steer_pair.off()
     block_is_black = False
     steer_pair.on_for_rotations(0, -30, 0.1)
