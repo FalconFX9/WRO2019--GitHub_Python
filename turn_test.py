@@ -86,7 +86,7 @@ while center_sensor.reflected_light_intensity > 30:
     steer_pair.on(-70, 30)
 steer_pair.off()
 steer_pair.on_for_rotations(70, 40, 0.05)
-follow_to_line(following_sensor=center_sensor, line_sensor=right_side_sensor, speed=30, kp=0.4)
+follow_to_line(following_sensor=center_sensor, line_sensor=right_side_sensor, side_of_line=1, speed=30, kp=0.4)
 steer_pair.off()
 steer_pair.on_for_rotations(0, -40, 0.65)
 steer_pair.on_for_rotations(70, 40, 0.7)
@@ -94,7 +94,7 @@ while center_sensor.reflected_light_intensity > 30:
     steer_pair.on(70, 20)
 steer_pair.off()
 steer_pair.on_for_rotations(-70, 30, 0.05)
-timed_follower(center_sensor, 1, speed=30, kp=0.3)
+timed_follower(center_sensor, 1, speed=30, kp=0.4)
 steer_pair.off()
 '''
 while not 100 > side_color_sensor.value(3) > 40:
