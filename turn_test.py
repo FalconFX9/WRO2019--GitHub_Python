@@ -47,7 +47,7 @@ class BlackOrWhite:
 def turn_and_pick_up():
     global block_left, block_is_black, stop_log, blocks_passed
     while not block_is_black:
-        hisp_right_follower(speed=40)
+        hisp_right_follower(speed=40, kp=0.15)
     steer_pair.off()
     block_is_black = False
     steer_pair.on_for_rotations(0, -30, 0.1)
@@ -83,9 +83,9 @@ while right_side_sensor.reflected_light_intensity > 30:
     steer_pair.on(-70, 30)
 steer_pair.off()
 while not 100 > side_color_sensor.value(3) > 40:
-    hisp_right_follower(speed=40)
+    hisp_right_follower(speed=40, kp=0.15)
 steer_pair.off(brake=False)
-timed_follower(right_side_sensor, timemax=1, speed=40, ttarget=45)
+timed_follower(right_side_sensor, timemax=0.8, speed=40, ttarget=45)
 steer_pair.off()
 lower_motor.off()
 
