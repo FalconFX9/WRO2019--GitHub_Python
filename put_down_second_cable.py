@@ -27,7 +27,7 @@ def put_down_second_cable():
             steer_pair.on(70, 20)
         steer_pair.off()
         steer_pair.on_for_rotations(70, 40, 0.07)
-        timed_follower(sensor=right_side_sensor, side_of_line=1, speed=40, kp=0.6, timemax=0.8)
+        timed_follower(sensor=right_side_sensor, side_of_line=1, speed=30, kp=0.6, timemax=1.5)
         follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, side_of_line=1, speed=40,
                        kp=0.3)
         steer_pair.on_for_rotations(0, -40, 0.1)
