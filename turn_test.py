@@ -72,6 +72,13 @@ if t_time < 1:
 else:
     follow_for_xlines(2, sensor=right_side_sensor, side_of_line=1, speed=50, ttarget=45)
     steer_pair.off()
+steer_pair.on_for_rotations(0, -40, 0.2)
+steer_pair.on_for_rotations(-70, 40, 0.7)
+while right_side_sensor.reflected_light_intensity > 30:
+    steer_pair.on(-70, 30)
+steer_pair.off()
+follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, speed=40, kp=0.15)
+steer_pair.off()
 '''
 while not 100 > side_color_sensor.value(3) > 40:
     hisp_right_follower(speed=30, kp=0.1)
