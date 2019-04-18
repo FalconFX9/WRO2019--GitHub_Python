@@ -66,7 +66,7 @@ steer_pair.on_for_rotations(-70, 40, 0.7)
 while right_side_sensor.reflected_light_intensity > 30:
     steer_pair.on(-70, 30)
 steer_pair.off()
-if t_time > 1:
+if t_time < 1:
     follow_for_xlines(3, sensor=right_side_sensor, side_of_line=1, speed=50, ttarget=45)
     steer_pair.off()
 else:
