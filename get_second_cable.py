@@ -35,11 +35,9 @@ def get_second_cable():
         while left_side_sensor.reflected_light_intensity > 30:
             steer_pair.on(-70, -20)
         steer_pair.off()
-        sleep(5)
         follow_to_line(left_side_sensor, right_side_sensor, speed=40, side_of_line=1, kp=0.3)
         steer_pair.off()
         lines_passed = False
-        sleep(5)
 
     def pick_up_cable():
         lower_motor.on_for_degrees(speed=10, degrees=90)

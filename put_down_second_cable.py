@@ -23,16 +23,15 @@ def put_down_second_cable():
     def goto_drop():
         global lines_passed, log_to_files
         steer_pair.on_for_rotations(70, 40, 1.56)
-        sleep(5)
         while right_side_sensor.reflected_light_intensity > 30:
             steer_pair.on(70, 20)
         steer_pair.off()
         steer_pair.on_for_rotations(70, 40, 0.07)
+        timed_follower(sensor=right_side_sensor, side_of_line=1, speed=40, kp=0.6, timemax=0.8)
         follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, side_of_line=1, speed=40,
-                       kp=0.6)
+                       kp=0.3)
         steer_pair.on_for_rotations(0, -40, 0.1)
-        sleep(5)
-        follow_for_xlines(4, sensor=right_side_sensor, side_of_line=1, ttarget=45, kp=0.1)
+        follow_for_xlines(3, sensor=right_side_sensor, side_of_line=1, ttarget=45, kp=0.1)
         steer_pair.off()
         lines_passed = False
         steer_pair.on_for_rotations(0, -20, 0.1)
