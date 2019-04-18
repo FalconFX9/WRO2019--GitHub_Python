@@ -26,7 +26,7 @@ def go_back_to_blocks():
     steer_pair.off()
     steer_pair.on_for_rotations(0, 40, 0.6)
     steer_pair.on_for_rotations(0, -40, 1.45)
-    lower_motor.on_for_degrees(10, 10)
+    lower_motor.on_for_degrees(10, 15)
     grabber_servo.on_for_degrees(10, -360)
     lower_motor.off()
     steer_pair.on_for_rotations(0, 40, 1.3)
