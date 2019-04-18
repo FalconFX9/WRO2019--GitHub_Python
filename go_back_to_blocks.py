@@ -35,13 +35,16 @@ def go_back_to_blocks():
 def go_home():
     steer_pair.on_for_rotations(0, -40, 0.5)
     steer_pair.on_for_rotations(-70, 40, 0.9)
-    while center_sensor.reflected_light_intensity > 30:
+    while left_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(-70, 20)
     steer_pair.off()
+    steer_pair.on_for_rotations(70, 20, 0.07)
     follow_for_xlines(3, left_side_sensor, speed=40, kp=0.25, ttarget=40, side_of_line=1)
     steer_pair.off()
     steer_pair.on_for_rotations(0, -40, 0.5)
     steer_pair.on_for_rotations(70, 40, 0.9)
     while left_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(70, 20)
+    steer_pair.off()
+    timed_follower(left_side_sensor, timemax=2.5, speed=50, kp=0.2)
     steer_pair.off()
