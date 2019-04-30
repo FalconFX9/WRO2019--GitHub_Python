@@ -1,11 +1,21 @@
 from sensor_and_motor_startup import *
 from battery_level_test import better_compensation
+import socket
 
 file_s = open('sensor_data.txt', 'w+')
 file_st = open('steering_data.txt', 'w+')
 file_x = open('time_data.txt', 'w+')
 log_to_files = True
 DEFAULT_SPEED = 60
+print("Attente connexion avec client")
+print("Attente connexion avec le client graphique", file=sys.stderr)
+connexion_principale = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # construire une socket (famille adresse type internet, protocole TCP)
+connexion_principale.bind(('', 12800))       # se prépare à écouter (tous clients potentiels, sur le port 12800)
+connexion_principale.listen(5)               # ecoute jusqu'à 5 clients avant validation
+connexion_avec_client, infos_connexion = connexion_principale.accept()  # bloque le programme tant qu'il n'y a pas de demande client
+                                             # renvoie le socket client, (IP client,port client)
+print("Connexion OK")
+print("Connexion avec le client graphique : ", infos_connexion, file=sys.stderr)
 
 # PID Values --These are subjective and need to be tuned to the robot and mat
 # Kp must be augmented or decreased until the robot follows the line smoothly --Higher Kp = Stronger corrections
@@ -42,6 +52,17 @@ class OneSensorLineFollower:
             side_of_line)
         self.last_error = self.error
         steer_pair.on(motor_steering, -speed)
+        if log_to_files:  # tant que pas appuie sur bouton de la brique
+            msg_a_envoyer = str(self.__color_sensor.reflected_light_intensity) + ","
+            msg_a_envoyer = msg_a_envoyer.encode()  # transforme string en binaire pour l'emission
+            connexion_avec_client.send(msg_a_envoyer)
+            sleep(0.1)
+        else:  # pas de temps en seconde
+            connexion_avec_client.send(b"fin")
+            connexion_avec_client.close()  # fin de la connexion au client graphique
+            print("Fin de la tache de connexion", file=sys.stderr)
+            sleep(1)
+        """
         if log_to_files:
             file_s.write(str(self.__color_sensor.reflected_light_intensity) + '\n')
             file_x.write(str(round((time() - self.start_time), 1)) + '\n')
@@ -50,6 +71,7 @@ class OneSensorLineFollower:
             file_st.close()
             file_x.close()
             file_s.close()
+        """
 
     class SideOfLine:
         left = 1
