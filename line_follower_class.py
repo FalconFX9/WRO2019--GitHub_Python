@@ -7,6 +7,7 @@ file_st = open('steering_data.txt', 'w+')
 file_x = open('time_data.txt', 'w+')
 log_to_files = True
 DEFAULT_SPEED = 60
+"""
 print("Attente connexion avec client")
 print("Attente connexion avec le client graphique", file=sys.stderr)
 connexion_principale = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # construire une socket (famille adresse type internet, protocole TCP)
@@ -16,7 +17,7 @@ connexion_avec_client, infos_connexion = connexion_principale.accept()  # bloque
                                              # renvoie le socket client, (IP client,port client)
 print("Connexion OK")
 print("Connexion avec le client graphique : ", infos_connexion, file=sys.stderr)
-
+"""
 # PID Values --These are subjective and need to be tuned to the robot and mat
 # Kp must be augmented or decreased until the robot follows the line smoothly --Higher Kp = Stronger corrections
 # Same with Ki, after Kp is done --- note, Ki is not used in this case (error accumulation)
