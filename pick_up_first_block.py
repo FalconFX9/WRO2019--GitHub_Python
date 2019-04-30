@@ -17,3 +17,6 @@ def pick_up_block():
     timed_follower(sensor=center_sensor, timemax=0.65, speed=20, kp=0.35, side_of_line=1)
     steer_pair.off()
     lower_motor.on_for_degrees(10, -52)
+
+
+pick_up_block()

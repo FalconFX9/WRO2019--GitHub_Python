@@ -52,6 +52,7 @@ class OneSensorLineFollower:
             side_of_line)
         self.last_error = self.error
         steer_pair.on(motor_steering, -speed)
+        """
         if log_to_files:  # tant que pas appuie sur bouton de la brique
             msg_a_envoyer = str(self.__color_sensor.reflected_light_intensity) + ","
             msg_a_envoyer = msg_a_envoyer.encode()  # transforme string en binaire pour l'emission
@@ -62,6 +63,7 @@ class OneSensorLineFollower:
             connexion_avec_client.close()  # fin de la connexion au client graphique
             print("Fin de la tache de connexion", file=sys.stderr)
             sleep(1)
+        """
         """
         if log_to_files:
             file_s.write(str(self.__color_sensor.reflected_light_intensity) + '\n')

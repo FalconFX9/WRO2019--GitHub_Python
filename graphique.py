@@ -9,7 +9,7 @@ import socket                    # ici le client doit se connecter avec l'EV3 (=
 import matplotlib.pyplot as plt  # pour tracer des graphiques
 
 port = 12800                     # doit être identique sur l'EV3 (=serveur)
-IPlegoEV3 = '192.168.0.3'        # à modifier si besoin
+IPlegoEV3 = '192.168.137.3'        # à modifier si besoin
 # '192.168.0.3' sur reseau freebox
 # '172.16.5.41' sur reseau WIFILEGO
 
