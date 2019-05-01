@@ -11,7 +11,7 @@ Kd should be Ku*Tu/10
 """
 matplotlib.use('Qt5Agg')
 file_s = open('sensor_data.txt', 'r')
-file_st = open('steering_data.txt', 'r')
+# file_st = open('steering_data.txt', 'r')
 file_x = open('time_data.txt', 'r')
 x = []
 y = []
@@ -30,6 +30,7 @@ for p in range(0, len(y)):
 plt.title('Target is ' + str(target) + ' (blue line).')
 plt.ylim(0, 100)
 
+"""
 plt.subplot(2, 1, 2)
 t.clear()
 for i in file_st:
@@ -42,5 +43,5 @@ for p in range(0, len(y)):
     plt.plot(x, t)
 plt.title('Target is ' + str(0) + ' (blue line).')
 plt.ylim(-20, 20)
-
+"""
 plt.show()
