@@ -20,4 +20,12 @@ def pick_up_block():
     lower_motor.on_for_degrees(10, -52)
 
 
-pick_up_block()
+lower_motor.off()
+while True:
+    try:
+        hisp_right_follower(speed=40)
+        file_s.write(side_color_sensor.value(3))
+        file_x.write(str(round((time()), 1)) + '\n')
+    except KeyboardInterrupt:
+        file_s.close()
+        file_x.close()
