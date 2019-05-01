@@ -20,7 +20,6 @@ def pick_up_block():
     lower_motor.off()
     while not block_is_black:
         hisp_right_follower(speed=40, kp=0.15)
-        print(side_color_sensor.value(3))
     steer_pair.off()
     follow_to_line(right_side_sensor, center_sensor, 30, kp=0.2)
     steer_pair.off()
