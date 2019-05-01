@@ -1,4 +1,5 @@
 from line_follower_class import *
+from threading import Thread
 
 side_color_sensor.mode = 'RGB'
 block_is_black = False
@@ -22,6 +23,7 @@ def pick_up_block():
         print(side_color_sensor.value(3))
     steer_pair.off()
     follow_to_line(right_side_sensor, center_sensor, 30, kp=0.2)
+    steer_pair.off()
     steer_pair.on_for_rotations(0, 30, 0.3)
     lower_motor.on_for_degrees(10, -10)
     steer_pair.on_for_rotations(60, 40, 1.2)
@@ -33,4 +35,5 @@ def pick_up_block():
     lower_motor.on_for_degrees(10, -52)
 
 
+Thread(target=look_at_blocks).start()
 pick_up_block()
