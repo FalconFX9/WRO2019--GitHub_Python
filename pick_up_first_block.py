@@ -24,7 +24,7 @@ lower_motor.off()
 while True:
     try:
         hisp_right_follower(speed=40)
-        file_s.write(side_color_sensor.value(3))
+        file_s.write(str(side_color_sensor.value(3)))
         file_x.write(str(round((time()), 1)) + '\n')
     except KeyboardInterrupt:
         file_s.close()
