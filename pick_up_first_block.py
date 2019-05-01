@@ -23,7 +23,6 @@ def pick_up_block():
     steer_pair.off()
     follow_to_line(right_side_sensor, center_sensor, 30, kp=0.2)
     steer_pair.off()
-    steer_pair.on_for_rotations(0, 30, 0.3)
     lower_motor.on_for_degrees(10, -10)
     steer_pair.on_for_rotations(60, 40, 1.2)
     steer_pair.on_for_rotations(0, 20, 0.2)
