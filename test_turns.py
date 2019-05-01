@@ -1,5 +1,5 @@
-from sensor_and_motor_startup import *
+from ev3dev2.auto import *
 
-while True:
-    turn_rotations = float(input('Enter new number of rotations here: '))
-    steer_pair.on_for_rotations(-70, -40, turn_rotations)
+motor = LargeMotor(OUTPUT_C)
+
+motor.on_for_rotations(-60, 5)
