@@ -4,6 +4,7 @@ side_color_sensor.mode = 'RGB'
 
 
 def pick_up_block():
+    lower_motor.off()
     while not 100 > side_color_sensor.value(3) > 40:
         hisp_right_follower(speed=40, kp=0.15)
     steer_pair.off()
