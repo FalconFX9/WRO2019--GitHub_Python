@@ -32,7 +32,7 @@ def pick_up_block():
     steer_pair.on_for_rotations(0, 20, 0.2)
     lower_motor.on_for_degrees(20, 56)
     sleep(0.6)
-    timed_follower(sensor=center_sensor, timemax=0.6, speed=40, kp=0.35)
+    timed_follower(sensor=center_sensor, timemax=0.3, speed=40, kp=0.35)
     steer_pair.off()
     lower_motor.on_for_degrees(10, -52)
 
