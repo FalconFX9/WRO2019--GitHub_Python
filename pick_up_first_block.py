@@ -72,10 +72,23 @@ def go_to_put_down():
         steer_pair.on(70, 20)
     steer_pair.off()
     steer_pair.on_for_rotations(-70, 30, 0.05)
-    timed_follower(center_sensor, 0.7, speed=30, kp=0.4)
+    right_side_sensor.mode = 'COL-COLOR'
+    while not (right_side_sensor.value() == 2 or left_side_sensor.value() == 2):
+        losp_center_follower(speed=30, kp=0.4)
+    # timed_follower(center_sensor, 0.7, speed=30, kp=0.4)
     steer_pair.off()
 
 
-Thread(target=look_at_blocks).start()
-pick_up_block()
-go_to_put_down()
+def put_down_blocks(block_pos: int):
+    grabber_servo.on_for_degrees(10, block_pos)
+    lower_motor.on_for_degrees(20, 56)
+
+
+
+#Thread(target=look_at_blocks).start()
+#pick_up_block()
+#go_to_put_down()
+while True:
+    block_num = int(input('Enter bloc position')) * 90
+    put_down_blocks(block_num)
+
