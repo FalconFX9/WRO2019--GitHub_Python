@@ -50,7 +50,7 @@ def go_to_put_down():
     else:
         follow_for_xlines(2, sensor=right_side_sensor, speed=50, ttarget=45, kp=0.2)
         steer_pair.off()
-    steer_pair.on_for_rotations(0, -40, 0.2)
+    steer_pair.on_for_rotations(0, -40, 0.35)
     steer_pair.on_for_rotations(-70, 40, 0.55)
     while right_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(-70, 30)
