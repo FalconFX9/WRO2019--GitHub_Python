@@ -80,11 +80,11 @@ def go_to_put_down():
 
 
 def put_down_blocks(block_pos: int):
-    grabber_servo.on_for_degrees(30, block_pos)
-    sleep(0.7)
     steer_pair.on_for_rotations(0, 30, 0.1)
     lower_motor.on_for_degrees(10, 40)
     sleep(0.5)
+    grabber_servo.on_for_degrees(30, block_pos)
+    lower_motor.on_for_degrees(10, 5)
     grabber_servo.on_for_degrees(20, 180)
 
 
