@@ -96,6 +96,15 @@ def put_down_blocks(block_pos: int):
     lower_motor.on_for_degrees(10, -50)
 
 
+def get_blocks_from_side():
+    follow_for_xlines(2, left_side_sensor, speed=40, kp=0.2, ttarget=40)
+    steer_pair.off()
+    steer_pair.on_for_rotations(0, -40, 0.75)
+    steer_pair.on_for_rotations(-70, 40, 0.9)
+    while center_sensor.reflected_light_intensity > 30:
+        steer_pair.on(-70, 20)
+    steer_pair.off()
+    steer_pair.on_for_rotations(0, 40, 0.6)
 #Thread(target=look_at_blocks).start()
 #pick_up_block()
 #go_to_put_down()
@@ -113,5 +122,6 @@ def oscillate(degres):
     lower_motor.on_for_degrees(30, degres)
     sleep(0.1)
 lower_motor.off()
-block_num = (int(input('Enter bloc position')) * 90) + 180
-put_down_blocks(block_num)
+#block_num = (int(input('Enter bloc position')) * 90) + 180
+#put_down_blocks(block_num)
+get_blocks_from_side()
