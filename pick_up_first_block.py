@@ -81,6 +81,8 @@ def go_to_put_down():
 
 
 def put_down_blocks(block_pos: int):
+    right_side_sensor.mode = 'COL-COLOR'
+    left_side_sensor.mode = 'COL-COLOR'
     while not (right_side_sensor.value() == 5 or left_side_sensor.value() == 5):
         losp_center_follower(speed=30, kp=0.25)
     # timed_follower(center_sensor, 0.7, speed=30, kp=0.4)
