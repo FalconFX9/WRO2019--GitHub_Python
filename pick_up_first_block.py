@@ -92,7 +92,7 @@ def put_down_blocks(block_pos: int):
     #steer_pair.on_for_rotations(0, 30, 0.25)
     lower_motor.on_for_degrees(10, 45)
     sleep(0.5)
-    if block_pos == 450:
+    if block_pos == 360:
         Thread(target=oscillate, args=(15, )).start()
         steer_pair.on_for_rotations(0, 15, 1)
     else:
