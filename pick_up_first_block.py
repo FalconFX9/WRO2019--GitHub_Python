@@ -99,7 +99,7 @@ def put_down_blocks(block_pos: int):
 def get_blocks_from_side():
     follow_for_xlines(2, left_side_sensor, speed=40, kp=0.2, ttarget=40)
     steer_pair.off()
-    steer_pair.on_for_rotations(0, -40, 0.75)
+    steer_pair.on_for_rotations(0, -40, 0.55)
     steer_pair.on_for_rotations(70, 40, 0.9)
     while center_sensor.reflected_light_intensity > 30:
         steer_pair.on(70, 20)
