@@ -87,6 +87,7 @@ def put_down_blocks(block_pos: int):
     lower_motor.on_for_degrees(10, 45)
     sleep(0.5)
     lower_motor.on_for_degrees(10, 5)
+    oscillate()
     grabber_servo.on_for_degrees(20, 180)
     lower_motor.on_for_degrees(10, -50)
 
@@ -94,6 +95,12 @@ def put_down_blocks(block_pos: int):
 #Thread(target=look_at_blocks).start()
 #pick_up_block()
 #go_to_put_down()
+def oscillate():
+    lower_motor.on_for_degrees(10, -5)
+    lower_motor.on_for_degrees(10, 5)
+    lower_motor.on_for_degrees(10, -5)
+    lower_motor.on_for_degrees(10, 5)
+    lower_motor.on_for_degrees(10, -5)
 lower_motor.off()
 block_num = (int(input('Enter bloc position')) * 90) + 180
 put_down_blocks(block_num)
