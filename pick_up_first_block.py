@@ -81,6 +81,10 @@ def go_to_put_down():
 
 
 def put_down_blocks(block_pos: int):
+    while not (right_side_sensor.value() == 2 or left_side_sensor.value() == 2):
+        losp_center_follower(speed=30, kp=0.25)
+    # timed_follower(center_sensor, 0.7, speed=30, kp=0.4)
+    steer_pair.off()
     grabber_servo.on_for_degrees(30, block_pos)
     sleep(1.5)
     #steer_pair.on_for_rotations(0, 30, 0.25)
