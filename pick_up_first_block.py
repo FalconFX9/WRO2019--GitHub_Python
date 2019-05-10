@@ -93,5 +93,6 @@ def put_down_blocks(block_pos: int):
 #Thread(target=look_at_blocks).start()
 #pick_up_block()
 #go_to_put_down()
+lower_motor.off()
 block_num = (int(input('Enter bloc position')) * 90) + 180
 put_down_blocks(block_num)
