@@ -88,6 +88,7 @@ def put_down_blocks(block_pos: int):
     sleep(0.5)
     lower_motor.on_for_degrees(10, 5)
     grabber_servo.on_for_degrees(20, 180)
+    lower_motor.on_for_degrees(10, -50)
 
 
 #Thread(target=look_at_blocks).start()
