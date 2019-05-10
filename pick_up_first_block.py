@@ -24,6 +24,7 @@ def pick_up_block():
         hisp_right_follower(speed=40, kp=0.15)
     steer_pair.off()
     t_time = time() - start_time
+    print(t_time)
     steer_pair.on_for_rotations(0, -30, 0.1)
     follow_to_line(right_side_sensor, center_sensor, 30, kp=0.2)
     steer_pair.off()
@@ -32,14 +33,14 @@ def pick_up_block():
     steer_pair.on_for_rotations(0, 20, 0.2)
     lower_motor.on_for_degrees(20, 56)
     sleep(0.6)
-    timed_follower(sensor=center_sensor, timemax=0.35, speed=40, kp=0.35)
+    timed_follower(sensor=center_sensor, timemax=0.4, speed=40, kp=0.25)
     steer_pair.off()
     lower_motor.on_for_degrees(10, -52)
 
 
 def go_to_put_down():
     global t_time
-    steer_pair.on_for_rotations(0, -40, 0.3)
+    steer_pair.on_for_rotations(0, -40, 0.25)
     steer_pair.on_for_rotations(-70, 40, 0.7)
     while right_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(-70, 30)
