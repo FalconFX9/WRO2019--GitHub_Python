@@ -83,15 +83,15 @@ def go_to_put_down():
 def put_down_blocks(block_pos: int):
     grabber_servo.on_for_degrees(30, block_pos)
     sleep(0.7)
-    steer_pair.on_for_rotations(0, 30, 0.25)
+    #steer_pair.on_for_rotations(0, 30, 0.25)
     lower_motor.on_for_degrees(10, 45)
     sleep(0.5)
     lower_motor.on_for_degrees(10, 5)
     grabber_servo.on_for_degrees(20, 180)
 
 
-Thread(target=look_at_blocks).start()
-pick_up_block()
-go_to_put_down()
+#Thread(target=look_at_blocks).start()
+#pick_up_block()
+#go_to_put_down()
 block_num = (int(input('Enter bloc position')) * 90) + 180
 put_down_blocks(block_num)
