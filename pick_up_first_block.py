@@ -90,8 +90,8 @@ def put_down_blocks(block_pos: int):
     #steer_pair.on_for_rotations(0, 30, 0.25)
     lower_motor.on_for_degrees(10, 45)
     sleep(0.5)
-    lower_motor.on_for_degrees(10, 5)
-    oscillate()
+    #lower_motor.on_for_degrees(10, 5)
+    oscillate(10)
     grabber_servo.on_for_degrees(20, 180)
     lower_motor.on_for_degrees(10, -50)
 
