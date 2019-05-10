@@ -109,6 +109,8 @@ def oscillate(degres):
     lower_motor.on_for_degrees(10, degres)
     sleep(0.1)
     lower_motor.on_for_degrees(10, -degres)
+    sleep(0.1)
+    lower_motor.on_for_degrees(10, degres)
 lower_motor.off()
 block_num = (int(input('Enter bloc position')) * 90) + 180
 put_down_blocks(block_num)
