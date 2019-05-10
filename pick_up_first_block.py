@@ -91,7 +91,7 @@ def put_down_blocks(block_pos: int):
     lower_motor.on_for_degrees(10, 45)
     sleep(0.5)
     oscillate(10)
-    lower_motor.on_for_degrees(10, 5)
+    lower_motor.on_for_degrees(10, 15)
     grabber_servo.on_for_degrees(20, 180)
     lower_motor.on_for_degrees(10, -50)
 
