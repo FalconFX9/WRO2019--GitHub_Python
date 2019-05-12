@@ -47,14 +47,12 @@ def put_down_second_cable():
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)
         steer_pair.off()
-        steer_pair.on_for_rotations(-75, -30, 0.05)
-        steer_pair.off()
         left_side_sensor.mode = 'COL-COLOR'
         right_side_sensor.mode = 'COL-COLOR'
         wait = time() + 0.5
         while not (left_side_sensor.value() == 4 and right_side_sensor.value() == 3 and time() > wait):
             print('Left side : ' + str(left_side_sensor.value()) + 'Right side : ' + str(right_side_sensor.value()))
-            losp_center_follower(side_of_line=1)
+            losp_center_follower()
         steer_pair.off(brake=False)
         # Put down cable
         steer_pair.on_for_rotations(0, -30, 0.2)

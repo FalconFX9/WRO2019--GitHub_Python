@@ -40,13 +40,12 @@ def put_down_cable():
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)
         steer_pair.off()
-        steer_pair.on_for_rotations(-75, -30, 0.03)
         wait = time() + 0.5
         print("Switching modes")
         left_side_sensor.mode = 'COL-COLOR'
         right_side_sensor.mode = 'COL-COLOR'
         while not (left_side_sensor.value() == 5 and right_side_sensor.value() == 2 and time() > wait):
-            losp_center_follower(side_of_line=1)
+            losp_center_follower()
         steer_pair.off(brake=False)
         steer_pair.on_for_rotations(0, -30, 0.1)
         lower_motor.on_for_degrees(speed=10, degrees=90)
