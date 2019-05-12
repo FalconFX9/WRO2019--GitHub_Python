@@ -111,9 +111,13 @@ def get_blocks_from_side():
         steer_pair.on(70, 20)
     steer_pair.off()
     steer_pair.on_for_rotations(0, 40, 0.6)
-#Thread(target=look_at_blocks).start()
-#pick_up_block()
-#go_to_put_down()
+
+
+Thread(target=look_at_blocks).start()
+pick_up_block()
+go_to_put_down()
+
+
 def oscillate(degres):
     lower_motor.on_for_degrees(30, -degres)
     sleep(0.1)
