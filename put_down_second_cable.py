@@ -55,10 +55,10 @@ def put_down_second_cable():
             losp_center_follower()
         steer_pair.off(brake=False)
         # Put down cable
-        steer_pair.on_for_rotations(0, -30, 0.2)
+        steer_pair.on_for_rotations(0, -30, 0.4)
         lower_motor.on_for_degrees(speed=30, degrees=85)
         sleep(0.8)
-        steer_pair.on_for_rotations(0, 60, 1.1)
+        steer_pair.on_for_rotations(0, 60, 1.15)
         lower_motor.on_for_degrees(speed=30, degrees=-85)
         log_to_files = False
         left_side_sensor.mode = 'COL-REFLECT'
