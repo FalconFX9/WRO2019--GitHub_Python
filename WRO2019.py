@@ -2,6 +2,7 @@
 from regrouped_functions import wro2019
 from sensor_and_motor_startup import *
 
+Sound().beep()
 while True:
     if Button().enter:
         break
