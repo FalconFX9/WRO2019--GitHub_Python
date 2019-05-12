@@ -22,7 +22,7 @@ def start_sequence():
     print('Start Sequence')
     grabber_servo.on_for_degrees(speed=50, degrees=-180)
     lower_motor.on_for_degrees(speed=60, degrees=-90)
-    steer_pair.on_for_rotations(25, -40, 0.4)
+    steer_pair.on_for_rotations(35, -40, 0.4)
     lower_motor.off(brake=True)
     while side_color_sensor.value() == 17 or side_color_sensor.value() == 0:
         losp_right_follower(speed=45)
