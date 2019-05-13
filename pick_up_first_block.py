@@ -132,7 +132,7 @@ def oscillate(degres):
     sleep(0.1)
     lower_motor.on_for_degrees(30, degres)
     sleep(0.1)
-lower_motor.off()
+lower_motor.off(brake=False)
 #get_blocks_from_side()
 #block_num = (int(input('Enter bloc position')) * 90) + 180
 #put_down_blocks(block_num)
