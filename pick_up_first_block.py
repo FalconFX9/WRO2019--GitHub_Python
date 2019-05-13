@@ -1,7 +1,7 @@
 from line_follower_class import *
 from threading import Thread
 
-side_color_sensor.mode = 'RGB'
+side_color_sensor.mode = 'COLOR'
 block_is_black = False
 t_time = 0
 file_x = open('time_data.txt', 'w+')
@@ -11,14 +11,10 @@ file_s = open('sensor_data.txt', 'w+')
 def look_at_blocks():
     global block_is_black
     while not block_is_black:
-        file_x.write(str(round(time(), 1)))
-        file_s.write(str(side_color_sensor.value(3)))
-        if side_color_sensor.value(3) > 100:
+        if side_color_sensor.value() == 17 and center_sensor.reflected_light_intensity < 30:
             sleep(0.3)
-        elif 100 > side_color_sensor.value(3) > 40:
+        elif center_sensor.reflected_light_intensity < 30 and not side_color_sensor.value() == 17:
             block_is_black = True
-    file_s.close()
-    file_x.close()
     print('Thread look_at_blocks is finished')
 
 
@@ -95,7 +91,7 @@ def put_down_blocks(block_pos: int):
     steer_pair.off()
     grabber_servo.on_for_degrees(30, block_pos)
     sleep(1.5)
-    #steer_pair.on_for_rotations(0, 30, 0.25)
+    # steer_pair.on_for_rotations(0, 30, 0.25)
     lower_motor.on_for_degrees(10, 45)
     sleep(0.5)
     if block_pos == 360:
@@ -121,7 +117,7 @@ def get_blocks_from_side():
 
 Thread(target=look_at_blocks).start()
 pick_up_block()
-go_to_put_down()
+#go_to_put_down()
 
 
 def oscillate(degres):
@@ -138,6 +134,6 @@ def oscillate(degres):
     lower_motor.on_for_degrees(30, degres)
     sleep(0.1)
 lower_motor.off()
-get_blocks_from_side()
-block_num = (int(input('Enter bloc position')) * 90) + 180
-put_down_blocks(block_num)
+#get_blocks_from_side()
+#block_num = (int(input('Enter bloc position')) * 90) + 180
+#put_down_blocks(block_num)
