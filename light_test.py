@@ -21,7 +21,7 @@ def look_at_blocks():
         try:
             print(side_color_sensor.value(3))
             file_x.write(str(side_color_sensor.value(3)) + '\n')
-            file_s.write(str(round((time() - start_time), 1)) + '\n')
+            file_s.write(str(round((time() - start_time), 5)) + '\n')
         except KeyboardInterrupt:
             file_x.close()
             file_s.close()
@@ -34,6 +34,4 @@ while True:
         hisp_right_follower(speed=30)
     except KeyboardInterrupt:
         steer_pair.off()
-        file_s.close()
-        file_x.close()
         break
