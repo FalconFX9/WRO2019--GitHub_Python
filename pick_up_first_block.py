@@ -22,7 +22,7 @@ def pick_up_block():
     lower_motor.off()
     start_time = time()
     while not block_is_black:
-        hisp_right_follower(speed=40, kp=0.15)
+        hisp_right_follower(side_of_line=1, speed=40, kp=0.15)
     steer_pair.off()
     t_time = time() - start_time
     print(t_time)
