@@ -22,8 +22,7 @@ def look_at_blocks():
 Thread(target=look_at_blocks).start()
 while True:
     try:
-        while not block_is_black:
-            hisp_right_follower(speed=40)
+        hisp_right_follower(speed=40)
         print(side_color_sensor.value(3))
         file_x.write(str(side_color_sensor.value(3)))
         file_s.write(str(round(time(), 1)))
@@ -31,3 +30,4 @@ while True:
         steer_pair.off()
         file_s.close()
         file_x.close()
+        break
