@@ -19,8 +19,8 @@ def look_at_blocks():
                 block_is_black = True
         try:
             print(side_color_sensor.value(3))
-            file_x.write(str(side_color_sensor.value(3)))
-            file_s.write(str(round(time(), 1)))
+            file_x.write(str(side_color_sensor.value(3)) + '\n')
+            file_s.write(str(round(time(), 1)) + '\n')
         except KeyboardInterrupt:
             file_x.close()
             file_s.close()
