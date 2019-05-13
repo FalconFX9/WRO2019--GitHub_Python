@@ -11,25 +11,16 @@ start_time = time()
 
 def look_at_blocks():
     global block_is_black
-    while True:
-        while not block_is_black:
-            print(side_color_sensor.value(3))
-            if side_color_sensor.value(3) > 100:
-                sleep(0.3)
-            elif 100 > side_color_sensor.value(3) > 40:
-                block_is_black = True
-        try:
-            print(side_color_sensor.value(3))
-            file_x.write(str(side_color_sensor.value(3)) + '\n')
-            file_s.write(str(round((time() - start_time), 5)) + '\n')
-        except KeyboardInterrupt:
-            file_x.close()
-            file_s.close()
-            break
+    while not block_is_black:
+        print(side_color_sensor.value(3))
+        if side_color_sensor.value(3) > 120:
+            sleep(0.3)
+        elif 120 > side_color_sensor.value(3) > 40:
+            block_is_black = True
 
 
 Thread(target=look_at_blocks).start()
-while True:
+while not block_is_black:
     try:
         hisp_right_follower(speed=30)
     except KeyboardInterrupt:
