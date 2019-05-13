@@ -10,22 +10,27 @@ block_is_black = False
 
 def look_at_blocks():
     global block_is_black
-    while not block_is_black:
-        print(side_color_sensor.value())
-        if side_color_sensor.value(3) > 100:
-            sleep(0.3)
-        elif 100 > side_color_sensor.value(3) > 40:
-            block_is_black = True
-    print('Thread look_at_blocks is finished')
+    while True:
+        while not block_is_black:
+            print(side_color_sensor.value(3))
+            if side_color_sensor.value(3) > 100:
+                sleep(0.3)
+            elif 100 > side_color_sensor.value(3) > 40:
+                block_is_black = True
+        try:
+            print(side_color_sensor.value(3))
+            file_x.write(str(side_color_sensor.value(3)))
+            file_s.write(str(round(time(), 1)))
+        except KeyboardInterrupt:
+            file_x.close()
+            file_s.close()
+            break
 
 
 Thread(target=look_at_blocks).start()
 while True:
     try:
         hisp_right_follower(speed=40)
-        print(side_color_sensor.value(3))
-        file_x.write(str(side_color_sensor.value(3)))
-        file_s.write(str(round(time(), 1)))
     except KeyboardInterrupt:
         steer_pair.off()
         file_s.close()
