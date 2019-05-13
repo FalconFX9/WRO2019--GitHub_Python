@@ -1,20 +1,18 @@
 from line_follower_class import *
 from threading import Thread
 
-side_color_sensor.mode = 'COLOR'
+side_color_sensor.mode = 'RGB'
 block_is_black = False
 t_time = 0
-file_x = open('time_data.txt', 'w+')
-file_s = open('sensor_data.txt', 'w+')
 
 
 def look_at_blocks():
     global block_is_black
     while not block_is_black:
         print(side_color_sensor.value())
-        if side_color_sensor.value() == 17 and center_sensor.reflected_light_intensity < 30:
+        if side_color_sensor.value(3) > 120:
             sleep(0.3)
-        elif center_sensor.reflected_light_intensity < 30 and not (side_color_sensor.value() == 17):
+        elif 120 > side_color_sensor.value(3) > 40:
             block_is_black = True
     print('Thread look_at_blocks is finished')
 
