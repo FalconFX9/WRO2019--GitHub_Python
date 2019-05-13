@@ -21,8 +21,5 @@ def look_at_blocks():
 
 Thread(target=look_at_blocks).start()
 while not block_is_black:
-    try:
-        hisp_right_follower(speed=30)
-    except KeyboardInterrupt:
-        steer_pair.off()
-        break
+    hisp_right_follower(speed=30)
+steer_pair.off()
