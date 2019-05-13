@@ -5,6 +5,7 @@ from threading import Thread
 file_x = open('time_data.txt', 'w+')
 file_s = open('sensor_data.txt', 'w+')
 side_color_sensor.mode = 'RGB'
+block_is_black = False
 
 
 def look_at_blocks():
