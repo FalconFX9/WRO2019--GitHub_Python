@@ -116,7 +116,7 @@ def get_blocks_from_side():
 
 Thread(target=look_at_blocks).start()
 pick_up_block()
-#go_to_put_down()
+go_to_put_down()
 
 
 def oscillate(degres):
