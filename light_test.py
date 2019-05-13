@@ -21,5 +21,5 @@ def look_at_blocks():
 
 Thread(target=look_at_blocks).start()
 while not block_is_black:
-    hisp_right_follower(speed=30)
+    hisp_right_follower(speed=30, side_of_line=1)
 steer_pair.off()
