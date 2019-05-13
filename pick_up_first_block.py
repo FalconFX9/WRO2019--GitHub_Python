@@ -19,6 +19,7 @@ def look_at_blocks():
 
 def pick_up_block():
     global block_is_black, t_time
+    right_side_sensor.mode = 'COL_REFLECT'
     lower_motor.off()
     start_time = time()
     while not block_is_black:
