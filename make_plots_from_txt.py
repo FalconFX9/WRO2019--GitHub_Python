@@ -10,9 +10,9 @@ Look at graph and take oscillation period, this is Tu
 Kd should be Ku*Tu/10
 """
 matplotlib.use('Qt5Agg')
-file_s = open('sensor_data.txt', 'r')
+file_x = open('sensor_data.txt', 'r')
 # file_st = open('steering_data.txt', 'r')
-file_x = open('time_data.txt', 'r')
+file_s = open('time_data.txt', 'r')
 x = []
 y = []
 t = []
