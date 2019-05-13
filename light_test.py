@@ -27,5 +27,6 @@ while True:
         file_x.write(str(side_color_sensor.value(3)))
         file_s.write(str(round(time(), 1)))
     except KeyboardInterrupt:
+        steer_pair.off()
         file_s.close()
         file_x.close()
