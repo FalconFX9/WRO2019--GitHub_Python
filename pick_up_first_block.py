@@ -11,9 +11,10 @@ file_s = open('sensor_data.txt', 'w+')
 def look_at_blocks():
     global block_is_black
     while not block_is_black:
+        print(side_color_sensor.value())
         if side_color_sensor.value() == 17 and center_sensor.reflected_light_intensity < 30:
             sleep(0.3)
-        elif center_sensor.reflected_light_intensity < 30 and not side_color_sensor.value() == 17:
+        elif center_sensor.reflected_light_intensity < 30 and not (side_color_sensor.value() == 17):
             block_is_black = True
     print('Thread look_at_blocks is finished')
 

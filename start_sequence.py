@@ -15,7 +15,7 @@ def start_sequence():
 
     def see_color_blocks():
         while len(colorblock) < 4:
-            if not (side_color_sensor.value() == 18 or side_color_sensor.value() == 0):
+            if not (side_color_sensor.value() == 17 or side_color_sensor.value() == 0):
                 colorblock.append(side_color_sensor.value())
                 sleep(0.3)
     global colorblock
