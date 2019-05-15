@@ -20,6 +20,7 @@ def look_at_blocks():
             for intensity in value:
                 average += intensity
             average = average / len(value)
+            print(average)
             if average > 100:
                 sleep(0.3)
             elif 120 > average > 40:
