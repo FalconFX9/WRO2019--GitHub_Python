@@ -4,14 +4,16 @@ from threading import Thread
 side_color_sensor.mode = 'RGB'
 block_is_black = False
 t_time = 0
+measuring = False
 
 
 def look_at_blocks():
-    global block_is_black
+    global block_is_black, measuring
     value = []
     average = 0
     while not block_is_black:
         if center_sensor.reflected_light_intensity < 30:
+            measuring = True
             steer_pair.off()
             # Sensor runs at 50Hz, so this represents 0.5s --sleep just in case
             for i in range(10):
@@ -25,6 +27,7 @@ def look_at_blocks():
                 sleep(0.3)
             elif 120 > average > 40:
                 block_is_black = True
+                measuring = False
 
     print('Thread look_at_blocks is finished')
 
@@ -35,7 +38,8 @@ def pick_up_block():
     lower_motor.off()
     start_time = time()
     while not block_is_black:
-        hisp_right_follower(side_of_line=1, speed=40, kp=0.15)
+        if not measuring:
+            hisp_right_follower(side_of_line=1, speed=40, kp=0.15)
     steer_pair.off()
     t_time = time() - start_time
     print(t_time)
