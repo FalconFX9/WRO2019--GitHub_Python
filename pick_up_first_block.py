@@ -41,6 +41,8 @@ def pick_up_block():
     while not block_is_black:
         if not measuring:
             hisp_right_follower(side_of_line=1, speed=40, kp=0.15)
+        else:
+            steer_pair.off()
     steer_pair.off()
     t_time = time() - start_time
     print(t_time)
