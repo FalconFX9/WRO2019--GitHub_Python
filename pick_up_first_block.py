@@ -24,6 +24,7 @@ def look_at_blocks():
             average = average / len(value)
             print(average)
             if average > 100:
+                measuring = False
                 sleep(0.3)
             elif 120 > average > 40:
                 block_is_black = True
