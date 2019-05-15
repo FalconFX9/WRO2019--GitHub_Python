@@ -13,8 +13,9 @@ def look_at_blocks():
     average = 0
     while not block_is_black:
         if center_sensor.reflected_light_intensity < 30:
-            measuring = True
             steer_pair.off()
+            measuring = True
+
             # Sensor runs at 50Hz, so this represents 0.5s --sleep just in case
             for i in range(10):
                 value.append(side_color_sensor.value(3))
@@ -39,6 +40,7 @@ def pick_up_block():
     lower_motor.off()
     start_time = time()
     while not block_is_black:
+        print(measuring)
         if not measuring:
             hisp_right_follower(side_of_line=1, speed=40, kp=0.15)
         else:
