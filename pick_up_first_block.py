@@ -42,7 +42,7 @@ def pick_up_block():
     while not block_is_black:
         print(measuring)
         if not measuring:
-            hisp_right_follower(side_of_line=1, speed=40, kp=0.15)
+            hisp_right_follower(speed=40, kp=0.1)
         else:
             steer_pair.off()
     steer_pair.off()
