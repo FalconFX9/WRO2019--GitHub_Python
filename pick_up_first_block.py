@@ -12,6 +12,7 @@ def look_at_blocks():
     average = 0
     while not block_is_black:
         if center_sensor.reflected_light_intensity < 30:
+            steer_pair.off()
             # Sensor runs at 50Hz, so this represents 0.5s --sleep just in case
             for i in range(10):
                 value.append(side_color_sensor.value(3))
@@ -144,8 +145,10 @@ def oscillate(degres):
     sleep(0.1)
     lower_motor.on_for_degrees(30, degres)
     sleep(0.1)
+
+
 lower_motor.off(brake=False)
 right_side_sensor.mode = 'COL-REFLECT'
-#get_blocks_from_side()
-#block_num = (int(input('Enter bloc position')) * 90) + 180
-#put_down_blocks(block_num)
+# get_blocks_from_side()
+# block_num = (int(input('Enter bloc position')) * 90) + 180
+# put_down_blocks(block_num)
