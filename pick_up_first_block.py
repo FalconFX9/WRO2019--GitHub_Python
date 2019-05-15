@@ -145,6 +145,7 @@ def oscillate(degres):
     lower_motor.on_for_degrees(30, degres)
     sleep(0.1)
 lower_motor.off(brake=False)
+right_side_sensor.mode = 'COL-REFLECT'
 #get_blocks_from_side()
 #block_num = (int(input('Enter bloc position')) * 90) + 180
 #put_down_blocks(block_num)
