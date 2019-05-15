@@ -8,12 +8,22 @@ t_time = 0
 
 def look_at_blocks():
     global block_is_black
+    value = []
+    average = 0
     while not block_is_black:
-        print(side_color_sensor.value())
-        if side_color_sensor.value(3) > 120:
-            sleep(0.3)
-        elif 120 > side_color_sensor.value(3) > 40:
-            block_is_black = True
+        if center_sensor.reflected_light_intensity < 30:
+            # Sensor runs at 50Hz, so this represents 0.5s --sleep just in case
+            for i in range(10):
+                value.append(side_color_sensor.value(3))
+                sleep(0.02)
+            for intensity in value:
+                average += intensity
+            average = average / len(value)
+            if average > 100:
+                sleep(0.3)
+            elif 120 > average > 40:
+                block_is_black = True
+
     print('Thread look_at_blocks is finished')
 
 
@@ -42,6 +52,7 @@ def pick_up_block():
 
 def go_to_put_down():
     global t_time
+    # add turn towards wall and lower turn to position
     steer_pair.on_for_rotations(0, -40, 0.25)
     steer_pair.on_for_rotations(-70, 40, 0.7)
     while right_side_sensor.reflected_light_intensity > 30:
