@@ -40,7 +40,6 @@ def pick_up_block():
     lower_motor.off()
     start_time = time()
     while not block_is_black:
-        print(measuring)
         if not measuring:
             hisp_right_follower(speed=40, kp=0.1)
         else:
