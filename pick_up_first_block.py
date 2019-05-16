@@ -116,6 +116,7 @@ def put_down_blocks(block_pos: int):
         oscillate(0.07)
     else:
         oscillate(0.07)
+    lower_motor.on_for_degrees(10, 10)
     grabber_servo.on_for_degrees(20, 180)
     lower_motor.on_for_degrees(10, -50)
 
