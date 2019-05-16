@@ -136,14 +136,14 @@ def get_blocks_from_side():
 
 
 def oscillate(speed):
-    steer_pair.on_for_seconds(100, 100, speed)
-    steer_pair.on_for_seconds(-100, 100, speed)
-    steer_pair.on_for_seconds(100, 100, speed)
-    steer_pair.on_for_seconds(-100, 100, speed)
-    steer_pair.on_for_seconds(100, 100, speed)
-    steer_pair.on_for_seconds(-100, 100, speed)
-    steer_pair.on_for_seconds(100, 100, speed)
-    steer_pair.on_for_seconds(-100, 100, speed)
+    steer_pair.on_for_seconds(100, 50, speed)
+    steer_pair.on_for_seconds(-100, 50, speed)
+    steer_pair.on_for_seconds(100, 50, speed)
+    steer_pair.on_for_seconds(-100, 50, speed)
+    steer_pair.on_for_seconds(100, 50, speed)
+    steer_pair.on_for_seconds(-100, 50, speed)
+    steer_pair.on_for_seconds(100, 50, speed)
+    steer_pair.on_for_seconds(-100, 50, speed)
 
 
 right_side_sensor.mode = 'COL-REFLECT'
@@ -151,4 +151,4 @@ right_side_sensor.mode = 'COL-REFLECT'
 # block_num = (int(input('Enter bloc position')) * 90) + 180
 # put_down_blocks(block_num)
 # lower_motor.off(brake=False)
-oscillate(0.1)
+oscillate(0.07)
