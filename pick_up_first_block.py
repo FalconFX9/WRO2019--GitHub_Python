@@ -108,10 +108,11 @@ def put_down_blocks(block_pos: int):
     grabber_servo.on_for_degrees(30, block_pos)
     sleep(1.5)
     steer_pair.on_for_rotations(0, 30, 0.1)
+    if block_pos == 360:
+        steer_pair.on_for_rotations(0, 20, 0.2)
     lower_motor.on_for_degrees(10, 45)
     sleep(0.5)
     if block_pos == 360:
-        steer_pair.on_for_rotations(0, 20, 0.2)
         oscillate(0.07)
     else:
         oscillate(0.07)
