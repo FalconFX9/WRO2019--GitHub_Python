@@ -105,16 +105,16 @@ def put_down_blocks(block_pos: int):
         losp_center_follower(speed=30, kp=0.25)
     # timed_follower(center_sensor, 0.7, speed=30, kp=0.4)
     steer_pair.off()
-    grabber_servo.on_for_degrees(50, block_pos)
+    grabber_servo.on_for_degrees(30, block_pos)
     sleep(1.5)
     steer_pair.on_for_rotations(0, 30, 0.1)
     lower_motor.on_for_degrees(10, 45)
     sleep(0.5)
     if block_pos == 360:
-        Thread(target=oscillate, args=(15, )).start()
+        Thread(target=oscillate, args=(0.02, )).start()
         steer_pair.on_for_rotations(0, 7, 1)
     else:
-        oscillate(0.05)
+        oscillate(0.02)
     lower_motor.on_for_degrees(10, 15)
     grabber_servo.on_for_degrees(20, 180)
     lower_motor.on_for_degrees(10, -50)
@@ -149,8 +149,8 @@ def oscillate(speed):
     steer_pair.on_for_rotations(-100, 100, speed)
 
 
-lower_motor.off(brake=False)
 right_side_sensor.mode = 'COL-REFLECT'
 # get_blocks_from_side()
 block_num = (int(input('Enter bloc position')) * 90) + 180
 put_down_blocks(block_num)
+lower_motor.off(brake=False)
