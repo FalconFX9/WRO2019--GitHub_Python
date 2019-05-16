@@ -115,7 +115,6 @@ def put_down_blocks(block_pos: int):
         steer_pair.on_for_rotations(0, 7, 1)
     else:
         oscillate(0.02)
-    lower_motor.on_for_degrees(10, 15)
     grabber_servo.on_for_degrees(20, 180)
     lower_motor.on_for_degrees(10, -50)
 
@@ -151,6 +150,7 @@ def oscillate(speed):
 
 right_side_sensor.mode = 'COL-REFLECT'
 # get_blocks_from_side()
-block_num = (int(input('Enter bloc position')) * 90) + 180
-put_down_blocks(block_num)
-lower_motor.off(brake=False)
+# block_num = (int(input('Enter bloc position')) * 90) + 180
+# put_down_blocks(block_num)
+# lower_motor.off(brake=False)
+oscillate(0.02)
