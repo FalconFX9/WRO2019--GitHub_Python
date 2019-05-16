@@ -154,3 +154,6 @@ def pick_up_blue_block():
     put_down_blocks(block_num)
     lower_motor.off(brake=False)
     grabber_servo.off(brake=False)
+
+
+pick_up_blue_block()

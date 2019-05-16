@@ -20,7 +20,6 @@ def start_sequence():
                 sleep(0.3)
     global colorblock
     print('Start Sequence')
-    grabber_servo.on_for_degrees(speed=50, degrees=-180)
     lower_motor.on_for_degrees(speed=60, degrees=-90)
     steer_pair.on_for_rotations(35, -40, 0.4)
     lower_motor.off(brake=True)
