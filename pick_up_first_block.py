@@ -151,4 +151,4 @@ right_side_sensor.mode = 'COL-REFLECT'
 # block_num = (int(input('Enter bloc position')) * 90) + 180
 # put_down_blocks(block_num)
 # lower_motor.off(brake=False)
-oscillate(0.05)
+oscillate(0.1)
