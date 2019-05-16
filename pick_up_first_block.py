@@ -55,7 +55,7 @@ def pick_up_block():
     steer_pair.on_for_rotations(0, 20, 0.2)
     lower_motor.on_for_degrees(20, 55)
     sleep(0.6)
-    timed_follower(sensor=center_sensor, timemax=0.4, speed=40, kp=0.25)
+    timed_follower(sensor=center_sensor, timemax=0.45, speed=40, kp=0.25)
     steer_pair.off()
     lower_motor.on_for_degrees(10, -52)
 
@@ -116,7 +116,7 @@ def put_down_blocks(block_pos: int):
         oscillate(0.07)
     else:
         oscillate(0.07)
-    lower_motor.on_for_degrees(10, 10)
+    lower_motor.on_for_degrees(10, 15)
     grabber_servo.on_for_degrees(20, 180)
     lower_motor.on_for_degrees(10, -50)
 
