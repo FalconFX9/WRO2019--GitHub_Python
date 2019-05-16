@@ -136,16 +136,14 @@ def get_blocks_from_side():
 
 
 def oscillate(speed):
-    steer_pair.on_for_rotations(100, 100, speed)
-    steer_pair.on_for_rotations(-100, 100, speed)
-    steer_pair.on_for_rotations(100, 100, speed)
-    steer_pair.on_for_rotations(-100, 100, speed)
-    steer_pair.on_for_rotations(100, 100, speed)
-    steer_pair.on_for_rotations(-100, 100, speed)
-    steer_pair.on_for_rotations(100, 100, speed)
-    steer_pair.on_for_rotations(-100, 100, speed)
-    steer_pair.on_for_rotations(100, 100, speed)
-    steer_pair.on_for_rotations(-100, 100, speed)
+    steer_pair.on_for_seconds(100, 100, speed)
+    steer_pair.on_for_seconds(-100, 100, speed)
+    steer_pair.on_for_seconds(100, 100, speed)
+    steer_pair.on_for_seconds(-100, 100, speed)
+    steer_pair.on_for_seconds(100, 100, speed)
+    steer_pair.on_for_seconds(-100, 100, speed)
+    steer_pair.on_for_seconds(100, 100, speed)
+    steer_pair.on_for_seconds(-100, 100, speed)
 
 
 right_side_sensor.mode = 'COL-REFLECT'
