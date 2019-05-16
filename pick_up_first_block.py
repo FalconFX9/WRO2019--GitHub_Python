@@ -96,30 +96,25 @@ def go_to_put_down():
         steer_pair.on(70, 20)
     steer_pair.off()
     steer_pair.on_for_rotations(-70, 30, 0.05)
-    right_side_sensor.mode = 'COL-COLOR'
-    while not (right_side_sensor.value() == 2 or left_side_sensor.value() == 2):
-        losp_center_follower(speed=30, kp=0.25)
-    # timed_follower(center_sensor, 0.7, speed=30, kp=0.4)
-    steer_pair.off()
 
 
 def put_down_blocks(block_pos: int):
     right_side_sensor.mode = 'COL-COLOR'
     left_side_sensor.mode = 'COL-COLOR'
-    while not (right_side_sensor.value() == 5 or left_side_sensor.value() == 5):
+    while not (right_side_sensor.value() == 2 or left_side_sensor.value() == 2):
         losp_center_follower(speed=30, kp=0.25)
     # timed_follower(center_sensor, 0.7, speed=30, kp=0.4)
     steer_pair.off()
-    grabber_servo.on_for_degrees(30, block_pos)
+    grabber_servo.on_for_degrees(50, block_pos)
     sleep(1.5)
-    # steer_pair.on_for_rotations(0, 30, 0.25)
+    steer_pair.on_for_rotations(0, 30, 0.1)
     lower_motor.on_for_degrees(10, 45)
     sleep(0.5)
     if block_pos == 360:
         Thread(target=oscillate, args=(15, )).start()
         steer_pair.on_for_rotations(0, 7, 1)
     else:
-        oscillate(15)
+        oscillate(0.05)
     lower_motor.on_for_degrees(10, 15)
     grabber_servo.on_for_degrees(20, 180)
     lower_motor.on_for_degrees(10, -50)
@@ -141,23 +136,21 @@ pick_up_block()
 go_to_put_down()
 
 
-def oscillate(degres):
-    lower_motor.on_for_degrees(30, -degres)
-    sleep(0.1)
-    lower_motor.on_for_degrees(30, degres)
-    sleep(0.1)
-    lower_motor.on_for_degrees(30, -degres)
-    sleep(0.1)
-    lower_motor.on_for_degrees(30, degres)
-    sleep(0.1)
-    lower_motor.on_for_degrees(30, -degres)
-    sleep(0.1)
-    lower_motor.on_for_degrees(30, degres)
-    sleep(0.1)
+def oscillate(speed):
+    steer_pair.on_for_rotations(100, 100, speed)
+    steer_pair.on_for_rotations(-100, 100, speed)
+    steer_pair.on_for_rotations(100, 100, speed)
+    steer_pair.on_for_rotations(-100, 100, speed)
+    steer_pair.on_for_rotations(100, 100, speed)
+    steer_pair.on_for_rotations(-100, 100, speed)
+    steer_pair.on_for_rotations(100, 100, speed)
+    steer_pair.on_for_rotations(-100, 100, speed)
+    steer_pair.on_for_rotations(100, 100, speed)
+    steer_pair.on_for_rotations(-100, 100, speed)
 
 
 lower_motor.off(brake=False)
 right_side_sensor.mode = 'COL-REFLECT'
 # get_blocks_from_side()
-# block_num = (int(input('Enter bloc position')) * 90) + 180
-# put_down_blocks(block_num)
+block_num = (int(input('Enter bloc position')) * 90) + 180
+put_down_blocks(block_num)
