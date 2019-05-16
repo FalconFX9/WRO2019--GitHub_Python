@@ -143,13 +143,14 @@ def oscillate(speed):
     steer_pair.on_for_seconds(-100, 50, speed)
 
 
-right_side_sensor.mode = 'COL-REFLECT'
-# get_blocks_from_side()
-lower_motor.off()
-Thread(target=look_at_blocks).start()
-pick_up_block()
-go_to_put_down()
-block_num = (int(input('Enter bloc position')) * 90) + 180
-put_down_blocks(block_num)
-lower_motor.off(brake=False)
-grabber_servo.off(brake=False)
+def pick_up_blue_block():
+    right_side_sensor.mode = 'COL-REFLECT'
+    # get_blocks_from_side()
+    lower_motor.off()
+    Thread(target=look_at_blocks).start()
+    pick_up_block()
+    go_to_put_down()
+    block_num = (int(input('Enter bloc position')) * 90) + 180
+    put_down_blocks(block_num)
+    lower_motor.off(brake=False)
+    grabber_servo.off(brake=False)

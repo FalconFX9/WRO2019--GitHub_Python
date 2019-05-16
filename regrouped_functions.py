@@ -5,6 +5,7 @@ from put_down_cable import *
 from get_second_cable import *
 from put_down_second_cable import *
 from go_back_to_blocks import *
+from pick_up_first_block import *
 
 
 def wro2019():
@@ -14,4 +15,4 @@ def wro2019():
     get_second_cable()
     put_down_second_cable()
     go_back_to_blocks()
-    go_home()
+    pick_up_blue_block()
