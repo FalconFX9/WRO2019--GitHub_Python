@@ -24,7 +24,7 @@ def look_at_blocks():
                 average += intensity
             average = average / len(value)
             print(average)
-            if average > 100:
+            if average > 140:
                 measuring = False
                 sleep(0.3)
             elif 140 > average > 40:
