@@ -153,7 +153,7 @@ def turn_right(sensor):
 
 
 def turn_left(sensor):
-    steer_pair.on_for_rotations(-100, 40, 0.55)
+    steer_pair.on_for_rotations(-100, 40, 0.5)
     while sensor.reflected_light_intensity > 30:
         steer_pair.on(-100, 30)
     steer_pair.off()
