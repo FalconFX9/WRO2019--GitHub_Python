@@ -179,6 +179,3 @@ def pick_up_blue_block():
     print(blocks)
     lower_motor.off(brake=False)
     grabber_servo.off(brake=False)
-
-
-pick_up_blue_block()
