@@ -14,7 +14,7 @@ def go_back_to_pickup():
     while left_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(-100, -20)
     steer_pair.off()
-    follow_to_line(left_side_sensor, side_of_line=1, kp=0.3)
+    follow_to_line(left_side_sensor, side_of_line=1, kp=0.4)
     steer_pair.off()
     turn_right(left_side_sensor)
 
