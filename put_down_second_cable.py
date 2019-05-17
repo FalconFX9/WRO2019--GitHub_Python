@@ -7,19 +7,6 @@ lines_passed = False
 
 def put_down_second_cable():
 
-    def check_for_lines(num_lines):
-        global lines_passed
-        counter = 0
-        while counter < num_lines:
-            print(counter)
-            if center_sensor.reflected_light_intensity < 30:
-                if counter < num_lines - 1:
-                    counter = counter + 1
-                    sleep(0.3)
-                else:
-                    counter = counter + 1
-        lines_passed = True
-
     def goto_drop():
         global lines_passed, log_to_files
         steer_pair.on_for_rotations(70, 40, 1.56)
@@ -27,12 +14,14 @@ def put_down_second_cable():
             steer_pair.on(70, 20)
         steer_pair.off()
         steer_pair.on_for_rotations(70, 40, 0.07)
+
         timed_follower(sensor=right_side_sensor, side_of_line=1, speed=30, kp=1, timemax=2.5)
         follow_to_line(following_sensor=right_side_sensor, line_sensor=center_sensor, side_of_line=1, speed=40,
                        kp=0.3)
-        steer_pair.on_for_rotations(0, -40, 0.1)
+        steer_pair.on_for_rotations(0, -50, 0.1)
         follow_for_xlines(3, sensor=right_side_sensor, side_of_line=1, ttarget=50, kp=0.25)
         steer_pair.off()
+
         lines_passed = False
         steer_pair.on_for_rotations(0, -20, 0.1)
         while center_sensor.reflected_light_intensity > 30:

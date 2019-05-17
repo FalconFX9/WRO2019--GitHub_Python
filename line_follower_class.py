@@ -136,3 +136,24 @@ def follow_for_xlines(num_lines, sensor, side_of_line=None, speed=DEFAULT_SPEED,
                 timed_follower(sensor, 0.3, side_of_line, speed, kp, ttarget, kd)
             else:
                 counter = counter + 1
+
+
+def go_for_time_and_next_line(sensor, line_sensor, speed, side_of_line=None, kp=0.25, time=2):
+    timed_follower(sensor, time, side_of_line, speed, kp)
+    steer_pair.off()
+    follow_to_line(sensor, line_sensor, speed-30, side_of_line, kp)
+    steer_pair.off()
+
+
+def turn_right(sensor):
+    steer_pair.on_for_rotations(-70, 40, 0.7)
+    while sensor.reflected_light_intensity > 30:
+        steer_pair.on(-70, 30)
+    steer_pair.off()
+
+
+def turn_left(sensor):
+    steer_pair.on_for_rotations(70, 40, 0.7)
+    while sensor.reflected_light_intensity > 30:
+        steer_pair.on(70, 30)
+    steer_pair.off()

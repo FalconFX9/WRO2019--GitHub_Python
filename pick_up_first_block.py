@@ -5,6 +5,7 @@ side_color_sensor.mode = 'RGB'
 block_is_black = False
 t_time = 0
 measuring = False
+blocks = []
 
 
 def look_at_blocks():
@@ -26,12 +27,25 @@ def look_at_blocks():
             print(average)
             if average > 140:
                 measuring = False
+                blocks.append('white')
                 sleep(0.3)
             elif 140 > average > 40:
                 block_is_black = True
                 measuring = False
+                blocks.append('black')
 
     print('Thread look_at_blocks is finished')
+
+
+def scan(num):
+    if len(blocks) == 2:
+        blocks.append('black')
+        return True
+    else:
+        for i in range(num):
+            follow_to_line(following_sensor=right_side_sensor, speed=50, kp=0.2)
+            if not len(blocks) == 3:
+                Thread(target=look_at_blocks).start()
 
 
 def pick_up_block():
@@ -69,9 +83,11 @@ def go_to_put_down():
         steer_pair.on(-70, 30)
     steer_pair.off()
     if t_time < 1:
-        follow_for_xlines(3, sensor=right_side_sensor, speed=50, ttarget=45, kp=0.2)
+        scan(3)
+        # follow_for_xlines(3, sensor=right_side_sensor, speed=50, ttarget=45, kp=0.2)
         steer_pair.off()
     else:
+        scan(2)
         follow_for_xlines(2, sensor=right_side_sensor, speed=50, ttarget=45, kp=0.2)
         steer_pair.off()
     steer_pair.on_for_rotations(0, -40, 0.35)
@@ -152,6 +168,7 @@ def pick_up_blue_block():
     go_to_put_down()
     block_num = (int(input('Enter bloc position')) * 90) + 180
     put_down_blocks(block_num)
+    print(blocks)
     lower_motor.off(brake=False)
     grabber_servo.off(brake=False)
 
