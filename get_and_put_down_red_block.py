@@ -16,6 +16,7 @@ def go_back_to_pickup():
     steer_pair.off()
     follow_to_line(left_side_sensor, side_of_line=1)
     steer_pair.off()
+    turn_right(left_side_sensor)
 
 
 go_back_to_pickup()
