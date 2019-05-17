@@ -38,6 +38,7 @@ def look_at_blocks():
 
 
 def scan(num):
+    global block_is_black
     if len(blocks) == 2:
         blocks.append('black')
         return True
@@ -45,6 +46,7 @@ def scan(num):
         for i in range(num):
             follow_to_line(following_sensor=right_side_sensor, speed=50, kp=0.2)
             if not len(blocks) == 3:
+                block_is_black = False
                 Thread(target=look_at_blocks).start()
 
 
