@@ -37,19 +37,6 @@ def look_at_blocks():
     print('Thread look_at_blocks is finished')
 
 
-def scan(num):
-    global block_is_black
-    if len(blocks) == 2:
-        blocks.append('black')
-        return True
-    else:
-        for i in range(num):
-            follow_to_line(following_sensor=right_side_sensor, speed=50, kp=0.2)
-            if not len(blocks) == 3:
-                block_is_black = False
-                Thread(target=look_at_blocks).start()
-
-
 def pick_up_block():
     global block_is_black, t_time
     right_side_sensor.mode = 'COL-REFLECT'
@@ -66,6 +53,27 @@ def pick_up_block():
     steer_pair.on_for_rotations(25, -30, 0.1)
     follow_to_line(right_side_sensor, center_sensor, 30, kp=0.2)
     steer_pair.off()
+    value = []
+    average = 0
+    if t_time < 1.2:
+        for i in range(10):
+            value.append(side_color_sensor.value(3))
+            sleep(0.02)
+        for intensity in value:
+            average += intensity
+        average = average / len(value)
+        print(average)
+        if average > 140:
+            blocks.append('white')
+            sleep(0.3)
+        elif 140 > average > 40:
+            blocks.append('black')
+        if 'white' in blocks:
+            blocks.append('black')
+        else:
+            blocks.append('white')
+    else:
+        blocks.append('black')
     lower_motor.on_for_degrees(10, -10)
     steer_pair.on_for_rotations(60, 40, 1.2)
     steer_pair.on_for_rotations(0, 20, 0.2)
@@ -85,11 +93,9 @@ def go_to_put_down():
         steer_pair.on(-70, 30)
     steer_pair.off()
     if t_time < 1:
-        scan(3)
-        # follow_for_xlines(3, sensor=right_side_sensor, speed=50, ttarget=45, kp=0.2)
+        follow_for_xlines(3, sensor=right_side_sensor, speed=50, ttarget=45, kp=0.2)
         steer_pair.off()
     else:
-        scan(2)
         follow_for_xlines(2, sensor=right_side_sensor, speed=50, ttarget=45, kp=0.2)
         steer_pair.off()
     steer_pair.on_for_rotations(0, -40, 0.35)
