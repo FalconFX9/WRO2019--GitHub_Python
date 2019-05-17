@@ -13,7 +13,6 @@ def go_back_to_pickup():
     steer_pair.on_for_rotations(0, -35, 0.3)
     while left_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(-100, -20)
-    steer_pair.on_for_rotations(-100, 20, 0.07)
     steer_pair.off()
 
 
