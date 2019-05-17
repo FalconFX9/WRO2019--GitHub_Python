@@ -146,14 +146,14 @@ def go_for_time_and_next_line(sensor, line_sensor, speed, side_of_line=None, kp=
 
 
 def turn_right(sensor):
-    steer_pair.on_for_rotations(-70, 40, 0.7)
+    steer_pair.on_for_rotations(100, 40, 0.7)
     while sensor.reflected_light_intensity > 30:
         steer_pair.on(-100, 30)
     steer_pair.off()
 
 
 def turn_left(sensor):
-    steer_pair.on_for_rotations(70, 40, 0.7)
+    steer_pair.on_for_rotations(-100, 40, 0.7)
     while sensor.reflected_light_intensity > 30:
         steer_pair.on(100, 30)
     steer_pair.off()
