@@ -36,7 +36,7 @@ def put_down_cable():
             losp_right_follower(speed=50, kp=0.2)
         steer_pair.off()
         lines_passed = False
-        steer_pair.on_for_rotations(0, -40, 0.3)
+        steer_pair.on_for_rotations(0, -40, 0.27)
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(75, -30)
         steer_pair.off()
@@ -47,7 +47,7 @@ def put_down_cable():
         while not (left_side_sensor.value() == 5 and right_side_sensor.value() == 2 and time() > wait):
             losp_center_follower(kp=0.2)
         steer_pair.off(brake=False)
-        # steer_pair.on_for_rotations(0, -30, 0.4)
+        steer_pair.on_for_rotations(steering=0, speed=-40, rotations=0.4)
         lower_motor.on_for_degrees(speed=10, degrees=90)
         steer_pair.on_for_rotations(0, 60, 0.8)
         lower_motor.on_for_degrees(speed=10, degrees=-90)
