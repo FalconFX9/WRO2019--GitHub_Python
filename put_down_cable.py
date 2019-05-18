@@ -56,6 +56,3 @@ def put_down_cable():
 
     lower_motor.off()
     goto_drop()
-
-
-put_down_cable()
