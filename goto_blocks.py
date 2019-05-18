@@ -35,13 +35,13 @@ def goto_cables_group():
     def pick_up_cable():
         lower_motor.on_for_degrees(speed=30, degrees=90)
         steer_pair.on_for_rotations(60, -20, 0.15)
-        timed_follower(center_sensor, speed=30, timemax=0.95, kp=0.2)
+        timed_follower(center_sensor, speed=40, timemax=0.6, kp=0.2)
         steer_pair.off()
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
     def turn_around():
         steer_pair.on_for_rotations(0, 40, 0.6)
-        steer_pair.on_for_rotations(-70, 40, 2.1)
+        steer_pair.on_for_rotations(-70, 40, 2)
         while center_sensor.reflected_light_intensity > 30:
             steer_pair.on(-70, 20)
         steer_pair.off()
