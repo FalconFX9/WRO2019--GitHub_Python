@@ -29,7 +29,7 @@ def look_at_blocks():
                 measuring = False
                 blocks.append('white')
                 sleep(0.3)
-            elif 140 > average > 40:
+            elif 140 > average > 30:
                 block_is_black = True
                 measuring = False
                 blocks.append('black')
