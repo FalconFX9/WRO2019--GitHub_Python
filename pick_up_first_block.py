@@ -169,6 +169,7 @@ def oscillate(speed):
 
 
 def pick_up_blue_block():
+    side_color_sensor.mode = 'RGB'
     right_side_sensor.mode = 'COL-REFLECT'
     # get_blocks_from_side()
     lower_motor.off()
