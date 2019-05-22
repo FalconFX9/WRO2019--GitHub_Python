@@ -50,7 +50,7 @@ def put_down_cable():
         steer_pair.off()
         steer_pair.on_for_rotations(0, -40, 0.35)
         lower_motor.on_for_degrees(speed=10, degrees=90)
-        steer_pair.on_for_rotations(0, 80, 1.2)
+        steer_pair.on_for_rotations(0, 80, 1.05)
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
     lower_motor.off()
