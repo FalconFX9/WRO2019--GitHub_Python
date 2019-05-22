@@ -1,6 +1,6 @@
 from line_follower_class import *
 from threading import Thread
-from start_sequence import colorblock
+from start_sequence import position
 
 side_color_sensor.mode = 'RGB'
 block_is_black = False
@@ -77,6 +77,9 @@ def pick_up_block():
         blocks.append('black')
     lower_motor.on_for_degrees(10, -10)
     steer_pair.on_for_rotations(60, 40, 1.2)
+    while center_sensor.reflected_light_intensity > 30:
+        steer_pair.on(60, 40)
+    steer_pair.off()
     steer_pair.on_for_rotations(0, 20, 0.2)
     lower_motor.on_for_degrees(20, 58)
     sleep(0.6)
@@ -177,7 +180,7 @@ def pick_up_blue_block():
     pick_up_block()
     go_to_put_down()
     # block_num = (int(input('Enter bloc position')) * 90) + 180
-    put_down_blocks(colorblock['Blue'])
+    put_down_blocks(position['Blue'])
     print(blocks)
     lower_motor.off(brake=False)
     grabber_servo.off(brake=False)

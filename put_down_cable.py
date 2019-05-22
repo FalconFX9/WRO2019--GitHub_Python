@@ -47,11 +47,10 @@ def put_down_cable():
         while not (left_side_sensor.value() == 5 and right_side_sensor.value() == 2 and time() > wait):
             losp_center_follower(kp=0.2)
         steer_pair.off(brake=False)
-        sleep(3)
         steer_pair.off()
-        steer_pair.on_for_rotations(0, -40, 0.4)
+        steer_pair.on_for_rotations(0, -40, 0.35)
         lower_motor.on_for_degrees(speed=10, degrees=90)
-        steer_pair.on_for_rotations(0, 80, 0.8)
+        steer_pair.on_for_rotations(0, 80, 1.2)
         lower_motor.on_for_degrees(speed=10, degrees=-90)
 
     lower_motor.off()
