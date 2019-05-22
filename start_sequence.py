@@ -6,6 +6,19 @@ from threading import *
 timelimit = time() + 10
 motor_initialization()
 colorblock = []
+position = {}
+
+
+def positions():
+    for i in range(0, 4):
+        if colorblock[i] == 4:
+            position['Green'] = i * 90 + 180
+        elif colorblock[i] == 5:
+            position['Yellow'] = i * 90 + 180
+        elif colorblock[i] == 3:
+            position['Blue'] = i * 90 + 180
+        elif colorblock[i] == 7:
+            position['Red'] = i * 90 + 180
 
 
 def start_sequence():
@@ -20,6 +33,7 @@ def start_sequence():
                 sleep(0.3)
     global colorblock
     print('Start Sequence')
+    side_color_sensor.mode = 'COLOR'
     lower_motor.on_for_degrees(speed=60, degrees=-90)
     steer_pair.on_for_rotations(35, -40, 0.4)
     lower_motor.off(brake=True)
@@ -32,6 +46,7 @@ def start_sequence():
     print(colorblock)
     follow_to_line(following_sensor=right_side_sensor, speed=40)
     steer_pair.off()
+    positions()
     steer_pair.on_for_rotations(0, -35, 0.3)
     while right_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(100, -30)

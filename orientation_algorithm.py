@@ -30,28 +30,24 @@ Positions are as such :
        - - |
            |
 """
-
-for i in range(0, 4):
-    if colorblock[i] == 4:
-        position['Green'] = i * 90
-    elif colorblock[i] == 5:
-        position['Yellow'] = i * 90
-    elif colorblock[i] == 3:
-        position['Blue'] = i * 90
-    elif colorblock[i] == 7:
-        position['Red'] = i * 90
+def positions():
+    for i in range(0, 4):
+        if colorblock[i] == 4:
+            position['Green'] = i * 90 + 180
+        elif colorblock[i] == 5:
+            position['Yellow'] = i * 90 + 180
+        elif colorblock[i] == 3:
+            position['Blue'] = i * 90 + 180
+        elif colorblock[i] == 7:
+            position['Red'] = i * 90 + 180
 
 
 def show_color_assignment():
     for x in range(0, 4):
         if position[color_names[x]] == 0:
-            # grabber_servo.on_for_degrees(90, 40)
-            # follow appropriate amount
             print(color_names[x] + ' is in position ' + str(position[color_names[x]]))
-            pass
         elif position[color_names[x]] == 90:
             print(color_names[x] + ' is in position ' + str(position[color_names[x]]))
-            pass
         elif position[color_names[x]] == 180:
             print(color_names[x] + ' is in position ' + str(position[color_names[x]]))
         elif position[color_names[x]] == 270:
