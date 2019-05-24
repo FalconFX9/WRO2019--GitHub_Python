@@ -45,7 +45,7 @@ def go_back_to_pickup():
     elif blocks[1] == 'black':
         follow_for_xlines(2, left_side_sensor, 1)
     steer_pair.off()
-    steer_pair.on_for_rotations(0, -40, 0.2)
+    steer_pair.on_for_rotations(0, -40, 0.4)
     turn_right(center_sensor)
     follow_for_xlines(4, center_sensor, 1, line_sensor=right_side_sensor)
     steer_pair.off()
