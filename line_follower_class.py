@@ -125,12 +125,12 @@ def follow_to_line(following_sensor=center_sensor, line_sensor=center_sensor, sp
         follow.follower(side_of_line=side_of_line, kp=kp, speed=speed, sensor_target=45)
 
 
-def follow_for_xlines(num_lines, sensor, side_of_line=None, speed=DEFAULT_SPEED, kp=0.15, ttarget=35, kd=0.17):
+def follow_for_xlines(num_lines, sensor, side_of_line=None, speed=DEFAULT_SPEED, kp=0.15, ttarget=35, kd=0.17, line_sensor=center_sensor):
     counter = 0
     follower = OneSensorLineFollower(sensor)
     while counter < num_lines:
         follower.follower(side_of_line, kp, speed, ttarget, kd)
-        if center_sensor.reflected_light_intensity < 30:
+        if line_sensor.reflected_light_intensity < 30:
             if counter < num_lines - 1:
                 counter = counter + 1
                 timed_follower(sensor, 0.3, side_of_line, speed, kp, ttarget, kd)
