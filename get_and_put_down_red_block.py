@@ -2,6 +2,7 @@
 from line_follower_class import *
 
 
+blocks = ['black', 'white', 'black']
 def go_back_to_pickup():
     left_side_sensor.mode = 'COL-REFLECT'
     while right_side_sensor.reflected_light_intensity > 30:
@@ -19,6 +20,11 @@ def go_back_to_pickup():
     steer_pair.off()
     steer_pair.on_for_rotations(0, -40, 0.15)
     turn_right(left_side_sensor)
+    if blocks[2] == 'black':
+        follow_for_xlines(2, left_side_sensor, 1)
+    elif blocks[1] == 'black':
+        follow_for_xlines(3, left_side_sensor, 1)
+    steer_pair.off()
 
 
 go_back_to_pickup()
