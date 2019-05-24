@@ -35,6 +35,20 @@ def go_back_to_pickup():
     timed_follower(sensor=center_sensor, timemax=0.45, speed=40, kp=0.25, ttarget=30)
     steer_pair.off()
     lower_motor.on_for_degrees(10, -52)
+    steer_pair.on_for_rotations(0, -40, 0.2)
+    steer_pair.on_for_rotations(70, 40, 0.7)
+    while left_side_sensor.reflected_light_intensity > 30:
+        steer_pair.on(70, 30)
+    steer_pair.off()
+    if blocks[2] == 'black':
+        follow_for_xlines(3, left_side_sensor, 1)
+    elif blocks[1] == 'black':
+        follow_for_xlines(2, left_side_sensor, 1)
+    steer_pair.off()
+    steer_pair.on_for_rotations(0, -40, 0.2)
+    turn_right(left_side_sensor)
+    follow_for_xlines(4, left_side_sensor, 1)
+    steer_pair.off()
 
 
 go_back_to_pickup()
