@@ -38,3 +38,5 @@ def go_back_to_pickup():
 
 
 go_back_to_pickup()
+lower_motor.off(False)
+grabber_servo.off(False)
