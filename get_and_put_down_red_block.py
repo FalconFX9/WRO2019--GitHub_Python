@@ -1,4 +1,5 @@
-from pick_up_first_block import *
+# from pick_up_first_block import blocks
+from line_follower_class import *
 
 
 def go_back_to_pickup():
