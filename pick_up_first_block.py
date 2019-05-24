@@ -79,7 +79,7 @@ def pick_up_block():
     lower_motor.on_for_degrees(10, -10)
     steer_pair.on_for_rotations(60, 40, 1.2)
     while center_sensor.reflected_light_intensity > 30:
-        steer_pair.on(60, 40)
+        steer_pair.on(60, 15)
     steer_pair.off()
     steer_pair.on_for_rotations(0, 20, 0.2)
     lower_motor.on_for_degrees(20, 58)
@@ -97,7 +97,7 @@ def go_to_put_down():
     while right_side_sensor.reflected_light_intensity > 30:
         steer_pair.on(-70, 30)
     steer_pair.off()
-    if t_time < 1:
+    if t_time < 1.2:
         follow_for_xlines(3, sensor=right_side_sensor, speed=50, ttarget=45, kp=0.2)
         steer_pair.off()
     else:
