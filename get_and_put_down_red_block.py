@@ -49,6 +49,12 @@ def go_back_to_pickup():
     turn_right(left_side_sensor)
     follow_for_xlines(4, left_side_sensor, 1)
     steer_pair.off()
+    steer_pair.on_for_rotations(0, -40, 0.67)
+    steer_pair.on_for_rotations(72, 40, 0.9)
+    while center_sensor.reflected_light_intensity > 30:
+        steer_pair.on(70, 20)
+    steer_pair.off()
+    steer_pair.on_for_rotations(0, 40, 0.6)
 
 
 go_back_to_pickup()
