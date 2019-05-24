@@ -57,6 +57,41 @@ def go_back_to_pickup():
     steer_pair.on_for_rotations(0, 40, 0.6)
 
 
+def put_down_blocks(block_pos: int):
+    right_side_sensor.mode = 'COL-COLOR'
+    left_side_sensor.mode = 'COL-COLOR'
+    while not (right_side_sensor.value() == 2 or left_side_sensor.value() == 2):
+        losp_center_follower(speed=30, kp=0.25)
+    # timed_follower(center_sensor, 0.7, speed=30, kp=0.4)
+    steer_pair.off()
+    grabber_servo.on_for_degrees(30, block_pos)
+    sleep(1.5)
+    steer_pair.on_for_rotations(0, 30, 0.2)
+    if block_pos == 360:
+        steer_pair.on_for_rotations(0, 20, 0.06)
+    lower_motor.on_for_degrees(10, 45)
+    sleep(0.5)
+    if block_pos == 360:
+        oscillate(0.07)
+    else:
+        oscillate(0.07)
+    lower_motor.on_for_degrees(10, 15)
+    grabber_servo.on_for_degrees(20, 180)
+    lower_motor.on_for_degrees(10, -50)
+
+
+def oscillate(speed):
+    steer_pair.on_for_seconds(100, 50, speed)
+    steer_pair.on_for_seconds(-100, 50, speed)
+    steer_pair.on_for_seconds(100, 50, speed)
+    steer_pair.on_for_seconds(-100, 50, speed)
+    steer_pair.on_for_seconds(100, 50, speed)
+    steer_pair.on_for_seconds(-100, 50, speed)
+    steer_pair.on_for_seconds(100, 50, speed)
+    steer_pair.on_for_seconds(-100, 50, speed)
+
+
 go_back_to_pickup()
+put_down_blocks(block_pos=int(input('Block ')))
 lower_motor.off(False)
 grabber_servo.off(False)
