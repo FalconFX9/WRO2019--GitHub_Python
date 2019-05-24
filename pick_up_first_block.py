@@ -1,6 +1,6 @@
 from line_follower_class import *
 from threading import Thread
-from start_sequence import position
+# from start_sequence import position
 
 side_color_sensor.mode = 'RGB'
 block_is_black = False
@@ -41,6 +41,7 @@ def look_at_blocks():
 def pick_up_block():
     global block_is_black, t_time
     right_side_sensor.mode = 'COL-REFLECT'
+    lower_motor.off(brake=False)
     lower_motor.off()
     start_time = time()
     while not block_is_black:
@@ -179,8 +180,11 @@ def pick_up_blue_block():
     Thread(target=look_at_blocks).start()
     pick_up_block()
     go_to_put_down()
-    # block_num = (int(input('Enter bloc position')) * 90) + 180
-    put_down_blocks(position['Blue'])
+    block_num = (int(input('Enter bloc position')) * 90) + 180
+    put_down_blocks(block_num)
     print(blocks)
     lower_motor.off(brake=False)
     grabber_servo.off(brake=False)
+
+
+pick_up_blue_block()
