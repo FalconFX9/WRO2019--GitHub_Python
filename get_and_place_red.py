@@ -133,3 +133,6 @@ def placing(block_pos):
 def run():
     get_block()
     placing(input('Pos'))
+
+
+run()
