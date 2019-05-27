@@ -58,7 +58,7 @@ def get_block():
     Thread(target=measure).start()
     while not block_is_black:
         if not measuring:
-            hisp_right_follower(speed=40, kp=0.1)
+            hisp_right_follower(speed=40, kp=0.15)
         else:
             steer_pair.off()
     steer_pair.off()
