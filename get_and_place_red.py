@@ -133,6 +133,7 @@ def placing(block_pos):
 
 
 def run():
+    side_color_sensor.mode = 'RGB'
     get_block()
     placing(input('Pos'))
 
