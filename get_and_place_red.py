@@ -1,4 +1,5 @@
 from line_follower_class import *
+from threading import Thread
 
 blocks = []
 block_is_black = False
@@ -52,6 +53,7 @@ def get_block():
     steer_pair.off()
     turn_left(right_side_sensor)
     start_time = time()
+    Thread(target=measure).start()
     while not block_is_black:
         if not measuring:
             hisp_right_follower(speed=40, kp=0.1)
