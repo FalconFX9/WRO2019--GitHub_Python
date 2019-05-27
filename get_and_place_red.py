@@ -51,6 +51,7 @@ def get_block():
     turn_right(center_sensor)
     follow_for_xlines(3, center_sensor, line_sensor=left_side_sensor)
     steer_pair.off()
+    steer_pair.on_for_rotations(0, -60, 0.4)
     turn_left(right_side_sensor)
     start_time = time()
     Thread(target=measure).start()
@@ -135,7 +136,7 @@ def placing(block_pos):
 def run():
     side_color_sensor.mode = 'RGB'
     get_block()
-    placing(input('Pos'))
+    placing(int(input('Pos')))
 
 
 run()
