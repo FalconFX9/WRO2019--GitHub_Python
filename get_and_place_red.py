@@ -121,8 +121,8 @@ def placing(block_pos):
         pass
         place(block_pos)
     else:
-        turn_right(center_sensor)
-        follow_to_line(line_sensor=right_side_sensor)
+        turn_right(left_side_sensor)
+        follow_to_line(following_sensor=left_side_sensor, line_sensor=right_side_sensor)
         steer_pair.off()
         turn_right(center_sensor)
         left_side_sensor.mode, right_side_sensor.mode = 'COL-COLOR', 'COL-COLOR'
