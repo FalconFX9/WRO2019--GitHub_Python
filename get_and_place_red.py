@@ -118,7 +118,15 @@ def placing(block_pos):
 
     if duration < 1.2:
         # perform a 180 turn
-        pass
+        steer_pair.on_for_rotations(100, 40, 1)
+        while not center_sensor.reflected_light_intensity < 30:
+            steer_pair.on(100, 40)
+        steer_pair.off()
+        steer_pair.on_for_rotations(-100, 40, 0.05)
+        left_side_sensor.mode, right_side_sensor.mode = 'COL-COLOR', 'COL-COLOR'
+        while not (right_side_sensor.value() == 5 or left_side_sensor.value() == 5):
+            losp_center_follower(speed=30, kp=0.25)
+        steer_pair.off()
         place(block_pos)
     else:
         turn_right(left_side_sensor)
