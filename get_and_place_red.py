@@ -122,7 +122,7 @@ def placing(block_pos):
         while not center_sensor.reflected_light_intensity < 30:
             steer_pair.on(100, 40)
         steer_pair.off()
-        steer_pair.on_for_rotations(-100, 40, 0.05)
+        steer_pair.on_for_rotations(-100, 40, 0.1)
         left_side_sensor.mode, right_side_sensor.mode = 'COL-COLOR', 'COL-COLOR'
         while not (right_side_sensor.value() == 5 or left_side_sensor.value() == 5):
             losp_center_follower(speed=30, kp=0.25)
