@@ -100,7 +100,7 @@ def placing(block_pos):
     global duration
 
     def place(pos):
-        grabber_servo.on_for_degrees(30, pos)
+        grabber_servo.on_for_degrees(30, (pos * 90) + 180)
         sleep(1.5)
         steer_pair.on_for_rotations(0, 30, 0.2)
         if pos == 360:
@@ -128,3 +128,8 @@ def placing(block_pos):
     lower_motor.on_for_degrees(10, 15)
     grabber_servo.on_for_degrees(20, 180)
     lower_motor.on_for_degrees(10, -50)
+
+
+def run():
+    get_block()
+    placing(input('Pos'))
