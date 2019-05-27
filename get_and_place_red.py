@@ -124,6 +124,7 @@ def placing(block_pos):
         turn_right(left_side_sensor)
         follow_to_line(following_sensor=left_side_sensor, line_sensor=right_side_sensor)
         steer_pair.off()
+        steer_pair.on_for_rotations(0, -60, 0.3)
         turn_right(center_sensor)
         left_side_sensor.mode, right_side_sensor.mode = 'COL-COLOR', 'COL-COLOR'
         while not (right_side_sensor.value() == 5 or left_side_sensor.value() == 5):
