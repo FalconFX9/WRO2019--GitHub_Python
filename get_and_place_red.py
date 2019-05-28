@@ -52,7 +52,7 @@ def get_block():
     sleep(1)
     follow_for_xlines(3, center_sensor, line_sensor=left_side_sensor)
     steer_pair.off()
-    steer_pair.on_for_rotations(0, -60, 0.2)
+    steer_pair.on_for_rotations(0, -60, 0.15)
     turn_left(right_side_sensor)
     start_time = time()
     Thread(target=measure).start()
