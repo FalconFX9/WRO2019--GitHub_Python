@@ -49,7 +49,7 @@ def measure():
 def get_block():
     global block_is_black, duration
     turn_right(center_sensor)
-    sleep(1)
+    steer_pair.on_for_rotations(-100, 40, 0.05)
     follow_for_xlines(3, center_sensor, line_sensor=left_side_sensor)
     steer_pair.off()
     steer_pair.on_for_rotations(0, -60, 0.15)
