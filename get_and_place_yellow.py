@@ -1,4 +1,5 @@
 from line_follower_class import *
+from threading import Thread
 
 
 def oscillate(speed):
@@ -45,6 +46,7 @@ def pick_up_last_block():
     turn_right(right_side_sensor)
     steer_pair.on_for_rotations(-100, 40, 0.05)
     start_time = time()
+    Thread(target=measure).start()
     while not block_is_black:
         if not measuring:
             hisp_right_follower(speed=40, kp=0.15)
@@ -99,3 +101,11 @@ def put_down_last_block():
         oscillate(0.07)
     else:
         oscillate(0.07)
+
+
+def run():
+    pick_up_last_block()
+    put_down_last_block()
+
+
+run()
