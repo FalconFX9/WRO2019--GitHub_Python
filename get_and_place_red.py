@@ -152,3 +152,5 @@ def run():
 
 
 run()
+lower_motor.off(False)
+grabber_servo.off(False)
